@@ -10,7 +10,7 @@ var app={
 			//{name:"Twitter_20121209", type: "GEOJSON", url:"db/ford.json", srs:"EPSG:4326", cluster:true, title:"Twitter 'Ford-case' @20121209 (0.38MB): 745 Twitters", fieldName:{username:"user_name", text:"text_"}},
 //			{name:"Twitter_20121210", type: "GEOJSON", url:"db/20121210.json", srs:"EPSG:4326", cluster:true, title:"Twitter 'Ford-case' @20121210 (6.04MB): 12024 Twitters"},
 //			{name:"Twitter_20121211", type: "GEOJSON", url:"db/20121211.json", srs:"EPSG:4326", cluster:true, title:"Twitter 'Ford-case' @20121211 (7.85MB): 15608 Twitters"},
-			{name:"[WMS]States", type: "WMS", url:"http://sgis.kisr.edu.kw/geoserver/topp/wms", srs:"EPSG:4326", param:{layers:"topp:states", attribution:""}},
+			{name:"[WMS]States", type: "WMS", url:"http://sgis.kisr.edu.kw/geoserver/topp/wms", srs:"EPSG:4326", param:{layers:"topp:states", tiled:true, attribution:""}},
 			{name:"[WMS]Weather", type: "WMS", url:"http://gis.srh.noaa.gov/ArcGIS/services/NDFDTemps/MapServer/WMSServer", srs:"EPSG:4326", param:{layers:"1", attribution:"NOAA"}}
 	],
 	searchResult:null,
@@ -45,6 +45,7 @@ function init_map(){
 		layers:[app.basemaps["Cloudmade"]],
 		attributionControl:false,
 		crs: L.CRS.EPSG4326  //change projection system to latitude and longtitude (epsg:4326), the original is epsg:3857
+							 //but it will make some projection problem of WMS!!!
     }); 
 	
 	//layers control
