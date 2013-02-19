@@ -111,7 +111,8 @@
 			<li title="show Heat Map" onclick='switchVisualization(["HEATMAP", "GEOJSON"]);'><img src='images/gallery-heatmap.png'><br>Heat Map</li>
 			<li onclick='if(app.map.hasLayer(app.basemaps["Nokia Satellite"])){app.map.removeLayer(app.basemaps["Nokia Satellite"])}else{app.basemaps["Nokia Satellite"].addTo(app.map);}'><img src='images/gallery-satellite.png'><br>Satellite Map</li>
 			<li onclick='if(app.map.hasLayer(app.basemaps["Google Streetmap"])){app.map.removeLayer(app.basemaps["Google Streetmap"])}else{app.basemaps["Google Streetmap"].addTo(app.map);}'><img src='images/gallery-streetmap.png'><br>Goolge Streetmap</li>
-			<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Compare to Census</li>
+			<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Census Data</li>
+			<li onclick='if(app.map.hasLayer(app.layers[1].layer)){app.map.removeLayer(app.layers[1].layer)}else{app.layers[1].layer.addTo(app.map);}'><img src='images/gallery-weather.png' ><br>Realtime Weather</li>
 		</ul>
 	</div>
 	
