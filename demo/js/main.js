@@ -1,3 +1,8 @@
+	
+	//Load Google Charts and set callback
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(init_reputation_score);
+	
 	//global variables
 	var app={
 		map:null,		// leaflet map object
@@ -51,9 +56,6 @@
 		});
 	
 	}
-	
-	
-	
 	
 	
 	function init_map(){
@@ -398,6 +400,38 @@
 		dialogOptions.position=dialogOptions.position || "center";
 	
 		$("#"+id).dialog(dialogOptions);
+	}
+	
+	
+		
+	/**
+	*Initialize reputation score and graphs
+	*/
+	function init_reputation_score(){
+	
+		$('.changeGraph').css('cursor', 'pointer');
+	
+		var graph_data = getScore("daily");
+		
+		var data_graph_rep = google.visualization.arrayToDataTable(graph_data);
+
+        var options_graph_rep = {
+          legend: {position: 'none'},
+		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+        };
+
+        var graph_rep = new google.visualization.LineChart(document.getElementById('chart_reputation'));
+        graph_rep.draw(data_graph_rep, options_graph_rep);
+		
+		
+		$('.changeGraph').click(function() {
+			graph_data = getScore($(this).attr('id'));
+			data_graph_rep = google.visualization.arrayToDataTable(graph_data);
+			graph_rep.draw(data_graph_rep, options_graph_rep);
+			$('.changeGraph').css("font-weight","normal");
+			var bolder = '#' + ($(this).attr('id'));
+			$(bolder).css("font-weight","bold");
+		});
 	}
 	
 	
