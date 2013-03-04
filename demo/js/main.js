@@ -42,7 +42,7 @@
 
 		app.gridster=$(".gridster ul").gridster({
 	        widget_margins: [15, 15],
-	        widget_base_dimensions: [$(".gridster").width()/7.35, $(".gridster").width()/7.35]
+	        widget_base_dimensions: [$(".gridster").width()/7.4, $(".gridster").width()/7.4]
 	    }).data("gridster");
 	    
 	    //load widget
