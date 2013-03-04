@@ -8,50 +8,23 @@
 		hitMapData:{   //heatmap data
 			max:  1,        // Always 1 in tweet data
 			data: []
-		},
-		gridster:null,  //gridster
-		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"]
+		}
 	}
 
 
 	// start - chart and table
-    // google.load("visualization", "1", {packages:["corechart"]});
-    // google.load('visualization', '1', {packages:['table']});
-    // google.load('visualization', '1', {packages:['gauge']});
-    //google.setOnLoadCallback(drawChart);
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.load('visualization', '1', {packages:['table']});
+    google.load('visualization', '1', {packages:['gauge']});
+    google.setOnLoadCallback(drawChart);
     
 
-	//dom ready
-	$(function() { 	    
-		init_UI();
+	$(document).ready(function() { 	    
+		init_map();
 		
-
 		// north-center
-	    //getTweets();
+	    getTweets();
 	});
-	
-	
-	
-	
-	/**
-	 * init user interface 
-	 */
-	function init_UI(){
-		//gridster
-		$(".gridster").append("<ul></ul>");
-
-		app.gridster=$(".gridster ul").gridster({
-	        widget_margins: [15, 15],
-	        widget_base_dimensions: [$(".gridster").width()/7.35, $(".gridster").width()/7.35]
-	    }).data("gridster");
-	    
-	    //load widget
-	    $.each(app.widgets, function(i,widget){
-			addWidget(widget);
-		});
-	
-	}
-	
 	
 	
 	
@@ -61,9 +34,14 @@
 			
 		//var map = new L.Map('map');
 		var OpenStreet = 'http://{s}.tile.cloudmade.com/ad132e106cd246ec961bbdfbe0228fe8/997/256/{z}/{x}/{y}.png',
-			//apple = new L.TileLayer(OpenStreet, {maxZoom: 18,unloadInvisibleTiles: true});
-			cmAttr = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-			cmUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png';
+		//apple = new L.TileLayer(OpenStreet, {maxZoom: 18,unloadInvisibleTiles: true});
+		
+
+
+				cmAttr = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+				cmUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png';
+
+
 
 		var openstreet = L.tileLayer(OpenStreet, {styleId: 256, attribution: cmAttr})
 			minimal   = L.tileLayer(cmUrl, {styleId: 22677, attribution: cmAttr}),
@@ -291,113 +269,8 @@
       			
 	}
 
-
-
-	/**
-	 * add a new Widget into the Dashboard 
-	 */
-	function addWidget(dom_id){
-		var $this=$("div[id="+dom_id+"]");
-		
-		var sizeX=$this.attr("widget-sizeX") || 1,
-			sizeY=$this.attr("widget-sizeY") || 1,
-			row=$this.attr("widget-row") || 1,
-			col=$this.attr("widget-col") || 1;
 	
-		
-		//add the widget
-		var $widget=app.gridster.add_widget("<li></li>", sizeX, sizeY, col, row);
-		
-		//html
-		$widget.html(createWidgetTitle($this)).append($this.html());
-		
-	
-		//give widget id
-		$widget.attr("id", $this.attr("id"));
-		
-		//onclick event
-		if($this.attr("widget-onClick") && $this.attr("widget-onClick")!=""){
-			//if not addWidget
-			if($widget.attr("id")!="widget_addWidget"){
-				$widget.find(".widget-detail").show().click(function(){
-					eval($this.attr("widget-onClick"));
-				});
-			}else{
-				$widget.find("div:nth-child(2)").attr("onclick", $this.attr("widget-onClick"));
-			}
-		}
-		
-		//onclose event
-		$widget.find(".widget-close").click(function(){
-			if($widget.attr("id")!='widget_addWidget'){
-				if($this.attr("widget-onClose") && $this.attr("widget-onClose")!=""){
-					eval($this.attr("widget-onClose"))
-				}
-				app.gridster.remove_widget($widget);
-			}
-		})
-		
-		//if div contains widget-onInit event
-		if($this.attr("widget-onInit") && $this.attr("widget-onInit")!=""){
-			//window[$this.attr("widget-onInit")]()
-			eval($this.attr("widget-onInit"));
-		}
-		
-		//close all dialog
-		$("*").dialog("destroy");
-	}
-	
-	
-	/**
-	 * create title section in a widget 
-	 */
-	function createWidgetTitle($this){
-		//title
-		var html="<div class='widget-title'>"
-		if($this.attr("widget-title") && $this.attr("widget-title")!=""){
-			html+="<label>"+$this.attr("widget-title")+"</label>";
-		}
-		
-		if($this.attr("id")!="widget_addWidget"){
-			html+="<span class='ui-icon ui-icon-close widget-close' title='close the widget'></span>"+
-			  	  "<span class='ui-icon ui-icon-search widget-detail' title='See more detail'></span>"+
-			      "</div>";
-		}
-		return html;
-	}
 	
 	
 	
-	/**
-	 * close widget
-	 * @param {number} index 
-	 */
-	function closeWidget(index){
-		console.log(index)
-		//
-	}
-	
-	
-	
-	/**
-	 * showDialog
-	 * @param {Object} id
-	 * @param {Object} title
-	 * @param {Object} dialogOptions
-	 */
-	function showDialog(id, title, dialogOptions){
-		if(!dialogOptions){dialogOptions={}}
 		
-		dialogOptions.title=dialogOptions.title || title;
-		dialogOptions.width=dialogOptions.width || 700;
-		dialogOptions.height=dialogOptions.height || 500;
-		dialogOptions.resizable=false || dialogOptions.resizable;
-		//dialogOptions.draggable=false || dialogOptions.draggable;
-		dialogOptions.dialogClass="dialog";
-		dialogOptions["close"]=dialogOptions["close"] || function(){};
-		dialogOptions.position=dialogOptions.position || "center";
-	
-		$("#"+id).dialog(dialogOptions);
-	}
-	
-	
