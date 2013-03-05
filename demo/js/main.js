@@ -41,17 +41,24 @@
 		init_news_widget();
 	});
 	
+	
+	/**
+	* Creates a google table in news_widget.  Table is populated with data from rss.js.  
+	*/
 	function init_news_widget() {
 
 		var rssData = new google.visualization.DataTable();
-		rssData.addColumn("string", "Score");
+		rssData.addColumn("number", "Score");
 		rssData.addColumn("string", "Date");
 		rssData.addColumn("string", "Source");
 		rssData.addColumn("string", "Title");
 		
 		for (var indx in rssFeeds) {
 			var feed = rssFeeds[indx];
-			rssData.addRow( [ '80', feed.date, feed.name, "<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" + feed.url + "'>" + feed.title + "</a>" ] );
+			rssData.addRow( [ 	feed.score, 
+								feed.date, feed.name, 
+								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" + feed.url + "'>" + feed.title + "</a>" 
+							] );
 		}
 		
 		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
