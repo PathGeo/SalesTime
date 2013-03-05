@@ -39,6 +39,7 @@
 	    //getTweets();
 		
 		init_news_widget();
+		init_leads_table();
 	});
 	
 	
@@ -65,6 +66,36 @@
 		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false } );
 	}
 	
+	function init_leads_tables() {
+        var salesData = new google.visualization.DataTable();
+        salesData.addColumn('number', 'Score');
+        salesData.addColumn('string', 'User');
+        salesData.addColumn('string', 'Tweet');
+        salesData.addColumn('string', 'Location');
+		for (var indx in leads.sales) {
+			var lead = leads.sales[indx];
+			salesData.addRow( [ 
+								lead.score, 
+								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text, 
+								lead.loc 
+							] );
+		}
+		
+		/*
+		for (var indx in leads.service) {
+			var lead = leads.service[indx];
+			data2.addRow( [ lead.score, "<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text, lead.loc ] );
+		}
+		*/
+		
+
+        var table = new google.visualization.Table(document.getElementById('sales_leads'));
+        table.draw(salesData, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
+		
+		// Add our selection handler.
+		//google.visualization.events.addListener(table, 'select', selectHandler);
+	
+	}
 	
 	/**
 	 * init user interface 
