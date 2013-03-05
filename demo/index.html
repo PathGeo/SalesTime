@@ -84,16 +84,16 @@
 	<div id='widget_map' class='widget' widget-title='Map & Top Sales Leads and Top Service Leads' widget-onInit="init_map()" widget-onClose="" widget-onClick="" widget-sizeX=6 widget-sizeY=2 widget-row=2 widget-col=1>
 		
 		
-		<!--- Not sure what's going on....Can't seem to place two DIVs side-by-side in the widget -->
-		<div style='position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;'>
+		<!--- Note: Still trying to fix layout for map and lead tables. (Chris) -->
+		<div style='position: absolute; height: 97%; width: 100%;'>
 		
-			<div id='map' style='left: 0px; bottom: 0px; width:70%; height:94%;'></div>
+			<div id='map' style='position: absolute; width:65%; height:95%;'></div>
 			
-			<div style='width:20%; height:94%; right: 0px;'> Outer DIV
+			<div style='position: absolute; width:35%; height:95%; right: 0px;'> 
 				
-				<div id='sales_leads' style='height: 40%; width: 90%;'> Inner DIV 1 </div>
+				<div id='sales_leads' style='height: 50%; width: 100%; background-color: red; overflow: auto;'> Sales Leads </div>
 			
-				<div id='service_leads' style='height: 40%; width: 90%;'> Inner DIV 2 </div>
+				<div id='service_leads' style='height: 50%; width: 100%; background-color: blue; overflow: auto;'> Service Leads </div>
 		
 			</div>
 		</div>
