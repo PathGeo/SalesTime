@@ -39,7 +39,8 @@
 	    //getTweets();
 		
 		init_news_widget();
-		init_leads_tables();
+		init_leads_table(leads.sales, "sales_leads");
+		init_leads_table(leads.service, "service_leads");
 	});
 	
 	
@@ -66,45 +67,25 @@
 		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false } );
 	}
 	
-	function init_leads_tables() {
-        var salesData = new google.visualization.DataTable();
-        salesData.addColumn('number', 'Score');
-        salesData.addColumn('string', 'User');
-        salesData.addColumn('string', 'Tweet');
-        salesData.addColumn('string', 'Location');
-		for (var indx in leads.sales) {
-			var lead = leads.sales[indx];
-			salesData.addRow( [ 
-								lead.score, 
-								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text, 
-								lead.loc 
-							] );
-		}
-		
-	    var serviceData = new google.visualization.DataTable();
-        serviceData.addColumn('number', 'Score');
-        serviceData.addColumn('string', 'User');
-        serviceData.addColumn('string', 'Tweet');
-        serviceData.addColumn('string', 'Location');
-		for (var indx in leads.service) {
-			var lead = leads.service[indx];
-			serviceData.addRow( [ 
-								lead.score, 
-								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text, 
-								lead.loc 
+	function init_leads_table(subleads, divName) {
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'Score');
+		data.addColumn('string', 'User');
+		data.addColumn('string', 'Tweet');
+		data.addColumn('string', 'Location');
+		for (var indx in subleads) {
+			var lead = subleads[indx];
+			data.addRow( [ 
+								lead.score,
+								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text,
+								lead.loc
 							] );
 		}
 
+		var table = new google.visualization.Table(document.getElementById(divName));
+		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
 		
-
-        var table = new google.visualization.Table(document.getElementById('sales_leads'));
-        table.draw(salesData, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
-		
-		 var table = new google.visualization.Table(document.getElementById('service_leads'));
-        table.draw(serviceData, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
-		// Add our selection handler.
 		//google.visualization.events.addListener(table, 'select', selectHandler);
-	
 	}
 	
 	/**
