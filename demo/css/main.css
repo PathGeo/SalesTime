@@ -18,6 +18,7 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
 .widget-title span:hover {background-color:#dddddd; -moz-border-radius:5px; -webkit-border-radius:5px;border-radius:5px;}
 .widget-close {width:18px; height:18px; float:right; cursor:pointer}
 .widget-detail {width:18px; height:18px; float:right; cursor:pointer; display:none}
+.widget-dropdown {width:18px; height:18px; float:right; cursor:pointer}
 
 
 /** gridster */
@@ -37,3 +38,20 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
 
 /** jquery ui */
 .ui-widget-overlay {position:fixed}
+
+/** logout dropdown */
+a#link {
+    background:white;
+	padding-right:2px;
+    cursor:pointer;
+}
+ 
+div#submenu {
+    position:absolute;
+    border:1px solid #CCC;
+    background:#FFF;
+    padding:10px;
+	display:none;
+	margin-right: 10px;
+	width: 160px;
+}

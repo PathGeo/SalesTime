@@ -123,6 +123,30 @@
 	    $.each(app.widgets, function(i,widget){
 			addWidget(widget);
 		});
+		
+		/**
+		*logout dropdown event handler
+		*/
+		$('a#link').click(function() {
+			//alert("sdfd");
+			var submenu = $('div#submenu');
+			if (submenu.is(":visible")) {
+				submenu.fadeOut();
+			} else {
+				submenu.fadeIn();
+			}
+		});
+		
+		var submenu_active = false;
+		 
+		$('div#submenu').mouseenter(function() {
+			submenu_active = true;
+		});
+		 
+		$('div#submenu').mouseleave(function() {
+			submenu_active = false;
+			setTimeout(function() { if (submenu_active === false) $('div#submenu').fadeOut(); }, 400);
+		});
 	
 	}
 	
@@ -541,4 +565,23 @@
 		});
 	}
 	
+	
+	/**
+	*Switch User Logo
+	*/
+	function switch_user(company){
+		if(company=="penske"){
+			$("#link").html("Penske General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
+			$("#logo").html("<img src = 'images/logo_penske.png' alt='logo' border='0' style = 'width:150px;height:40px;float:right' />");
+		}
+		else{
+			$("#link").html("Drew Ford General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
+			$("#logo").html("<img src = 'images/logo_drew.png' alt='logo' border='0' style = 'width:210px;height:40px;float:right' />");
+		}
+	}
+
+
+
+
+
 	
