@@ -1,7 +1,7 @@
 	
 	//Load Google Charts and set callback
 	google.load("visualization", "1", {packages:["corechart"]});
-	google.setOnLoadCallback(init_reputation_score);
+
 	
 	//global variables
 	var app={
@@ -407,28 +407,64 @@
 	/**
 	*Initialize reputation score and graphs
 	*/
-	function init_reputation_score(){
+	function init_reputation_graph(){
 	
-		$('.changeGraph').css('cursor', 'pointer');
+		showDialog('dialog_reputation', 'Reputation', {modal:true});
 	
-		var graph_data = getScore("daily");
+		$('.changeRepGraph').css('cursor', 'pointer');
+	
+		var reputation_data = getScore("dailyRep");
 		
-		var data_graph_rep = google.visualization.arrayToDataTable(graph_data);
+		var reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
 
         var options_graph_rep = {
           legend: {position: 'none'},
 		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
         };
 
-        var graph_rep = new google.visualization.LineChart(document.getElementById('chart_reputation'));
-        graph_rep.draw(data_graph_rep, options_graph_rep);
+        var reputation_graph = new google.visualization.LineChart(document.getElementById('graph_reputation'));
+        reputation_graph.draw(reputation_data_table, options_graph_rep);
 		
 		
-		$('.changeGraph').click(function() {
-			graph_data = getScore($(this).attr('id'));
-			data_graph_rep = google.visualization.arrayToDataTable(graph_data);
-			graph_rep.draw(data_graph_rep, options_graph_rep);
-			$('.changeGraph').css("font-weight","normal");
+		$('.changeRepGraph').click(function() {
+			reputation_data = getScore($(this).attr('id'));
+			reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
+			reputation_graph.draw(reputation_data_table, options_graph_rep);
+			$('.changeRepGraph').css("font-weight","normal");
+			var bolder = '#' + ($(this).attr('id'));
+			$(bolder).css("font-weight","bold");
+		});
+		
+	}
+	
+	
+	/**
+	*Initialize visibilty score and graphs
+	*/
+	function init_visibilty_graph(){
+	
+		showDialog('dialog_visibility', 'Visibility', {modal:true})
+	
+		$('.changeVisGraph').css('cursor', 'pointer');
+	
+		var visibility_data = getScore("dailyVis");
+		
+		var visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
+
+        var options_graph_rep = {
+          legend: {position: 'none'},
+		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+        };
+
+        var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_visibilty'));
+        visibility_graph.draw(visibilty_data_table, options_graph_rep);
+		
+		
+		$('.changeVisGraph').click(function() {
+			visibility_data = getScore($(this).attr('id'));
+			visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
+			visibility_graph.draw(visibilty_data_table, options_graph_rep);
+			$('.changeVisGraph').css("font-weight","normal");
 			var bolder = '#' + ($(this).attr('id'));
 			$(bolder).css("font-weight","bold");
 		});

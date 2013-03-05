@@ -64,12 +64,12 @@
 
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
-	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="showDialog('dialog_reputation', 'Reputation', {modal:true})" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
+	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
 		<div id="score_reputation" style="font-size:92px; color: green; padding-left:20px">288</div>
 	</div>
 	
 	<!-- visibility (JOE)-->
-	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_visibility', 'Visibility', {modal:true})" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
+	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
 		<div id="score_visibilty" style="font-size:92px; color: red; padding-left:20px">252</div>
 	</div>
 	
@@ -107,14 +107,19 @@
 	<!-- dialog for detail information -->
 	<!-- Reputation (JOE)-->
 	<div id='dialog_reputation' style='display:none'>
-		<span class="changeGraph" id="daily" style="padding-right:30px; font-weight:bold">Last Week</span>
-		<span class="changeGraph" id="weekly" style="padding-right:30px">Last Month</span>
-		<span class="changeGraph" id="monthly">Last 6 Months</span><br/><br/>
-		<div id="chart_reputation" style="height:200px; width:100%"></div>
+		<span class="changeRepGraph" id="dailyRep" style="padding-right:30px; font-weight:bold">Last Week</span>
+		<span class="changeRepGraph" id="weeklyRep" style="padding-right:30px">Last Month</span>
+		<span class="changeRepGraph" id="monthlyRep">Last 6 Months</span><br/><br/>
+		<div id="graph_reputation" style="height:200px; width:600px"></div>
 	</div>
 	
 	<!-- Visibility (JOE)-->
-	<div id='dialog_visibility' style='display:none'></div>
+	<div id='dialog_visibility' style='display:none'>
+		<span class="changeVisGraph" id="dailyVis" style="padding-right:30px; font-weight:bold">Last Week</span>
+		<span class="changeVisGraph" id="weeklyVis" style="padding-right:30px">Last Month</span>
+		<span class="changeVisGraph" id="monthlyVis">Last 6 Months</span><br/><br/>
+		<div id="graph_visibilty" style="height:200px; width:600px"></div>
+	</div>
 	
 	<!-- competitor (JOE)-->
 	<div id='dialog_competitor' style='display:none'></div>
