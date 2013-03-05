@@ -16,7 +16,10 @@
 			data: []
 		},
 		gridster:null,  //gridster
-		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"]
+		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"],
+		eventHandler:{
+			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
+		}
 	}
 
 
@@ -339,16 +342,18 @@
 		if($this.attr("widget-onClick") && $this.attr("widget-onClick")!=""){
 			//if not addWidget
 			if($widget.attr("id")!="widget_addWidget"){
-				$widget.find(".widget-detail").show().click(function(){
+				$widget.find(".widget-detail").show().bind(app.eventHandler.click, function(){
 					eval($this.attr("widget-onClick"));
 				});
 			}else{
-				$widget.find("div:nth-child(2)").attr("onclick", $this.attr("widget-onClick"));
+				$widget.find("div:nth-child(2)").bind(app.eventHandler.click, function(){
+					eval($this.attr("widget-onClick"));
+				});
 			}
 		}
 		
 		//onclose event
-		$widget.find(".widget-close").click(function(){
+		$widget.find(".widget-close").bind(app.eventHandler.click, function(){
 			if($widget.attr("id")!='widget_addWidget'){
 				if($this.attr("widget-onClose") && $this.attr("widget-onClose")!=""){
 					eval($this.attr("widget-onClose"))

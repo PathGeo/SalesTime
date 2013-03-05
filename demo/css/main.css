@@ -33,3 +33,7 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
 #dialog_addWidget ul li:hover {background-color:#eeeeee;}
 #dialog_addWidget ul li span {font-weight:bold; color:#777777;}
 #dialog_addWidget ul li img {width:125px; height:125px;}
+
+
+/** jquery ui */
+.ui-widget-overlay {position:fixed}
