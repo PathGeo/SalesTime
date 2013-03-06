@@ -19,7 +19,7 @@
 		gridster:null,  //gridster
 		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"],
 		constants: {
-			KEYWORDS: ['car', 'buy', 'hopping', 'Ford']
+			KEYWORDS: ['car', 'buy', 'shopping', 'Ford']
 		},
 		eventHandler:{
 			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
