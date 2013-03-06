@@ -77,6 +77,7 @@
 		//alert(pathgeo.util);
 		for (var indx in leadsGroup) {
 			var lead = leadsGroup[indx];
+			alert(pathgeo.util.highlightKeyword(['car'], lead.text));
 			data.addRow( [ 
 								lead.score,
 								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
