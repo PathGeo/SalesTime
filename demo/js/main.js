@@ -99,13 +99,23 @@
 							] );
 		}
 		
+		
 		//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
 		$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
 		
 		var table = new google.visualization.Table(document.getElementById(divName));
 		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
 				
-		//google.visualization.events.addListener(table, 'select', selectHandler);
+		google.visualization.events.addListener(table, 'select', function() { 
+			var row = table.getSelection()[0].row;
+			
+			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
+			var user = data.getFormattedValue(row, 1);
+
+			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
+			showDialog('dialog_user_info', "User: " + $(user).text(), {modal:true}); 
+		});
+
 	}
 	
 	/**
