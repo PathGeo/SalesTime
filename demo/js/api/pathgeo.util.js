@@ -28,13 +28,14 @@ pathgeo.util={
 		var rgxp,rep1;
 		$.each(keywords, function(j,keyword){
 			
-			if (matchEntireWord)
+			if (matchEntireWord) {
 				//Only match keywords that are distinct. 
 				//For example, match "car", but not "cards"
 				rgxp = new RegExp('\\b' + keyword + '\\b', 'ig');
-			else 
+			} else {
 				rgxp = new RegExp(keyword, 'ig');
-				
+			} 
+			
 			repl = '<span class="highlightKeyword">' + keyword + '</span>';
 			html = html.replace(rgxp, repl);
 		});
