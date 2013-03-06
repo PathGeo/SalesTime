@@ -73,11 +73,14 @@
 		data.addColumn('string', 'User');
 		data.addColumn('string', 'Tweet');
 		data.addColumn('string', 'Location');
+		
+		//alert(pathgeo.util);
 		for (var indx in leadsGroup) {
 			var lead = leadsGroup[indx];
 			data.addRow( [ 
 								lead.score,
-								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text,
+								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
+								pathgeo.util.highlightKeyword(['car'], lead.text),
 								lead.loc
 							] );
 		}
