@@ -19,7 +19,7 @@
 		gridster:null,  //gridster
 		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"],
 		constants: {
-			KEYWORDS: ['car', 'buy', 'shopping', 'ford']
+			KEYWORDS: ['car', 'buy', 'hopping', 'Ford']
 		},
 		eventHandler:{
 			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
@@ -63,7 +63,7 @@
 			rssData.addRow( [ 	feed.score, 
 								feed.date, feed.name, 
 								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" 
-										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title) + "</a>" 
+										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title, true) + "</a>" 
 							] );
 		}
 		
@@ -94,7 +94,7 @@
 			data.addRow( [ 
 								lead.score,
 								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
-								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text),
+								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true),
 								lead.loc
 							] );
 		}
