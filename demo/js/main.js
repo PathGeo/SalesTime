@@ -546,6 +546,29 @@
 			$(bolder).css("font-weight","bold");
 		});
 		
+		//Show reviews table
+		var reviewData = new google.visualization.DataTable();
+		reviewData.addColumn("string", "Rating");
+		reviewData.addColumn("string", "Date");
+		reviewData.addColumn("string", "Review");
+		
+		for (var indx in reviews) {
+			var feed = reviews[indx];
+			if(feed.Rating.charAt(0) == "+"){
+				feed.Rating = "<span style='color:green; font-weight:bold'>" + feed.Rating + "</span>"
+			}
+			else{
+				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
+			}
+			reviewData.addRow( [feed.Rating, 
+								feed.Date,
+								feed.Review
+							] );
+		}
+		
+		var reviewTable = new google.visualization.Table(document.getElementById('reviews_rep'));
+		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
+		
 	}
 	
 	
@@ -579,6 +602,29 @@
 			var bolder = '#' + ($(this).attr('id'));
 			$(bolder).css("font-weight","bold");
 		});
+		
+		//Show reviews table
+		var reviewData = new google.visualization.DataTable();
+		reviewData.addColumn("string", "Rating");
+		reviewData.addColumn("string", "Date");
+		reviewData.addColumn("string", "Review");
+		
+		for (var indx in reviews) {
+			var feed = reviews[indx];
+			if(feed.Rating.charAt(0) == "+"){
+				feed.Rating = "<span style='color:green; font-weight:bold'>" + feed.Rating + "</span>"
+			}
+			else{
+				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
+			}
+			reviewData.addRow( [feed.Rating, 
+								feed.Date,
+								feed.Review
+							] );
+		}
+		
+		var reviewTable = new google.visualization.Table(document.getElementById('reviews_vis'));
+		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 	}
 	
 	
