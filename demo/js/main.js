@@ -74,10 +74,8 @@
 		data.addColumn('string', 'Tweet');
 		data.addColumn('string', 'Location');
 		
-		//alert(pathgeo.util);
 		for (var indx in leadsGroup) {
 			var lead = leadsGroup[indx];
-			alert(pathgeo.util.highlightKeyword(['car'], lead.text));
 			data.addRow( [ 
 								lead.score,
 								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
@@ -88,7 +86,7 @@
 
 		var table = new google.visualization.Table(document.getElementById(divName));
 		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
-		
+				
 		//google.visualization.events.addListener(table, 'select', selectHandler);
 	}
 	
