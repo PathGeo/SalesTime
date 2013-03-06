@@ -1,5 +1,5 @@
 html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
-
+.highlightKeyword { color: red; }
 
 /** widget */
 .widget {display:none;}
