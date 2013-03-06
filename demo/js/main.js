@@ -590,6 +590,15 @@
 			$("#logo").html("<img src = 'images/logo_drew.png' alt='logo' border='0' style = 'width:210px;height:40px;float:right' />");
 		}
 	}
+	
+	/**
+	*Logout
+	*/
+	function logout(){
+		$("#link").html("Sign In<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
+		$("#logo").html("");
+		$('div#submenu').hide();
+	}
 
 
 
