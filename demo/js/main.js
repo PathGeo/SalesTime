@@ -39,8 +39,7 @@
 	    //getTweets();
 		
 		init_news_widget();
-		init_leads_table(leads.sales, "sales_leads");
-		init_leads_table(leads.service, "service_leads");
+		
 	});
 	
 	
@@ -67,6 +66,16 @@
 		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
 	}
 	
+	
+	function init_leads(){
+		//tabs
+		//we have to wait until the tabs have been created. Otherwise, the google chart table cannot get the correct width
+		$(".tabs").tabs({"create": function(e,ui){
+			init_leads_table(leads.sales, "sales_leads");
+			init_leads_table(leads.service, "service_leads");
+		}});
+	}
+
 
 	function init_leads_table(leadsGroup, divName) {
 		var data = new google.visualization.DataTable();
@@ -103,17 +112,25 @@
 
 		app.gridster=$(".gridster ul").gridster({
 	        widget_margins: [15, 15],
-	        widget_base_dimensions: [$(".gridster").width()/7.4, $(".gridster").width()/7.4]
+	        widget_base_dimensions: [$(".gridster").width()/7.4, $(".gridster").width()/7.4],
+			draggable: {
+	            handle: '.widget-title' //change draggable area to the '.widget-title'
+	        }
 	    }).data("gridster");
 	    
+		
 	    //load widget
 	    $.each(app.widgets, function(i,widget){
 			addWidget(widget);
 		});
 		
 		
-		//tabs
-		$(".tabs").tabs();
+		//cursor change while mouseovering on the widget title
+		$(".widget-title").hover(function(){
+			$(this).css('cursor','move');
+		}, function(){
+			$(this).css('cursor','auto');
+		})
 		
 		
 		/**
@@ -390,15 +407,32 @@
 			sizeY=$this.attr("widget-sizeY") || 1,
 			row=$this.attr("widget-row") || 1,
 			col=$this.attr("widget-col") || 1;
-	
+
 		
 		//add the widget
 		var $widget=app.gridster.add_widget("<li>"+ createWidgetTitle($this) + $this.html() + "</li>", sizeX, sizeY, col, row);
 		
-		
-	
 		//give widget id
 		$widget.attr("id", $this.attr("id"));
+		
+		
+		//init the widget
+		//Because while loading all widget into the dashboard, the width of the widgets will be dyanmically increased until to the assigned width
+		//Therefore, we have to wait until the widgets reach the assigned width to call the init function
+		//calculate the widget final width
+		var final_width=(app.gridster.min_widget_width * sizeX) - (app.gridster.options.widget_margins[0] * 2 )-1;
+		var interval=setInterval(function(){
+			if($widget.width() > final_width){
+				clearInterval(interval);
+				
+				//if div contains widget-onInit event
+				if($this.attr("widget-onInit") && $this.attr("widget-onInit")!=""){
+					//window[$this.attr("widget-onInit")]()
+					eval($this.attr("widget-onInit"));
+				}
+			}
+		},100);
+		
 		
 		//onclick event
 		if($this.attr("widget-onClick") && $this.attr("widget-onClick")!=""){
@@ -424,11 +458,7 @@
 			}
 		})
 		
-		//if div contains widget-onInit event
-		if($this.attr("widget-onInit") && $this.attr("widget-onInit")!=""){
-			//window[$this.attr("widget-onInit")]()
-			eval($this.attr("widget-onInit"));
-		}
+		
 		
 		//close all dialog
 		$("*").dialog("destroy");
