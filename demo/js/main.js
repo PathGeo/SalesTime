@@ -64,9 +64,10 @@
 		}
 		
 		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
-		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false } );
+		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
 	}
 	
+
 	function init_leads_table(leadsGroup, divName) {
 		var data = new google.visualization.DataTable();
 		data.addColumn('number', 'Score');
@@ -83,9 +84,12 @@
 								lead.loc
 							] );
 		}
-
+		
+		//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
+		$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
+		
 		var table = new google.visualization.Table(document.getElementById(divName));
-		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true });
+		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
 				
 		//google.visualization.events.addListener(table, 'select', selectHandler);
 	}
@@ -93,7 +97,7 @@
 	/**
 	 * init user interface 
 	 */
-	function init_UI(){
+	function init_UI(){		
 		//gridster
 		$(".gridster").append("<ul></ul>");
 
@@ -106,6 +110,11 @@
 	    $.each(app.widgets, function(i,widget){
 			addWidget(widget);
 		});
+		
+		
+		//tabs
+		$(".tabs").tabs();
+		
 		
 		/**
 		*logout dropdown event handler
@@ -384,10 +393,8 @@
 	
 		
 		//add the widget
-		var $widget=app.gridster.add_widget("<li></li>", sizeX, sizeY, col, row);
+		var $widget=app.gridster.add_widget("<li>"+ createWidgetTitle($this) + $this.html() + "</li>", sizeX, sizeY, col, row);
 		
-		//html
-		$widget.html(createWidgetTitle($this)).append($this.html());
 		
 	
 		//give widget id
@@ -447,16 +454,7 @@
 	}
 	
 	
-	
-	/**
-	 * close widget
-	 * @param {number} index 
-	 */
-	function closeWidget(index){
-		console.log(index)
-		//
-	}
-	
+
 	
 	
 	/**

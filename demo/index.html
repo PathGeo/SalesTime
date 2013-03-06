@@ -106,20 +106,22 @@
 	</div>
 	
 	<!--map & Top Sales Lead and Top Service Leads (SU & Chris)-->
-	<div id='widget_map' class='widget' widget-title='Map & Top Sales Leads and Top Service Leads' widget-onInit="init_map()" widget-onClose="" widget-onClick="" widget-sizeX=6 widget-sizeY=2 widget-row=2 widget-col=1>
+	<div id='widget_map' class='widget' widget-title='Map & Top Sales Leads and Top Service Leads' widget-onInit="init_map();" widget-onClose="" widget-onClick="" widget-sizeX=6 widget-sizeY=2 widget-row=2 widget-col=1>
 		
 		
 		<!--- Note: Still trying to fix layout for map and lead tables. (Chris) -->
-		<div style='position: absolute; height: 97%; width: 100%;'>
-		
-			<div id='map' style='position: absolute; width:60%; height:95%;'></div>
+		<div style='height: 97%; width: 100%;'>
+			<div id='map' style=' width:60%; height:95%; float:left'></div>
 			
-			<div style='position: absolute; width:40%; height:95%; right: 0px;'> 
+			<!-- how about using tabs to show top sales and top service leads ? -->
+			<div style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
+				<ul>
+					<li><a href='#sales_leads'>Top 10 Sales Leads</a></li>
+					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
+				</ul>
 				
-				<div id='sales_leads' style='height: 50%; width: 100%; background-color: red; overflow: auto;'> Sales Leads </div>
-			
-				<div id='service_leads' style='height: 50%; width: 100%; background-color: blue; overflow: auto;'> Service Leads </div>
-		
+				<div id='sales_leads' style='height: 350px; background-color: ;'> Sales Leads </div>
+				<div id='service_leads' style='height: 350px; background-color: ;'> Service Leads </div>
 			</div>
 		</div>
 	
