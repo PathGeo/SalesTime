@@ -67,14 +67,14 @@
 		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false } );
 	}
 	
-	function init_leads_table(subleads, divName) {
+	function init_leads_table(leadsGroup, divName) {
 		var data = new google.visualization.DataTable();
 		data.addColumn('number', 'Score');
 		data.addColumn('string', 'User');
 		data.addColumn('string', 'Tweet');
 		data.addColumn('string', 'Location');
-		for (var indx in subleads) {
-			var lead = subleads[indx];
+		for (var indx in leadsGroup) {
+			var lead = leadsGroup[indx];
 			data.addRow( [ 
 								lead.score,
 								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>", lead.text,
