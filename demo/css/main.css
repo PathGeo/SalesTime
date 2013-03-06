@@ -14,7 +14,7 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
   background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
 }
 .widget-title label{margin-left:8px;}
-.widget-title span{margin:6px 2px 5px 2px;}
+.widget-title span{margin:5px;}
 .widget-title span:hover {background-color:#dddddd; -moz-border-radius:5px; -webkit-border-radius:5px;border-radius:5px;}
 .widget-close {width:18px; height:18px; float:right; cursor:pointer}
 .widget-detail {width:18px; height:18px; float:right; cursor:pointer; display:none}
