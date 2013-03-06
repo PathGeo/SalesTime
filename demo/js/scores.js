@@ -48,7 +48,7 @@ function getScore(condition){
 			['Feb 26',  171],
 			['Feb 27',  206],
 			['Feb 28',  145],
-			['Mar 1',  251],
+			['Mar 1',  261],
 			['Mar 2',  252]      
 		]
 		return data_daily_vis;
