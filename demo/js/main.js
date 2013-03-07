@@ -108,6 +108,7 @@
 			var row = table.getSelection()[0].row;
 			
 			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
+			//YES, you can. the "data" varaible has become a global variable for this function. Therefore, even this function is a select-event listener, the "data" variable can be called correctly. (Calvin)
 			var user = data.getFormattedValue(row, 1);
 
 			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
@@ -478,10 +479,25 @@
 		//onclose event
 		$widget.find(".widget-close").bind(app.eventHandler.click, function(){
 			if($widget.attr("id")!='widget_addWidget'){
-				if($this.attr("widget-onClose") && $this.attr("widget-onClose")!=""){
-					eval($this.attr("widget-onClose"))
-				}
-				app.gridster.remove_widget($widget);
+				showDialog('div_closeWidget', 'Close Widget', {
+					width:300,
+					height:150,
+					resizable:false,
+					draggable:false,
+					modal:true, 
+					buttons: {
+						Confirm: function() {
+							if($this.attr("widget-onClose") && $this.attr("widget-onClose")!=""){
+								eval($this.attr("widget-onClose"));
+							}
+							app.gridster.remove_widget($widget);
+							$(this).dialog("close");
+						},
+						Cancel: function() {
+							$(this ).dialog("close");
+						}
+					}
+				});
 			}
 		})
 		
@@ -489,6 +505,9 @@
 		
 		//close all dialog
 		$("*").dialog("destroy");
+		
+		//enable <body> scroll bar
+		$("body").css({"overflow":"auto"});
 	}
 	
 	

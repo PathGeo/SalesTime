@@ -12,7 +12,7 @@ html, body {font-family: "Arial"; font-size:90%; margin:0px; padding:0px;
 
 /** widget */
 .widget {display:none;}
-.widget-title {width:100%; height:30px; line-height:30px; border-bottom:1px solid #cccccc; padding:0px 0px 0px 0px; margin:0px; font-weight:bold; color:#777777;
+.widget-title {width:100%; height:30px; line-height:30px; border-bottom:1px solid #cccccc; padding:0px 0px 0px 0px; margin:0px; font-weight:bold; color:#555555; font-size:110%;
   background-color: #e6e6e6;
   background-repeat: no-repeat;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
