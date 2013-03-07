@@ -1,12 +1,12 @@
 html, body {font-family: "Arial"; font-size:90%; margin:0px; padding:0px;
   background-color: #0B588C;
   background-repeat: no-repeat;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0B588C), color-stop(50%, #ffffff), to(#0B588C));
-  background-image: -webkit-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
-  background-image: -moz-linear-gradient(top, #0B588C, #ffffff 50%, #0B588C);
-  background-image: -ms-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
-  background-image: -o-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
-  background-image: linear-gradient(#0B588C, #ffffff 50%, #0B588C);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0B588C), color-stop(50%, #D4E1EA), to(#0B588C));
+  background-image: -webkit-linear-gradient(#0B588C, #D4E1EA 50%, #0B588C);
+  background-image: -moz-linear-gradient(top, #0B588C, #D4E1EA 50%, #0B588C);
+  background-image: -ms-linear-gradient(#0B588C, #D4E1EA 50%, #0B588C);
+  background-image: -o-linear-gradient(#0B588C, #D4E1EA 50%, #0B588C);
+  background-image: linear-gradient(#0B588C, #D4E1EA 50%, #0B588C);
 }
 .highlightKeyword { font-weight: bold; }
 
