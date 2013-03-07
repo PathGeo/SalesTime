@@ -529,9 +529,15 @@
 		dialogOptions.resizable=false || dialogOptions.resizable;
 		//dialogOptions.draggable=false || dialogOptions.draggable;
 		dialogOptions.dialogClass="dialog";
-		dialogOptions["close"]=dialogOptions["close"] || function(){};
+		dialogOptions["close"]=dialogOptions["close"] || function(){
+			//enable <body> scroll
+			$("body").css("overflow", "auto");
+		};
 		dialogOptions.position=dialogOptions.position || "center";
-	
+
+		//disable <body> scroll
+		$("body").css("overflow", "hidden");
+		
 		$("#"+id).dialog(dialogOptions);
 	}
 	
