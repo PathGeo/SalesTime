@@ -42,12 +42,11 @@
 	<script type="text/javascript" src="js/gridster/jquery.gridster.min.js"></script>
 	
 	<!-- Tweet Stream-->
-	<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script src="js/twitter/widget.js"></script>
 	
 	<!--main-->
 	<script src="js/Control.BingGeocoder.js"></script>		
     <script src="js/main.js"></script>	
-	
 </head>
 
 
@@ -138,18 +137,18 @@
 	</div>
 	
 	<!-- news feed (CHRIS)-->
-	<div id='widget_news' class='widget' widget-title='News Feed' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_news', 'News Feed', {modal:true})" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=1>
+	<div id='widget_news' class='widget' widget-title='News Feed' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=1>
 		<div id='rss_news' style='height: 90%; width: 100%; overflow: auto;'> </div>
 	</div>
             
     <!-- chart (CHRIS)-->
-    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_chart', 'Chart', {modal:true})" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
+    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
 		
 	</div>
 	
 	<!-- tweet streaming (Jay)-->
-    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream()" widget-onClose="" widget-onClick="showDialog('dialog_chart', 'Tweet Stream', {modal:true})" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=3>
-		<div id = 'tweet' class='widget-content'>
+    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream()" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=3>
+		<div id ='tweet' class='widget-content'>
 			
 		</div>
 	</div>
@@ -228,6 +227,7 @@
 			<li><img src='images/1362418842_latitude.png'  onclick='addWidget("widget_map")' /><br><span>Map & Top Sales Leeds</span></li>
 			<li><img src='images/1362418717_reader.png' onclick='addWidget("widget_news")' /><br><span>News Feed</span></li>
 			<li><img src='images/1362418773_analytics.png' onclick='addWidget("widget_chart")' /><br><span>Chart</span></li>
+			<li><img src='images/1362673036_social_twitter_box_blue.png' onclick='addWidget("widget_tweetStream")' /><br><span>Twitter</span></li>
 		</ul>
 	</div>
 	

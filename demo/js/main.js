@@ -141,7 +141,7 @@
 		//gridster
 		$(".gridster").append("<ul></ul>");
 
-		app.gridster=$(".gridster ul").gridster({
+		app.gridster=$(".gridster > ul").gridster({
 	        widget_margins: [15, 15],
 	        widget_base_dimensions: [$(".gridster").width()/7.4, $(".gridster").width()/7.4],
 			draggable: {
@@ -153,7 +153,7 @@
 	    //load widget
 	    $.each(app.widgets, function(i,widget){
 			addWidget(widget);
-		});
+		});
 		
 		
 		//cursor change while mouseovering on the widget title
@@ -442,8 +442,7 @@
 		
 		//give widget id
 		$widget.attr("id", $this.attr("id"));
-		
-		
+
 		//init the widget
 		//Because while loading all widget into the dashboard, the width of the widgets will be dyanmically increased until to the assigned width
 		//Therefore, we have to wait until the widgets reach the assigned width to call the init function
@@ -541,7 +540,7 @@
 	*   Initialize tweet stream box
 	*/	
 	function init_tweetStream(){
-		
+
 		new TWTR.Widget({
 			version: 2,
 			id: 'tweet',
@@ -550,7 +549,8 @@
 			search: 'nascar',
 			interval: 30,
 			width: 'auto',
-			height: 306,
+			height: $("li[id=widget_tweetStream]").height() - $(".widget_title").height() - 105,
+			// height: 306,
 			// height: 325,    if without the subject
 			theme: {
 				shell: {

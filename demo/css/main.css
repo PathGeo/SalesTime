@@ -1,4 +1,4 @@
-html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
+html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; margin:0px; padding:0px;}
 .highlightKeyword { font-weight: bold; }
 
 /** widget */
@@ -22,7 +22,7 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
 
 
 /** gridster */
-.gridster {}	
+.gridster {margin:0 auto; width:95%;}	
 .gridster ul {list-style:none;}
 .gridster ul li {background-color:#ffffff; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; box-shadow: 3px 3px 2px #bbbbbb; padding:0px; border:1px solid #cccccc;}
 .gridster ul li:hover {border:2px solid #cccccc;}
@@ -30,10 +30,10 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; }
 
 /** dialog_addWidget */
 #dialog_addWidget ul {list-style:none; margin:2px; padding:0px; }
-#dialog_addWidget ul li {float:left; margin:10px; padding:10px; width:170px; height:170px; text-align:center; border:1px solid #eeeeee;-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
+#dialog_addWidget ul li {float:left; margin:10px; padding:10px; width:120px; height:100px; text-align:center; border:1px solid #eeeeee;-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
 #dialog_addWidget ul li:hover {background-color:#eeeeee;}
 #dialog_addWidget ul li span {font-weight:bold; color:#777777;}
-#dialog_addWidget ul li img {width:125px; height:125px;}
+#dialog_addWidget ul li img {width:85px; height:85px;}
 
 
 /** jquery ui */
