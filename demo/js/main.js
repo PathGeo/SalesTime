@@ -87,15 +87,15 @@
 		data.addColumn('number', 'Score');
 		data.addColumn('string', 'User');
 		data.addColumn('string', 'Tweet');
-		data.addColumn('string', 'Location');
+		//data.addColumn('string', 'Location');
 		
 		for (var indx in leadsGroup) {
 			var lead = leadsGroup[indx];
 			data.addRow( [ 
 								lead.score,
 								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
-								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true),
-								lead.loc
+								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true)
+								//lead.loc
 							] );
 		}
 		
@@ -113,10 +113,28 @@
 			var user = data.getFormattedValue(row, 1);
 
 			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
-			showDialog('dialog_user_info', "User: " + $(user).text(), {modal:true}); 
+			showUserInfoDialog($(user).text());
 		});
 
 	}
+	
+	function showUserInfoDialog(userName) {
+		var userInfo;
+		for (var indx in userData) {
+			if (userData[indx].user_info.screen_name == userName) 
+				userInfo = userData[indx].user_info;
+		}
+		//alert(userInfo.image_url);
+		$("#user_image").attr({"src": userInfo.image_url});
+		$("#user_description").text(userInfo.description);
+		$("#user_location").text(userInfo.location);
+		$("#user_friends_count").text(userInfo.friends_count);
+		$("#user_followers_count").text(userInfo.followers_count);
+		
+		showDialog('dialog_user_info', userName, {modal:true}); 
+	}
+	
+	
 	
 	/**
 	 * init user interface 

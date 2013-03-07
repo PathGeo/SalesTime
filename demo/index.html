@@ -19,6 +19,7 @@
 	
 	<!-- DATA -->
 	<script src="js/scores.js"></script>	
+	<script src="js/user_info.js"></script>	
 	<script src="js/leads.js"></script>	
 	<script src="js/rss.js"></script>
 	<script src="js/reviews.js"></script>	
@@ -186,16 +187,16 @@
 		<!-- This is just some test data to get the layout right... -->
 	
 		<div style="position: relative; width: 95%; height: 70px;">
-			<div id="user_image" style="position: absolute; height: 70px; width: 70px; "> 
-				<img style="width: 100%; height: 100%;" src="http://a0.twimg.com/profile_images/3325782043/47f2fa4c95e090c81fc8824e4ff4b518_bigger.jpeg"/>
+			<div style="position: absolute; height: 70px; width: 70px; "> 
+				<img id="user_image" style="width: 100%; height: 100%;" src=""/>
 			</div>
 			<div id="user_description" style="position: absolute; padding: 5px; left: 70px; right: 0px; top: 0px; bottom: 0px;">
-- 				Livin' Life To The Fullest | Sweet 16 ^_^ | NO Mention = NO Follow Back \u270c| #ObeyReality . \u2665
 			</div>
 		</div>
 		<div style="padding-top: 15px;">
-			<b>Friends count:</b> <span> 155 </span> <br>
-			<b>Followers count:</b> <span> 534 </span> <br>
+			<b>Location:</b> <span id="user_location"> </span> <br>
+			<b>Friends count:</b> <span id="user_friends_count">  </span> <br>
+			<b>Followers count:</b> <span id="user_followers_count">  </span> <br>
 		</div>
 	
 	
