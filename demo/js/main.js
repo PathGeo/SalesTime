@@ -17,7 +17,7 @@
 			data: []
 		},
 		gridster:null,  //gridster
-		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", "widget_addWidget"],
+		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", 'widget_tweetStream', "widget_addWidget"],
 		constants: {
 			KEYWORDS: ['car', 'buy', 'shopping', 'Ford']
 		},
@@ -37,13 +37,11 @@
 	//dom ready
 	$(function() { 	    
 		init_UI();
-		
 
 		// north-center
 	    //getTweets();
 		
-		init_news_widget();
-		
+		init_news_widget();		
 	});
 	
 	
@@ -420,10 +418,7 @@
 			L.control.layers(baseLayers, overlays).addTo(map);
 			
 			
-*/
-
-
-						
+*/						
 		});
       			
 	}
@@ -541,6 +536,43 @@
 		$("#"+id).dialog(dialogOptions);
 	}
 	
+
+	/**
+	*   Initialize tweet stream box
+	*/	
+	function init_tweetStream(){
+		
+		new TWTR.Widget({
+			version: 2,
+			id: 'tweet',
+			subject: 'Now Streaming: "Nascar"',
+			type: 'search',
+			search: 'nascar',
+			interval: 30,
+			width: 'auto',
+			height: 306,
+			// height: 325,    if without the subject
+			theme: {
+				shell: {
+					background: '#8ec1da',
+					color: '#ffffff'
+				},
+				tweets: {
+					background: '#ffffff',
+					color: '#444444',
+					links: '#1985b5'
+				}
+			},
+			features: {
+				scrollbar: true,
+				loop: true,
+				live: true,
+				behavior: 'all'
+			}
+		}).render().start();
+	}
+
+
 	
 		
 	/**
@@ -599,7 +631,6 @@
 		
 	}
 	
-	
 	/**
 	*Initialize visibilty score and graphs
 	*/
@@ -654,6 +685,9 @@
 		var reviewTable = new google.visualization.Table(document.getElementById('reviews_vis'));
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 	}
+
+	
+	
 	
 	
 	/**
