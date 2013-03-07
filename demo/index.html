@@ -105,6 +105,7 @@
 	
 	<!-- visibility (JOE)-->
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
+		<span style="font-size:16px;position:absolute;right:0;bottom:0;text-align:right" title='Take action' onclick="showDialog('dialog_solution', 'Solutions', {modal:true});">Take action!</span>
 		<div id="score_visibilty" style="font-size:92px; color: red; padding-left:20px">
 			<span style="font-size:92px; padding-right:20px">252</span>
 			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
@@ -179,6 +180,12 @@
 		<span class="changeVisGraph" id="weeklyVis" style="padding-right:30px">Last Month</span>
 		<span class="changeVisGraph" id="monthlyVis">Last 6 Months</span><br/><br/>
 		<div id="graph_visibilty" style="height:200px; width:600px"></div>
+		<div id='reviews_vis' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
+	</div>
+
+	<!-- Solution (NATHAN)-->
+	<div id='dialog_solution' style='display:none'>
+		<div id="graph_visibilty" style="height:200px; width:200px"><img src='images/solution-content_page1.png'/></div>
 		<div id='reviews_vis' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
 	</div>
 	
