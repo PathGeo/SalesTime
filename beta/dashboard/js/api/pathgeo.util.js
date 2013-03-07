@@ -23,11 +23,19 @@ pathgeo.util={
 	/** 
 	 *  highlight keyword
 	 */
-	highlightKeyword: function(keywords, html){
+	highlightKeyword: function(keywords, html, matchEntireWord){
 		//highlight keyword
 		var rgxp,rep1;
 		$.each(keywords, function(j,keyword){
-			rgxp = new RegExp(keyword, 'ig');
+			
+			if (matchEntireWord) {
+				//Only match keywords that are distinct. 
+				//For example, match "car", but not "cards"
+				rgxp = new RegExp('\\b' + keyword + '\\b', 'ig');
+			} else {
+				rgxp = new RegExp(keyword, 'ig');
+			} 
+			
 			repl = '<span class="highlightKeyword">' + keyword + '</span>';
 			html = html.replace(rgxp, repl);
 		});
