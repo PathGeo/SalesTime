@@ -144,7 +144,7 @@
 
 		app.gridster=$(".gridster > ul").gridster({
 	        widget_margins: [15, 15],
-	        widget_base_dimensions: [$(".gridster").width()/7.4, $(".gridster").width()/7.4],
+	        widget_base_dimensions: [$(".gridster").width()/7.45, $(".gridster").width()/7.45],
 			draggable: {
 	            handle: '.widget-title' //change draggable area to the '.widget-title'
 	        }
@@ -504,10 +504,8 @@
 		
 		
 		//close all dialog
-		$("*").dialog("destroy");
+		$("*").dialog("close");
 		
-		//enable <body> scroll bar
-		$("body").css({"overflow":"auto"});
 	}
 	
 	
@@ -548,7 +546,10 @@
 		dialogOptions.resizable=false || dialogOptions.resizable;
 		//dialogOptions.draggable=false || dialogOptions.draggable;
 		dialogOptions.dialogClass="dialog";
-		dialogOptions["close"]=dialogOptions["close"] || function(){
+		dialogOptions["close"]=function(){
+			//if close function
+			if(dialogOptions["close"]){dialogOptions["close"]} 
+			
 			//enable <body> scroll
 			$("body").css("overflow", "auto");
 		};
