@@ -96,7 +96,7 @@ var geoJsonData =
 	var baseLayers = {
 	    "Street":openstreet,
 		"Minimal": minimal,
-		//"Night View": midnight				
+		//"Night View": midnight			
 	};
 
        var controls = L.layerGroup().addTo(map);
@@ -172,7 +172,7 @@ var geoJsonData =
 		iconUrl: 'ford.png',
 		iconSize:     [60, 35], // size of the icon
 		});
-		
+
 		var red = L.icon({
 		iconUrl: 'arrow.png',
 		iconAnchor:  [18,-1], // point from which the popup should open relative to the iconAnchor
@@ -200,8 +200,8 @@ var geoJsonData =
 			var sales = leads.sales[i];
 			markerSales[i] = new L.CircleMarker(new L.LatLng(sales.latlon[0], sales.latlon[1]), {color: 'red'}).addTo(map);
 		}
-		
-*/
+*/		
+
 	
 		var markerDealer = L.marker([32.774917,-117.005639], {icon: pointIcon}).addTo(map);
 		//markerDealer.bindPopup("Drew Ford Dealership").openPopup();
@@ -254,11 +254,11 @@ var geoJsonData =
 			//alert(text);
 			dataService.addRow([service.score, service.text, service.date, service.user, "know more"]);
 		}
-		dataService.sort({column:0, desc:true});
+		//dataService.sort({column:0, desc:true});
 		
 		// Show table of Service Leads
         var tableService = new google.visualization.Table(document.getElementById('table_service'));
-        tableService.draw(dataService, {showRowNumber: false});
+        tableService.draw(dataService, {showRowNumber: false, sortColumn: 0, sortAscending: false});
 	    
 	    // Add our selection handler
 	    google.visualization.events.addListener(tableService, 'select', selectService);
@@ -266,7 +266,9 @@ var geoJsonData =
 	    // Select a table row for Service Leads
 	    function selectService() {
 	    	var selection = tableService.getSelection();
+			if(selection[0] == undefined) return;
 	    	var row = selection[0].row;
+			//alert("row=" + row + "  " +dataService.getFormattedValue(row, 0));
 			var service = leads.service[row];
 			drawMarker(service.latlon[0], service.latlon[1]);
 	    }
@@ -279,7 +281,6 @@ var geoJsonData =
 		// Set colmns for Sales Leads
 		dataSales.addColumn('number', 'Score');
         dataSales.addColumn('string', 'Tweet');      
-        //dataSales.addColumn('string', 'Location');
 		dataSales.addColumn('string', 'Date');
 		dataSales.addColumn('string', 'User');
 		dataSales.addColumn('string', 'Contact');
@@ -289,11 +290,11 @@ var geoJsonData =
 			var sales = leads.sales[i];
 			dataSales.addRow([sales.score, sales.text, sales.date, sales.user, "know more"]);
 		}
-		dataSales.sort({column:0, desc:true});
+		//dataSales.sort({column:0, desc:true});
 
 		// Show table of Sales Leads
         var tableSales = new google.visualization.Table(document.getElementById('table_sales'));
-        tableSales.draw(dataSales, {showRowNumber: false});
+		tableSales.draw(dataSales, {showRowNumber: false, sortColumn: 0, sortAscending: false});
 	    
 	    // Add our selection handler
 	    google.visualization.events.addListener(tableSales, 'select', selectSales);
@@ -313,10 +314,10 @@ var geoJsonData =
 			if (SelectedMarker != null) map.removeLayer(SelectedMarker);        // Remove marker if set
 			//alert(lat + " " + lon);
 			//SelectedMarker = new L.Marker(new L.LatLng(lat, lon));
+			//SelectedMarker = new L.CircleMarker(new L.LatLng(lat, lon), {color: 'red', fillOpacity: 0.8});
 		    //map.addLayer(SelectedMarker);
-			//SelectedMarker = new L.CircleMarker(new L.LatLng(lat, lon), {color: 'red'}).addTo(map);
-			//var SelectedMarker = L.marker([lat,lon], {icon: red}).addTo(map);
 			SelectedMarker = L.marker([lat,lon], {icon: red}).addTo(map);
+			map.setView(new L.LatLng(lat, lon), 11);
 		}
 	    
 
