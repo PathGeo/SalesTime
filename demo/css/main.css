@@ -1,4 +1,13 @@
-html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; margin:0px; padding:0px;}
+html, body {font-family: "Arial"; font-size:90%; margin:0px; padding:0px;
+  background-color: #0B588C;
+  background-repeat: no-repeat;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0B588C), color-stop(50%, #ffffff), to(#0B588C));
+  background-image: -webkit-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
+  background-image: -moz-linear-gradient(top, #0B588C, #ffffff 50%, #0B588C);
+  background-image: -ms-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
+  background-image: -o-linear-gradient(#0B588C, #ffffff 50%, #0B588C);
+  background-image: linear-gradient(#0B588C, #ffffff 50%, #0B588C);
+}
 .highlightKeyword { font-weight: bold; }
 
 /** widget */
@@ -24,16 +33,16 @@ html, body {font-family: "Arial"; background-color:#eeeeee; font-size:90%; margi
 /** gridster */
 .gridster {margin:0 auto; width:95%;}	
 .gridster ul {list-style:none;}
-.gridster ul li {background-color:#ffffff; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; box-shadow: 3px 3px 2px #bbbbbb; padding:0px; border:1px solid #cccccc;}
+.gridster ul li {background-color:#ffffff; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;  padding:0px; border:1px solid transparent;}
 .gridster ul li:hover {border:2px solid #cccccc;}
 
 
 /** dialog_addWidget */
 #dialog_addWidget ul {list-style:none; margin:2px; padding:0px; }
-#dialog_addWidget ul li {float:left; margin:10px; padding:10px; width:120px; height:100px; text-align:center; border:1px solid #eeeeee;-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
-#dialog_addWidget ul li:hover {background-color:#eeeeee;}
-#dialog_addWidget ul li span {font-weight:bold; color:#777777;}
-#dialog_addWidget ul li img {width:85px; height:85px;}
+#dialog_addWidget ul li {float:left; margin:10px; padding:10px; width:280px; height:90px;border:1px solid #eeeeee;-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
+#dialog_addWidget ul li:hover {background-color:#eeeeee;cursor:pointer;}
+#dialog_addWidget ul li span {color:#777777;float:left;margin-left:25px;width:170px;}
+#dialog_addWidget ul li img {width:85px; height:85px;float:left}
 
 
 /** jquery ui */
