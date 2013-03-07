@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -96,7 +95,7 @@
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
 	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
-            <span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_solution', 'Solutions', {modal:true});">Improve it!</span>
+                <span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
 		<div id="score_reputation" style="color: green; padding-left:20px">
 			<span style="font-size:92px; padding-right:20px">288</span>
 			<span style="font-size:32px"><img src = "images/green_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />3.8%</span>
@@ -105,7 +104,7 @@
 	
 	<!-- visibility (JOE)-->
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
-		<span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_solution', 'Solutions', {modal:true});">Improve it!</span>
+		<span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
 		<div id="score_visibilty" style="font-size:92px; color: red; padding-left:20px">
 			<span style="font-size:92px; padding-right:20px">252</span>
 			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
@@ -184,9 +183,56 @@
 	</div>
 
 	<!-- Solution (NATHAN)-->
-	<div id='dialog_solution' style='display:none'>
+	<div id='dialog_reputation_strategies' style='display:none'>
 		<div id="graph_visibilty" style="height:200px; width:200px"><img src='images/solution-content_page1.png'/></div>
 		<div id='reviews_vis' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
+	</div>
+	
+	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation 5 points because a complaint by @nathanW about dealer service.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Detail</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Reply</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Favorite</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>More</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation increases 15 points because a comment by @joeS on Youtube.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
 	</div>
 	
 	<!-- competitor (JOE)-->
