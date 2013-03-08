@@ -64,3 +64,8 @@ div#submenu {
 	margin-right: 10px;
 	width: 160px;
 }
+
+@font-face {
+	font-family: digital;
+	src: url('digital.ttf');
+}
