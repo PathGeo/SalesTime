@@ -811,9 +811,10 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
+			review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
-								feed.Review
+								review
 							] );
 		}
 		
@@ -885,9 +886,10 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
+			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
-								feed.Review
+								review
 							] );
 		}
 		
