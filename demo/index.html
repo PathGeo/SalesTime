@@ -139,14 +139,14 @@
 			<div id='map' style=' width:60%; height:95%; float:left'></div>
 			
 			<!-- how about using tabs to show top sales and top service leads ? -->
-			<div style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
+			<div id='leads' style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
 				<ul>
 					<li><a href='#sales_leads'>Top 10 Sales Leads</a></li>
 					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
 				</ul>
 				
-				<div id='sales_leads' style='height: 350px; background-color: ;'> Sales Leads </div>
-				<div id='service_leads' style='height: 350px; background-color: ;'> Service Leads </div>
+				<div id='sales_leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
+				<div id='service_leads' style='height: 350px; overflow:auto; background-color: ;'> Service Leads </div>
 			</div>
 		</div>
 	
@@ -230,10 +230,35 @@
 	<div id='dialog_chart' style='display:none'></div>
 	
 	<!-- Detailed user information (CHRIS) -->
-	<div id='dialog_user_info' style='display:none'>
+	<div id='dialog_user_info' style='display:none; padding:20px;'>
+		<!--user info-->
+		<div style='height:170px; width:99%;'>
+			<img id='user_image' style='float:left; padding:20px 20px 20px 0px; width:125px; height:125px;' src='' class='ui-corner-all' />
+			<div id='user_info' style='float:left; padding:5px; width:70%;'>
+				<ul>
+					<li id='screen_name' class='userInfo' style='font-size:150%;'></li>
+					<li id='description' class='userInfo'></li>
+					<li id='location' class='userInfo' textFormat="at {value}"></li>
+					<li id='friends_count' class='userInfo' textFormat="{value} Friends"></li>
+					<li id='followers_count' class='userInfo' textFormat="{value} Followers"></li>
+				</ul>
+			</div>
+		</div>
+		<!--user content -->
+		<div style='height:230px; width:99%;'>
+			<div style='width:100%; height:50px;'>
+				<div id='score' title='relevant score powered by PathGeo' class='userInfo score' style='width:50px;line-height:50px;height:100%;float:left;padding:10px;background-color:#EC692D; color:#ffffff;' class='ui-corner-all'></div><p></p>
+				<div style='width:83%;height:100%;float:left;padding:10px;' class='content'>
+					<label id='date' class='userInfo' style='font-weight:bold; font-size:110%;'></label>, <label id='screen_name' class='userInfo'></label> said : <br>
+					<label id='text' class='userInfo'></label> 
+				</div>
+			</div>
+			<p></p>
+			<textarea style='width:100%; height:100px' ></textarea><p></p>
+			<button style='float:right' onclick='$("*").dialog("close");'>Reply</button>
+		</div>
 		
-		<!-- This is just some test data to get the layout right... -->
-	
+		<!-- This is just some test data to get the layout right... 
 		<div style="position: relative; width: 95%; height: 70px;">
 			<div style="position: absolute; height: 70px; width: 70px; "> 
 				<img id="user_image" style="width: 100%; height: 100%;" src=""/>
@@ -246,7 +271,7 @@
 			<b>Friends count:</b> <span id="user_friends_count">  </span> <br>
 			<b>Followers count:</b> <span id="user_followers_count">  </span> <br>
 		</div>
-	
+		-->
 	
 	</div>
 	

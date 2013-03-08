@@ -11,7 +11,7 @@ html, body {font-family: "Arial"; font-size:90%; margin:0px; padding:0px;
 
 a {text-decoration:none;}
 
-.highlightKeyword { font-weight: bold; }
+.highlightKeyword { font-weight: bold; color:#EC692D}
 
 /** widget */
 .widget {display:none;}
@@ -75,6 +75,22 @@ a {text-decoration:none;}
 #rss_news ul li {border-bottom:1px solid #eeeeee; padding:5px;display: inline-block; width:96%; cursor:pointer;}
 #rss_news ul li:hover {background-color:#eeeeee;}
 #rss_news ul li div {float:left;}
+
+
+/** sales_leads */
+#leads > div ul {padding:0px; margin:0px; list-style:none;}
+#leads > div ul li {border-bottom:1px solid #eeeeee; padding:5px;display: inline-block; width:96%; cursor:pointer;}
+#leads > div ul li:hover {background-color:#eeeeee;}
+#leads > div ul li div {float:left;}
+#leads > div ul li .score {font-size:170%;}
+#leads > div ul li div img {width:65px; height:65px; float:left}
+#leads > div ul li div div {float:left; width:70%;padding-left:10px;}
+
+
+
+/**user info dialog*/
+#dialog_user_info #user_info ul {list-style:none; padding:0px; margin:0px;}
+#dialog_user_info #user_info ul li {padding:5px;}
 
 
 

@@ -9,7 +9,8 @@
 	var app={
 		map:null,		// leaflet map object
 		layer:{
-			heatmap:null //heatmap layer
+			heatmap:null, //heatmap layer
+			markerLead:L.marker([0,0]) //marker for top leads
 		},
 		controls:null, //leafmap controls
 		hitMapData:{   //heatmap data
@@ -23,6 +24,7 @@
 		},
 		eventHandler:{
 			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
+			mouseover: "mouseover"
 		}
 	}
 
@@ -104,7 +106,7 @@
 	function init_leads(){
 		//tabs
 		//we have to wait until the tabs have been created. Otherwise, the google chart table cannot get the correct width
-		$(".tabs").tabs({"create": function(e,ui){
+		$("#leads").tabs({"create": function(e,ui){
 			init_leads_table(leads.sales, "sales_leads");
 			init_leads_table(leads.service, "service_leads");
 		}});
@@ -112,56 +114,137 @@
 
 
 	function init_leads_table(leadsGroup, divName) {
-		var data = new google.visualization.DataTable();
-		data.addColumn('number', 'Score');
-		data.addColumn('string', 'User');
-		data.addColumn('string', 'Tweet');
-		//data.addColumn('string', 'Location');
-		
-		for (var indx in leadsGroup) {
-			var lead = leadsGroup[indx];
-			data.addRow( [ 
-								lead.score,
-								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
-								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true)
-								//lead.loc
-							] );
-		}
-		
-		
 		//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
 		$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
-		
-		var table = new google.visualization.Table(document.getElementById(divName));
-		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
-				
-		google.visualization.events.addListener(table, 'select', function() { 
-			var row = table.getSelection()[0].row;
-			
-			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
-			//YES, you can. the "data" varaible has become a global variable for this function. Therefore, even this function is a select-event listener, the "data" variable can be called correctly. (Calvin)
-			var user = data.getFormattedValue(row, 1);
 
-			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
-			showUserInfoDialog($(user).text());
+		//sort array 
+		sortArray(leadsGroup, "score");
+		var html="<ul>";
+		$.each(leadsGroup, function(i,lead){
+			html+="<li title='see more about the tweet' id='" + i + "'>" + 
+				  "<div class='score'>" + lead.score +"</div>"+
+				  "<div class='content'><img src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
+				  "</li>";
 		});
+		$("#"+divName).html(html);
+		
+		
+		//click event and mouseover event
+		$("#"+divName+" ul li").bind(app.eventHandler.click, function(){
+			var idx=$(this).attr("id");
+			showUserInfoDialog(leadsGroup[idx]);
+		}).bind(app.eventHandler.mouseover, function(){
+			var idx=$(this).attr("id");
+			showLocation(leadsGroup[idx], divName, idx);
+		});
+		
+		
+		
+		//use google chart table
+//		var data = new google.visualization.DataTable();
+//		data.addColumn('number', 'Score');
+//		data.addColumn('string', 'User');
+//		data.addColumn('string', 'Tweet');
+//		//data.addColumn('string', 'Location');
+//		
+//		for (var indx in leadsGroup) {
+//			var lead = leadsGroup[indx];
+//			data.addRow( [ 
+//								lead.score,
+//								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
+//								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true)
+//								//lead.loc
+//							] );
+//		}
+//		
+//		var table = new google.visualization.Table(document.getElementById(divName));
+//		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
+//				
+//		google.visualization.events.addListener(table, 'select', function() { 
+//			var row = table.getSelection()[0].row;
+//			
+//			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
+//			//YES, you can. the "data" varaible has become a global variable for this function. Therefore, even this function is a select-event listener, the "data" variable can be called correctly. (Calvin)
+//			var user = data.getFormattedValue(row, 1);
+//
+//			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
+//			showUserInfoDialog($(user).text());
+//		});
 
 	}
 	
-	function showUserInfoDialog(userName) {
-		var userInfo;
-		for (var indx in userData) {
-			if (userData[indx].user_info.screen_name == userName) 
-				userInfo = userData[indx].user_info;
-		}
-		//alert(userInfo.image_url);
-		$("#user_image").attr({"src": userInfo.image_url});
-		$("#user_description").text(userInfo.description);
-		$("#user_location").text(userInfo.location);
-		$("#user_friends_count").text(userInfo.friends_count);
-		$("#user_followers_count").text(userInfo.followers_count);
+	function showUserInfoDialog(lead) {
+		var userInfo=userData[lead.user]
 		
-		showDialog('dialog_user_info', userName, {modal:true}); 
+		//join userinfo and lead, but we should be very carefull if there is any existing key name in two dateset
+		$.extend(userInfo, lead);
+		
+		//user image
+		$("#user_image").attr("src", userInfo.image_url);
+		//user info
+		$(".userInfo").each(function(){
+			if($(this).attr("id") && $(this).attr("id") && userInfo[$(this).attr("id")] && userInfo[$(this).attr("id")]!=''){
+				//if there is appointed format
+				if($(this).attr("textFormat") && $(this).attr("textFormat")!='' && $(this).attr("textFormat").split("{value}").length>1){
+					$(this).html($(this).attr("textFormat").replace(new RegExp("{value}", 'ig'), userInfo[$(this).attr("id")]));
+				}else{
+					$(this).html(userInfo[$(this).attr("id")])
+					//highlight the text
+					if($(this).attr("id")=='text'){$(this).html(pathgeo.util.highlightKeyword(app.constants.KEYWORDS, userInfo[$(this).attr("id")], true))}
+				}
+			}
+		});
+		
+		
+//		var userInfo;
+//		for (var indx in userData) {
+//			if (userData[indx].user_info.screen_name == userName) 
+//				userInfo = userData[indx].user_info;
+//		}
+		//alert(userInfo.image_url);
+//		$("#user_image").attr({"src": userInfo.image_url});
+//		$("#user_description").text(userInfo.description);
+//		$("#user_location").text(userInfo.location);
+//		$("#user_friends_count").text(userInfo.friends_count);
+//		$("#user_followers_count").text(userInfo.followers_count);
+		
+		showDialog('dialog_user_info', lead.user, {modal:true}); 
+	}
+	
+	
+	/**
+	 * while mouseovering on the lead, it will trigger showLocation to show location on the map
+	 * @param {Object} Lead
+	 */
+	function showLocation(lead, divName, idx){
+		var userInfo=userData[lead.user]
+		//join userinfo and lead, but we should be very carefull if there is any existing key name in two dateset
+		$.extend(userInfo, lead);
+		
+		//hide the markerLead layer
+		app.map.removeLayer(app.layer.markerLead);
+
+		//show
+		if(lead.latlon && lead.latlon.length==2 && lead.latlon[0]!='' && lead.latlon[1]!=''){
+			app.layer.markerLead=L.marker(lead.latlon).addTo(app.map); //add marker
+			app.map.panTo(app.layer.markerLead.getLatLng()); //center to the marker
+			
+			//popup info window
+			//var html="<img style='' src='" + userInfo.image_url + "' width=30px height=30px />"+
+			var html="<div style=''><b>" + lead.user + "</b> says: <br>"+lead.text+"</div>";
+			app.layer.markerLead.bindPopup(html).openPopup();
+			
+			//mouseover event
+			//still have some problem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			app.layer.markerLead.on("mouseover", function(e){
+					$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").trigger("mouseover").css({"background-color": "#eeeeee"});
+			}).on("mouseout", function(e){
+					$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": ""});
+				}
+			);
+		}
+		
+		
 	}
 	
 	
@@ -270,15 +353,17 @@
 
 		app.controls = L.layerGroup().addTo(app.map);
 		
+		
 		var overlays = {
 			"tweets": app.controls,
-			"heatmap": app.layer.heatmap
+			"heatmap": app.layer.heatmap,
+			"lead": app.layer.markerLead
 		};
 		
 		L.control.layers(baseLayers, overlays).addTo(app.map);		
-
+		
+		//bing geocoder
 		var bingGeocoder = new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7');
-
 		app.map.addControl(bingGeocoder);
 		
 		// end - map functions
