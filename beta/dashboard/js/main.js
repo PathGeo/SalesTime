@@ -714,18 +714,19 @@
 	
 	
 	
-	
 	/**
 	*Switch User Logo
 	*/
 	function switch_user(company){
 		if(company=="penske"){
-			$("#link").html("Penske General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
-			$("#logo").html("<img src = 'images/logo_penske.png' alt='logo' border='0' style = 'width:150px;height:40px;float:right' />");
+			$("#link").html("General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
+			$("#logo").html("<img src = 'images/logo_penske.png' alt='logo' border='0' style = 'float:left;padding-right:15px' />");
+			$('div#submenu').hide();
 		}
 		else{
-			$("#link").html("Drew Ford General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
-			$("#logo").html("<img src = 'images/logo_drew.png' alt='logo' border='0' style = 'width:210px;height:40px;float:right' />");
+			$("#link").html("General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
+			$("#logo").html("<img src = 'images/logo_drew.png' alt='logo' border='0' style = 'float:left;padding-right:15px' />");
+			$('div#submenu').hide();
 		}
 	}
 	

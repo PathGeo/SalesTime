@@ -52,8 +52,8 @@
 <body>
 	<!--header section (JOE)-->
 	<div class="outer-north">
-		<div id="header" style="background-color:#ffffff ">
-			<a href="http://www.drewford.com/" ><img src = "./images/logo_product.png" alt="logo" border="0" style = "margin:0px 0px 0px 0px;width:300px;height:90px;float:center;" /></a>
+		<div id="header" style="background-color:#ffffff; padding:5px">
+			<a href="http://www.pathgeo.com/" ><img src = "./images/logo_product.png" alt="logo" border="0" style = "margin:0px 0px 0px 0px;float:center;" /></a>
 			
 			<!--<div id="log" style="background-color:#ffffff;height:auto;width:80px;float:right;">
 				Log out
@@ -63,19 +63,20 @@
 				Welcome! Mike Baker 
 				Your role is General Manager
 			</div>-->
-			
-			<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding:10px 50px 0px 0px">
-				<div style="float:right; padding-bottom:10px">
-					<a id="link">Drew Ford General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span></a>
-					<div id="submenu">
+				
+			<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding:0px 50px 0px 0px">
+				<span id="logo">
+					<img src = "images/logo_drew.png" alt="logo" border="0" style="float:left; padding-right:15px" />
+				</span>
+				<div style="float:right; padding-top:15px">
+					<a id="link"  style="font-size:16px">General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span></a>
+					<div id="submenu" style="z-index:9999">
 						<a href="#" onclick="switch_user('drew')">Drew Ford</a><br/>
 						<a href="#" onclick="switch_user('penske')">Penske</a><br/>
-						<a href="#">Logout</a>
+						<a href="#" onclick="logout()">Logout</a>
 					</div>
 				</div>
-				<div id="logo">
-					<img src = "images/logo_drew.png" alt="logo" border="0" style = "width:200px;height:40px;float:right" />
-				</div>
+
 			</div>
 		</div>
 
@@ -95,18 +96,18 @@
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
 	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
-                <span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
-		<div id="score_reputation" style="color: green; padding-left:20px">
-			<span style="font-size:92px; padding-right:20px">288</span>
+            <span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_solution', 'Solutions', {modal:true});">Improve it!</span>
+		<div id="score_reputation" style="color: green; padding-left:15px">
+			<span style="font-size:64px; padding-right:20px">288</span>
 			<span style="font-size:32px"><img src = "images/green_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />3.8%</span>
 		</div>
 	</div>
 	
 	<!-- visibility (JOE)-->
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
-		<span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
-		<div id="score_visibilty" style="font-size:92px; color: red; padding-left:20px">
-			<span style="font-size:92px; padding-right:20px">252</span>
+		<span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_solution', 'Solutions', {modal:true});">Improve it!</span>
+		<div id="score_visibilty" style=" color: red; padding-left:15px">
+			<span style="font-size:64px; padding-right:20px">252</span>
 			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
 		</div>
 	</div>
