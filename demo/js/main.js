@@ -757,22 +757,38 @@
 	
 		$('.changeRepGraph').css('cursor', 'pointer');
 	
-		var reputation_data = getScore("dailyRep");
+		var reputation_data = getScore("weeklyRep");
 		
 		var reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
 
         var options_graph_rep = {
           legend: {position: 'none'},
-		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+		  vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+		  hAxis: {showTextEvery:4}
         };
 
-        var reputation_graph = new google.visualization.LineChart(document.getElementById('graph_reputation'));
+        var reputation_graph = new google.visualization.LineChart(document.getElementById('graph_rep'));
         reputation_graph.draw(reputation_data_table, options_graph_rep);
 		
 		
 		$('.changeRepGraph').click(function() {
 			reputation_data = getScore($(this).attr('id'));
 			reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
+			if($(this).attr('id') == "dailyRep"){
+				var hLabel = 2;
+			}
+			if($(this).attr('id') == "weeklyRep"){
+				var hLabel = 4;
+			}
+			if($(this).attr('id') == "monthlyRep"){
+				var hLabel = 8;
+			}
+			options_graph_rep = {
+				legend: {position: 'none'},
+				vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+				hAxis: {showTextEvery:hLabel}
+				
+			};
 			reputation_graph.draw(reputation_data_table, options_graph_rep);
 			$('.changeRepGraph').css("font-weight","normal");
 			var bolder = '#' + ($(this).attr('id'));
@@ -799,7 +815,7 @@
 							] );
 		}
 		
-		var reviewTable = new google.visualization.Table(document.getElementById('reviews_rep'));
+		var reviewTable = new google.visualization.Table(document.getElementById('review_rep'));
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 		
 	}
@@ -813,23 +829,39 @@
 	
 		$('.changeVisGraph').css('cursor', 'pointer');
 	
-		var visibility_data = getScore("dailyVis");
+		var visibility_data = getScore("weeklyVis");
 		
 		var visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
 
-        var options_graph_rep = {
+        var options_graph_vis = {
           legend: {position: 'none'},
-		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+		  vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+		  hAxis: {showTextEvery:4}
         };
 
-        var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_visibilty'));
-        visibility_graph.draw(visibilty_data_table, options_graph_rep);
+        var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_vis'));
+        visibility_graph.draw(visibilty_data_table, options_graph_vis);
 		
 		
 		$('.changeVisGraph').click(function() {
 			visibility_data = getScore($(this).attr('id'));
 			visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
-			visibility_graph.draw(visibilty_data_table, options_graph_rep);
+			if($(this).attr('id') == "dailyVis"){
+				var hLabel = 2;
+			}
+			if($(this).attr('id') == "weeklyVis"){
+				var hLabel = 4;
+			}
+			if($(this).attr('id') == "monthlyVis"){
+				var hLabel = 8;
+			}
+			options_graph_vis = {
+				legend: {position: 'none'},
+				vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+				hAxis: {showTextEvery:hLabel}
+				
+			};
+			visibility_graph.draw(visibilty_data_table, options_graph_vis);
 			$('.changeVisGraph').css("font-weight","normal");
 			var bolder = '#' + ($(this).attr('id'));
 			$(bolder).css("font-weight","bold");
@@ -855,7 +887,7 @@
 							] );
 		}
 		
-		var reviewTable = new google.visualization.Table(document.getElementById('reviews_vis'));
+		var reviewTable = new google.visualization.Table(document.getElementById('review_vis'));
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 	}
 
