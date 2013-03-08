@@ -609,13 +609,14 @@
 	
 		$('.changeRepGraph').css('cursor', 'pointer');
 	
-		var reputation_data = getScore("dailyRep");
+		var reputation_data = getScore("weeklyRep");
 		
 		var reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
 
         var options_graph_rep = {
           legend: {position: 'none'},
-		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+		  vAxis: {minValue:-100, maxValue:100},
+		  hAxis: {showTextEvery:4}
         };
 
         var reputation_graph = new google.visualization.LineChart(document.getElementById('graph_reputation'));
@@ -665,23 +666,24 @@
 	
 		$('.changeVisGraph').css('cursor', 'pointer');
 	
-		var visibility_data = getScore("dailyVis");
+		var visibility_data = getScore("weeklyVis");
 		
 		var visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
 
-        var options_graph_rep = {
+        var options_graph_vis = {
           legend: {position: 'none'},
-		  vAxis: {minValue:0,maxValue:300,gridlines:{count:4}}
+		  vAxis: {minValue:-100, maxValue:100},
+		  hAxis: {showTextEvery:4}
         };
 
-        var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_visibilty'));
-        visibility_graph.draw(visibilty_data_table, options_graph_rep);
+        var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_visibilty2'));
+        visibility_graph.draw(visibilty_data_table, options_graph_vis);
 		
 		
 		$('.changeVisGraph').click(function() {
 			visibility_data = getScore($(this).attr('id'));
 			visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
-			visibility_graph.draw(visibilty_data_table, options_graph_rep);
+			visibility_graph.draw(visibilty_data_table, options_graph_vis);
 			$('.changeVisGraph').css("font-weight","normal");
 			var bolder = '#' + ($(this).attr('id'));
 			$(bolder).css("font-weight","bold");
@@ -707,7 +709,7 @@
 							] );
 		}
 		
-		var reviewTable = new google.visualization.Table(document.getElementById('reviews_vis'));
+		var reviewTable = new google.visualization.Table(document.getElementById('reviews_vis2'));
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 	}
 
