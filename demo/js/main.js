@@ -17,7 +17,7 @@
 			data: []
 		},
 		gridster:null,  //gridster
-		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", 'widget_tweetStream', "widget_addWidget"],
+		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", 'widget_tweetStream'],// "widget_addWidget"],
 		constants: {
 			KEYWORDS: ['car', 'buy', 'shopping', 'Ford']
 		},

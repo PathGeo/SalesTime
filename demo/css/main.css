@@ -40,6 +40,21 @@ a {text-decoration:none;}
 .gridster > ul > li:hover {border:2px solid #cccccc;}
 
 
+/**widget_addWidget*/
+#widget_addWidget{
+	left:0; top:50%; z-index:1000; position:fixed; color:#ffffff; background-color:#EC692D; font-weight:bold; width:100px; height:20px; padding:5px; font-size:110%; text-align:center; cursor:pointer;
+	transform: rotate(90deg);
+	transform-origin:15% 30%;
+	-ms-transform: rotate(90deg); /* IE 9 */
+	-ms-transform-origin:15% 30%; /* IE 9 */
+	-webkit-transform: rotate(90deg); /* Safari and Chrome */
+	-webkit-transform-origin:15% 30%; /* Safari and Chrome */
+	-moz-transform: rotate(90deg); /* Firefox */
+	-moz-transform-origin:15% 30%; /* Firefox */
+	-o-transform: rotate(90deg); /* Opera */
+	-o-transform-origin:15% 30%; /* Opera */
+}
+
 /** dialog_addWidget */
 #dialog_addWidget ul {list-style:none; margin:2px; padding:0px; }
 #dialog_addWidget ul li {float:left; margin:10px; padding:10px; width:280px; height:90px;border:1px solid #eeeeee;-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
