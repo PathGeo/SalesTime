@@ -764,7 +764,8 @@
         var options_graph_rep = {
           legend: {position: 'none'},
 		  vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
-		  hAxis: {showTextEvery:4}
+		  hAxis: {showTextEvery:4},
+		  pointSize:4
         };
 
         var reputation_graph = new google.visualization.LineChart(document.getElementById('graph_rep'));
@@ -786,7 +787,8 @@
 			options_graph_rep = {
 				legend: {position: 'none'},
 				vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
-				hAxis: {showTextEvery:hLabel}
+				hAxis: {showTextEvery:hLabel},
+				pointSize:4
 				
 			};
 			reputation_graph.draw(reputation_data_table, options_graph_rep);
@@ -836,7 +838,8 @@
         var options_graph_vis = {
           legend: {position: 'none'},
 		  vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
-		  hAxis: {showTextEvery:4}
+		  hAxis: {showTextEvery:4},
+		  pointSize:4
         };
 
         var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_vis'));
@@ -858,7 +861,8 @@
 			options_graph_vis = {
 				legend: {position: 'none'},
 				vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
-				hAxis: {showTextEvery:hLabel}
+				hAxis: {showTextEvery:hLabel},
+				pointSize:4
 				
 			};
 			visibility_graph.draw(visibilty_data_table, options_graph_vis);
@@ -871,7 +875,7 @@
 		var reviewData = new google.visualization.DataTable();
 		reviewData.addColumn("string", "Rating");
 		reviewData.addColumn("string", "Date");
-		reviewData.addColumn("string", "Review");
+		reviewData.addColumn("string", "Chatter");
 		
 		for (var indx in reviews) {
 			var feed = reviews[indx];
@@ -910,6 +914,7 @@
 		}
 	}
 	
+	
 	/**
 	*Logout
 	*/
@@ -917,6 +922,40 @@
 		$("#link").html("Sign In<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span>");
 		$("#logo").html("");
 		$('div#submenu').hide();
+	}
+	
+	
+	/**
+	*Change Chart Type
+	*/
+	function changeChart(chartType){
+	
+		var chart_data = getData(chartType);
+		
+		if(chartType == "line"){
+			var options = {
+				title: 'Total Mentions per Day',
+				legend: {position:'none'},
+				hAxis: {showTextEvery:2},
+				pointSize:4,
+				titleTextStyle: {color: '#555555', fontName: 'Arial', fontSize: 12}
+			};
+			var data = google.visualization.arrayToDataTable(chart_data);
+			var chart = new google.visualization.LineChart(document.getElementById('chart'));
+			chart.draw(data, options);
+		}
+
+		if(chartType == "pie"){
+			var options = {
+				title: 'Total Mentions, Feb 22-28',
+				titleTextStyle: {color: '#555555', fontName: 'Arial', fontSize: 12}
+			};
+			var data = google.visualization.arrayToDataTable(chart_data);
+			var chart = new google.visualization.PieChart(document.getElementById('chart'));
+			chart.draw(data, options);
+
+
+		}
 	}
 
 

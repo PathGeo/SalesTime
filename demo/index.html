@@ -22,7 +22,8 @@
 	<script src="js/user_info.js"></script>	
 	<script src="js/leads.js"></script>	
 	<script src="js/rss.js"></script>
-	<script src="js/reviews.js"></script>	
+	<script src="js/reviews.js"></script>
+	<script src="js/ford_data.js"></script>	
 
 	<!-- PathGeo JS -->
 	<script src="js/api/pathgeo.layer.js"></script>		
@@ -97,7 +98,7 @@
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
 	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
-        <span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
+        <span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
 		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital">
 			<span style="font-size:64px; padding-right:20px">88</span>
 			<span style="font-size:32px"><img src = "images/green_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />3.8%</span>
@@ -106,7 +107,7 @@
 	
 	<!-- visibility (JOE)-->
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
-		<span style="font-size:32px;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
+		<span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
 		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital">
 			<span style="font-size:64px; padding-right:20px">81</span>
 			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
@@ -159,8 +160,14 @@
 	</div>
             
     <!-- chart (CHRIS)-->
-    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
-		
+    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="changeChart('line')" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
+		<div style='width:100%; text-align:right'>
+			<select style='width:150px; ' onchange='changeChart(this.value)'>
+				<option value='line'>Line Chart</option>
+				<option value='pie'>Pie Chart</option>
+			</select>
+		</div>
+		<div id="chart" style="width:100%"></div>
 	</div>
 	
 	<!-- tweet streaming (Jay)-->
