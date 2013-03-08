@@ -53,6 +53,7 @@ a {text-decoration:none;}
 	-moz-transform-origin:15% 30%; /* Firefox */
 	-o-transform: rotate(90deg); /* Opera */
 	-o-transform-origin:15% 30%; /* Opera */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /* IE */ 
 }
 
 /** dialog_addWidget */
