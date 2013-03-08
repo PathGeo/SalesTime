@@ -139,7 +139,8 @@
 	
 	<!-- news feed (CHRIS)-->
 	<div id='widget_news' class='widget' widget-title='News Feed' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=1>
-		<div id='rss_news' style='height: 90%; width: 100%; overflow: auto;'> </div>
+		<div style='width:100%; text-align:right; background-color:#eeeeee;'>Sort by: <select style='width:150px; ' onclick='sortArray(rssFeeds, this.value); showNews();'><option value='score'>Score</option><option value='name'>Source</option><option value='date'>Date</option></select></div>
+		<div id='rss_news' style='height: 87%; width: 100%; overflow: auto;'> </div>
 	</div>
             
     <!-- chart (CHRIS)-->
@@ -198,7 +199,15 @@
 	<div id='dialog_competitor' style='display:none'></div>
 	
 	<!-- news feed (CHRIS)-->
-	<div id='dialog_news' style='display:none'></div>
+	<div id='dialog_news' style='display:none'>
+		<div style='width:95%;padding:20px;'>
+			<div id='dialog_news_score' style='float:left;font-size:200%;' class='score'></div>
+			<div id='dialog_news_content' style='float:left;width:78%;' class='content'></div>
+			<div id='dialog_news_goto' style='float:right; padding:10px; background-color:#EC692D; color:#ffffff; font-weight:bold; cursor:pointer;' class='ui-corner-all'>Go to Website</div>
+		</div>
+		
+		<iframe width=99% height=85% style='width:99%; height:85%; border:0px; border-top:1px solid #cccccc; padding-top:20px' class='ui-corner-all'></iframe>
+	</div>
 	
 	<!-- chart (CHRIS)-->
 	<div id='dialog_chart' style='display:none'></div>

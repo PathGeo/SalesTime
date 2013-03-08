@@ -49,24 +49,55 @@
 	* Creates a google table in news_widget.  Table is populated with data from rss.js.  
 	*/
 	function init_news_widget() {
-
-		var rssData = new google.visualization.DataTable();
-		rssData.addColumn("number", "Score");
-		rssData.addColumn("string", "Date");
-		rssData.addColumn("string", "Source");
-		rssData.addColumn("string", "Title");
+		//sort score
+		sortArray(rssFeeds, "score");
+		showNews();
+	}
+	
+	
+	
+	/**
+	 * show news Feed
+	 */
+	function showNews(){
+		//use <ul><li>to show the rssFeeds
+		var html="<ul>";
+		$.each(rssFeeds, function(i,rss){
+			html+="<li rssIndex=" + i +" title='Please click to see the news'><div class='score' title='Relevant Score. Powered by PathGeo'>" + rss.score+"</div><div class='content'><label class='title'>"+ rss.name + " @ " + rss.date + "</label><br>"+ rss.title + "</div></li>";
+		});
+		html+="</ul>";
+		$("#rss_news").html(html);
 		
-		for (var indx in rssFeeds) {
-			var feed = rssFeeds[indx];
-			rssData.addRow( [ 	feed.score, 
-								feed.date, feed.name, 
-								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" 
-										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title, true) + "</a>" 
-							] );
-		}
+		//onclick event on each li
+		$("#rss_news ul li").click(function(){
+			var id=$(this).attr("rssIndex");
+			if(id && id !=""){
+				$("#dialog_news_score").html(rssFeeds[id].score);
+				$("#dialog_news_content").html("<label class='title'>"+ rssFeeds[id].title + "</label><br>" + rssFeeds[id].name + " @ " + rssFeeds[id].date);
+				$("#dialog_news_goto").click(function(){window.open(rssFeeds[id].url)});
+				$("#dialog_news iframe").attr("src", rssFeeds[id].url);
+				showDialog("dialog_news", "news", {modal:true, resizable:false, draggable:false, width:900, height:650, close:function(e,ui){$("#dialog_news iframe").html("").attr("src", "");}});
+			}
+		})
 		
-		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
-		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
+		//use google chart table to show the rssFeeds
+//		var rssData = new google.visualization.DataTable();
+//		rssData.addColumn("number", "Score");
+//		rssData.addColumn("string", "Date");
+//		rssData.addColumn("string", "Source");
+//		rssData.addColumn("string", "Title");
+//		
+//		for (var indx in rssFeeds) {
+//			var feed = rssFeeds[indx];
+//			rssData.addRow( [ 	feed.score, 
+//								feed.date, feed.name, 
+//								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" 
+//										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title, true) + "</a>" 
+//							] );
+//		}
+//		
+//		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
+//		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
 	}
 	
 	
@@ -546,10 +577,10 @@
 		dialogOptions.resizable=false || dialogOptions.resizable;
 		//dialogOptions.draggable=false || dialogOptions.draggable;
 		dialogOptions.dialogClass="dialog";
-		dialogOptions["close"]=function(){
+		dialogOptions.closeFn=dialogOptions.close || null;
+		dialogOptions.close=function(){
 			//if close function
-			if(dialogOptions["close"]){dialogOptions["close"]} 
-			
+			if(dialogOptions.closeFn){dialogOptions.closeFn()} 
 			//enable <body> scroll
 			$("body").css("overflow", "auto");
 		};
@@ -561,6 +592,37 @@
 		$("#"+id).dialog(dialogOptions);
 	}
 	
+
+	
+	/**
+	 * sort array based on objname
+	 */
+	function sortArray(array, objName){
+		if (!array || array.length==0 || !objName || objName == "") {console.log("[ERROR]sortArray: no array or objName");return;}
+		
+		array.sort(function(a,b){
+			switch ($.type(a[objName])) {
+				case "number":
+					if (a[objName] == b[objName]) return 0;
+					return a[objName] < b[objName] ? 1 : -1; //descend
+				break;
+				case "date":
+					
+				break;
+				case "string":
+					if(objName=='date'){
+						return (new Date(a[objName]) < new Date(b[objName]))? 1: -1; //descend
+					}else{
+						return a[objName] > b[objName] ? 1: -1; //ascend
+					}
+					
+				break;
+			}
+		});
+		
+	}		
+
+
 
 	/**
 	*   Initialize tweet stream box
