@@ -12,6 +12,8 @@
 	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/leaflet.ie.css" /><![endif]-->
 	<link rel="stylesheet" href="js/gridster/jquery.gridster.min.css" />
 	<link rel="stylesheet" href="css/Control.BingGeocoder.css" />
+	<link rel="stylesheet" href="js/leaflet/MarkerCluster.css" />
+	<link rel="stylesheet" href="js/leaflet/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="css/main.css" />
 	
 	<!--chart-->
@@ -38,6 +40,7 @@
 	<script src="js/leaflet/leaflet.js"></script>
 	<script type="text/javascript" src="js/leaflet/leaflet.heatmap.js"></script>
 	<script type="text/javascript" src="js/leaflet/leaflet.heatmap-leaflet.js"></script>
+	<script src="js/leaflet/leaflet.markercluster.js" type="text/javascript"></script>
 	
 	<!-- gridster-->
 	<script type="text/javascript" src="js/gridster/jquery.gridster.min.js"></script>
@@ -50,7 +53,7 @@
     <script src="js/main.js"></script>
 
     <!--accordion-->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />-->
    <!--main <script src="http://code.jquery.com/jquery-1.9.0.js"></script>-->
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css" />
@@ -161,8 +164,8 @@
 					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
 				</ul>
 				
-				<div id='sales_leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
-				<div id='service_leads' style='height: 350px; overflow:auto; background-color: ;'> Service Leads </div>
+				<div id='sales_leads' class='leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
+				<div id='service_leads' class='leads' style='height: 350px; overflow:auto; background-color: ;'> Service Leads </div>
 			</div>
 		</div>
 	

@@ -29,22 +29,16 @@
 	}
 
 
-	// start - chart and table
-    // google.load("visualization", "1", {packages:["corechart"]});
-    // google.load('visualization', '1', {packages:['table']});
-    // google.load('visualization', '1', {packages:['gauge']});
-    //google.setOnLoadCallback(drawChart);
+
     
 
 	//dom ready
 	$(function() { 	    
 		init_UI();
-
-		// north-center
-	    //getTweets();
-		
 		init_news_widget();		
 	});
+	
+	
 	
 	
 	/**
@@ -55,6 +49,7 @@
 		sortArray(rssFeeds, "score");
 		showNews();
 	}
+	
 	
 	
 	
@@ -103,39 +98,62 @@
 	}
 	
 	
+	
+	
 	function init_leads(){
 		//tabs
 		//we have to wait until the tabs have been created. Otherwise, the google chart table cannot get the correct width
 		$("#leads").tabs({"create": function(e,ui){
-			init_leads_table(leads.sales, "sales_leads");
-			init_leads_table(leads.service, "service_leads");
+			//init_leads_table(leads.sales, "sales_leads");
+			//init_leads_table(leads.service, "service_leads");
+			init_leads_table(leads);
 		}});
 	}
 
 
-	function init_leads_table(leadsGroup, divName) {
-		//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
-		$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
 
-		//sort array 
-		sortArray(leadsGroup, "score");
-		var html="<ul>";
-		$.each(leadsGroup, function(i,lead){
-			html+="<li title='see more about the tweet' id='" + i + "'>" + 
+
+	function init_leads_table(leads) {
+		var divName='';
+		
+		//read leads
+		$.each(leads, function(k,v){
+			if(k=='service'){divName='service_leads'}
+			if(k=='sales'){divName='sales_leads'}
+			
+			//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
+			$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
+			
+			//sort array 
+			sortArray(v, "score");
+			
+			var html="<ul>";
+			$.each(v, function(i, lead){
+				lead.leadID=i;
+				lead.leadType=k;
+				lead.divName=divName;
+				
+				html+="<li title='see more about the tweet' id=" + i + " leadType='" + k + "'>" + 
 				  "<div class='score'>" + lead.score +"</div>"+
 				  "<div class='content'><img src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
 				  "</li>";
+			});
+			$("#"+divName).html(html);	
 		});
-		$("#"+divName).html(html);
-		
 		
 		//click event and mouseover event
-		$("#"+divName+" ul li").bind(app.eventHandler.click, function(){
-			var idx=$(this).attr("id");
-			showUserInfoDialog(leadsGroup[idx]);
+		$(".leads ul li").bind(app.eventHandler.click, function(){
+			var idx=$(this).attr("id"),
+				leadType=$(this).attr("leadType");
+				
+			showUserInfoDialog(leads[leadType][idx]);
 		}).bind(app.eventHandler.mouseover, function(){
-			var idx=$(this).attr("id");
-			showLocation(leadsGroup[idx], divName, idx);
+			//reset background color to avoid the color setted while mouseovering the marker
+			$(".leads ul li").css({"background-color": ""});
+			
+			var idx=$(this).attr("id"),
+				leadType=$(this).attr("leadType");
+			showLocation(leads[leadType][idx]);
 		});
 		
 		
@@ -172,6 +190,8 @@
 //		});
 
 	}
+	
+	
 	
 	function showUserInfoDialog(lead) {
 		var userInfo=userData[lead.user]
@@ -212,52 +232,70 @@
 	}
 	
 	
+	
+	
 	/**
 	 * while mouseovering on the lead, it will trigger showLocation to show location on the map
 	 * @param {Object} Lead
 	 */
-	function showLocation(lead, divName, idx){
+	function showLocation(lead){
 		var userInfo=userData[lead.user]
 		//join userinfo and lead, but we should be very carefull if there is any existing key name in two dateset
-		$.extend(userInfo, lead);
 		
 		//hide the markerLead layer
 		app.map.removeLayer(app.layer.markerLead);
-
+		
+		var idx=Number(lead.leadID);
+		
 		//show
 		if(lead.latlon && lead.latlon.length==2 && lead.latlon[0]!='' && lead.latlon[1]!=''){
-			app.layer.markerLead=L.marker(lead.latlon).addTo(app.map); //add marker
+			app.layer.markerLead=L.marker(lead.latlon)//.addTo(app.map); //add marker
 			app.map.panTo(app.layer.markerLead.getLatLng()); //center to the marker
 			
 			//popup info window
 			//var html="<img style='' src='" + userInfo.image_url + "' width=30px height=30px />"+
-			var html="<div style=''><b>" + lead.user + "</b> says: <br>"+lead.text+"</div>";
-			app.layer.markerLead.bindPopup(html).openPopup();
+			var html="<div class='popup' style=''><b>" + lead.user + "</b> says: <br>"+lead.text+"&nbsp; &nbsp; &nbsp; <a style='cursor:pointer'>more...</a></div>";
+			//app.layer.markerLead.bindPopup(html).openPopup();
+			L.popup().setLatLng(app.layer.markerLead.getLatLng()).setContent(html).openOn(app.map);
 			
-			//mouseover event
+			$(".popup a").bind(app.eventHandler.click, function(){
+				showUserInfoDialog(lead);
+			});
+				
+			
+			//mouseover event on the app.layer.markerLead 
 			//still have some problem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			app.layer.markerLead.on("mouseover", function(e){
-					$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").trigger("mouseover").css({"background-color": "#eeeeee"});
+					app.layer.markerLead.openPopup();
+					$("#" + lead.divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": "#eeeeee"});
 			}).on("mouseout", function(e){
-					$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": ""});
+					//app.layer.markerLead.closePopup();
+					//$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": ""});
 				}
 			);
 		}
-		
-		
 	}
+
+
 
     function changeBox(){
         $("#div_vis_1").height("40%");
     }
 
+
+
     function shrinkBox(){
         $("#div_vis_1").height("20%");
     }
 
+
+
     function showText(){
         $("#span-solution-1").show();
     }
+	
+	
+	
 	
 	/**
 	 * init user interface 
@@ -280,8 +318,7 @@
 			addWidget(widget);
 		});
 
-		
-		
+
 		//cursor change while mouseovering on the widget title
 		$(".widget-title").hover(function(){
 			$(this).css('cursor','move');
@@ -317,241 +354,118 @@
 	}
 	
 	
+	
+	/**
+	 * initilize map
+	 */
 	function init_map(){
 		// start map functions
-			
-		//var map = new L.Map('map');
-		var OpenStreet = 'http://{s}.tile.cloudmade.com/ad132e106cd246ec961bbdfbe0228fe8/997/256/{z}/{x}/{y}.png',
-			//apple = new L.TileLayer(OpenStreet, {maxZoom: 18,unloadInvisibleTiles: true});
-			cmAttr = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-			cmUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png';
-
-		var openstreet = L.tileLayer(OpenStreet, {styleId: 256, attribution: cmAttr})
-			minimal   = L.tileLayer(cmUrl, {styleId: 22677, attribution: cmAttr}),
-			midnight  = L.tileLayer(cmUrl, {styleId: 999,   attribution: cmAttr});
-			//motorways = L.tileLayer(cmUrl, {styleId: 46561, attribution: cmAttr});
-			
+		//basemap
+		var basemaps = {
+			"OpenStreetMap": L.tileLayer('http://{s}.tile.cloudmade.com/ad132e106cd246ec961bbdfbe0228fe8/997/256/{z}/{x}/{y}.png', {styleId: 256, attribution: ""}),
+			"Gray Map": L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png', {styleId: 22677, attribution: ""}),
+			"Night View": L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png', {styleId: 999, attribution: ""})
+		}
+		
+		//init map
 		app.map = L.map('map', {
-			center: [40.00, -100.387],
-			//center: [0, 0],
-			zoom: 4,
-			layers: [minimal]
+			center: [32.834917, -117.005639],
+			zoom: 9,
+			layers: [basemaps["Gray Map"]]
 		});			
 				
-		app.layer.heatmap = L.TileLayer.heatMap({
-			unloadInvisibleTiles: true,
-			reuseTiles: true,
-			radius:30,
-			opacity: 0.8,
-			gradient: {
-				0.45: "rgb(0,0,255)",
-				0.65: "rgb(0,255,255)",
-				0.85: "rgb(0,255,0)",
-				0.98: "yellow",
-				1.0: "rgb(255,0,0)"
-			}
-		});	
+		//clusterlayer
+		app.layer.cluster=pathgeo.layer.markerCluster(leadsToGeojson(leads.service.concat(leads.sales), "latlon"),
+				{
+					onEachFeature: function(feature,layer){
+						var html="<div class='popup'><ul><li><label class='score'>" + feature.properties["score"] + "</label><b>" + feature.properties["user"] + ":</b>&nbsp; " + feature.properties["text"] + "</li></ul></div>";
+						html=html.replace(/undefined/g, "Tweet");
+													
+						//highlight keyword
+						html=pathgeo.util.highlightKeyword(app.constants.KEYWORDS, html, true);
+						//info window
+						layer.bindPopup(html,{maxWidth:400, maxHeight:225});
+					}
+				},{
+					clusterclick: function(e){
+						if(!e.layer._popup){
+							var properties=pathgeo.util.readClusterFeatureProperies(e.layer, []);
+							var html="<div class='popup'><b>" + e.layer._childCount + "</b> posts in this area:<p></p><ul>";
+							$.each(properties, function(i, property){
+								html+="<li id=" + property["leadID"] + " leadType='" + property["leadType"] + "' ><label class='score'>" + property["score"] + "</label><b>" + property["user"] + ":</b>&nbsp; " + property["text"] + "</li>";
+							});
+							html+="</ul></div>";
+							html=html.replace(/undefined/g, "Tweet");
+											
+							//highlight keyword
+							html=pathgeo.util.highlightKeyword(app.constants.KEYWORDS, html, true);
+													
+							e.layer.bindPopup(html,{maxWidth:400, maxHeight:225}).openPopup();
+						}else{
+							e.layer.openPopup();
+						}
+						
+						
+						//onclick and onmouseover event
+						$(".popup ul li").bind(app.eventHandler.click, function(){
+							var lead=leads[$(this).attr("leadType")][$(this).attr("id")];
+							showUserInfoDialog(lead)
+						}).bind(app.eventHandler.mouseover, function(){
+							var lead=leads[$(this).attr("leadType")][$(this).attr("id")];
+							$("#" + lead.divName + " ul li:nth-child(" + (Number(lead.leadID)+1) + ")").css("background-color:#eeeeee;")
+						});
+					}
+				}
+		).addTo(app.map);
 
-		//app.setView(new L.LatLng(40.00, -100.387), 4).addLayer(apple);
-				
-		//app.controls = L.layerGroup();
-
-		var baseLayers = {
-			"Openstreet":openstreet,
-			"Minimal": minimal,
-			"Night View": midnight				
-		};
 
 		app.controls = L.layerGroup().addTo(app.map);
-		
-		
+				
 		var overlays = {
 			"tweets": app.controls,
-			"heatmap": app.layer.heatmap,
+			"cluster": app.layer.cluster,
 			"lead": app.layer.markerLead
 		};
 		
-		L.control.layers(baseLayers, overlays).addTo(app.map);		
+		L.control.layers(basemaps, overlays);//.addTo(app.map);		
 		
 		//bing geocoder
 		var bingGeocoder = new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7');
 		app.map.addControl(bingGeocoder);
-		
-		// end - map functions
 	}
 
 	
-	function drawChart() {
-  
-		//Data/draw Google Line Chart - start
-		var data = google.visualization.arrayToDataTable([
-		  ['Date', 'Ford Fusion Tweets', 'Ford Escape Tweets'],
-		  ['Jan 27 - Feb 2',  100,      200],
-		  ['Feb 3 - Feb 9',  170,      160],
-		  ['Feb 10 - Feb 16',  66,       120],
-		  ['Feb 17 - Feb 23',  130,      340],
-		  ['Jan 27 - Feb 2',  100,      200],
-		  ['Feb 3 - Feb 9',  170,      160],
-		  ['Feb 10 - Feb 16',  66,       120],
-		  ['Feb 17 - Feb 23',  130,      340],
-		  ['Jan 27 - Feb 2',  100,      200],
-		  ['Feb 3 - Feb 9',  170,      160],
-		  ['Feb 10 - Feb 16',  66,       120],
-		  ['Feb 17 - Feb 23',  130,      340],		  
-		  ['Feb 24 - Mar 2',  130,      340]
-		]);
-
-		var options = {
-		  title: 'Ford Fusion and Ford Escape Tweets'
-		};
-
-		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-		//Data/draw Google Line Chart - end
-
-		//Data/draw Google Table - start
-		var data2 = new google.visualization.DataTable();
-		data2.addColumn('string', 'Tweet');
-		data2.addColumn('number', 'Score');
-		data2.addColumn('string', 'Location');
-		data2.addRows([
-		  ['Test driving a Ford Fusion today',  {v: 99, f: '99'}, 'La Mesa'],
-		  ['Cant wait to see the new 2013 Mustang!',   {v:94,   f: '94'},  'La Mesa'],
-		  ['Just crashed my car :(... need a new one now', {v: 80, f: '80'}, 'La Mesa'],
-		  ['Shelby GT is too much, guess Im getting a Focus',   {v: 67,  f: '67'},  'San Diego']
-	  
-		]);
+	/**
+	 * convert leads to geojson format
+	 * @param {Array} leadArray
+	 * @param {String} locationFieldName
+	 */
+	function leadsToGeojson(leadArray, locationFieldName){
+		if(!leadArray && !locationFieldName){console.log("[ERROR] leadsToGeojson: no leadArray, location field name");return;}
 		
-		var options2 = {
-			showRowNumber: false
-		  };
-
-		  var table = new google.visualization.Table(document.getElementById('table_div'));
-		  table.draw(data2, options2);
-		
-		// Add our selection handler.
-		google.visualization.events.addListener(table, 'select', selectHandler);
-		
-		
-					// Select a table row
-		function selectHandler() {
-			var selection = table.getSelection();
-			var row = selection[0].row;
-			 var str = data2.getFormattedValue(row, 0);
-			var message = str;
-
-			if (message == '') {
-				message = 'nothing';
-			}
-			
-			openPopUp(message);
-		}
-		
-		
-		$(window).resize(function() {
-			chart.draw(data, options);
-			table.draw(data2, {showRowNumber: true});
-		});
-		
-		
-		//OPen PopUp
-		function openPopUp(message){
-			alert("Select this '" + message + "'");
-		}
-	
-    }
-    //Data/draw Google Table - end		
-	
-
-		
-	function getTweets() {
-		var params = {};  //build an object, then pass it!
-		var param = $("#keyword").val() || 'NULL';
-		var rad = $("#radius").val() || 0;
-		var keywd = $("#car").val()
-           	
-		app.controls.clearLayers();
-		app.hitMapData.data = [];        // Clear all items of hit map
-	
-		var url = "PyMapper.py?key=" + param + "&rad=" + rad + "&keyword=" + keywd;
-
-		$.getJSON(url, function(data) {
-			var tweets = data.results;
-			
-			if (!tweets.length) {
-				$("#table tbody tr").remove();	
-				$("#table").css("display", (tweets.length > 0) ? "block" : "none");
-				$("#urls").css("display", (data.urls.length > 0) ? "block" : "none");	
-				$("#urls tbody tr").remove();		
-				//$("#results").html("[" + tweets.length + " results.]");
-				return;
-			}
-			
-			$("#table tbody tr").remove();	
-			$("#table").css("display", (tweets.length > 0) ? "block" : "none");
-			
-			var minLat = 180.0,
-				maxLat = -180.0,
-				minLon = 180.0,
-				maxLon = -180.0;
-				
-			//alert(app.hitMapData.data.toSource());
-			//app.hitMapData ='';
-			for(var indx in tweets)  {
-				var tweet = tweets[indx];
-                  
-				if (!(tweet.loc[0] == 0 && tweet.loc[1] == 0)) {
-					//app.controls.removeLayer(app.layer.heatmap);
-					//keep track of min/max lat/lon to set view
-					if (tweet.loc[0] > maxLon) maxLon = tweet.loc[0];
-					if (tweet.loc[0] < minLon) minLon = tweet.loc[0];
-					if (tweet.loc[1] > maxLat) maxLat = tweet.loc[1];
-					if (tweet.loc[1] < minLat) minLat = tweet.loc[1];
-				   
-					app.controls.addLayer(L.marker(tweet.loc).bindPopup(tweet.text));
-					var heatItem = {lat:tweet.loc[0], lon:tweet.loc[1], value:1};
-					app.hitMapData.data.push(heatItem);
-					$("#table tbody").append("<tr><td><div style='height: 50px;'>" + tweet.text + "</div></td></tr>");
-				
-				}
-				
-			}
-			//alert(app.hitMapData.data.toSource());
-			$("#table tr:even").css("background-color", "#ccc");
-			//$("#results").html("[" + tweets.length + " results.]");
-			
-			app.map.fitBounds([[minLon, minLat], [maxLon, maxLat]]);
-            L.Util.requestAnimFrame(app.map.invalidateSize, app.map, !1, app.map._container);
-            app.map.invalidateSize(); 
-
-			
-			var urls = data.urls;
-			$("#urls").css("display", (urls.length > 0) ? "block" : "none");	
-			$("#urls tbody tr").remove();		
-			for (var i = 0; i < urls.length; i++) {
-				$("#urls tbody").append("<tr><td><a href='" + urls[i][0] + "' target='_blank'>" + urls[i][0] + "</a></td><td style='padding-left: 40px;'>" + urls[i][1] + "</td></tr>");
-			}
-			$("#urls table tr:even").css("background-color", "#ccc");
-
-			 
-		    app.layer.heatmap.addData(app.hitMapData.data); 
-			
-		    app.controls.addLayer(app.layer.heatmap);
-/*
-			var overlays = {
-				"tweets": app.controls,
-				"heatmap": app.layer.heatmap
+		var featureCollection={
+				type: "FeatureCollection",
+				features:[]
 			};
-			
-			L.control.layers(baseLayers, overlays).addTo(map);
-			
-			
-*/						
-		});
-      			
+		
+		$.each(leadArray, function(i,lead){
+			var feature={
+				type:"Feature",
+				properties:lead,
+				geometry:{
+					type:"Point",
+					coordinates:[]
+				}
+			};
+			$.each(lead, function(k,v){
+				if(k==locationFieldName){feature.geometry.coordinates=[v[1], v[0]]}
+			});
+			featureCollection.features.push(feature);
+		})
+		return featureCollection;
 	}
-
-
+		
+	
 
 	/**
 	 * add a new Widget into the Dashboard 

@@ -37,7 +37,11 @@ a {text-decoration:none;}
 .gridster {margin:0 auto; width:95%;}	
 .gridster > ul {list-style:none;}
 .gridster > ul > li {background-color:#ffffff; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;  padding:0px; border:1px solid transparent;}
-.gridster > ul > li:hover {border:2px solid #cccccc;}
+.gridster > ul > li:hover {
+	-moz-box-shadow: 0 0 30px rgba(200,200,200,0.8);
+	-webkit-box-shadow: 0 0 30px rgba(200,200,200,0.8);
+	box-shadow: 0 0 30px rgba(200,200,200,0.8);
+}
 
 
 /**widget_addWidget*/
@@ -66,7 +70,7 @@ a {text-decoration:none;}
 
 /** score and content */
 .score {width:5%;  text-align:center; margin-right:9px; font-weight:bold; color:#EC692D; font-size:150%; }
-.content {width:86%; color:#555555; padding-left:10px}
+.content {width:86%; color:#555555; padding-left:10px; font-size:90%;}
 .content .title {font-weight:bold;}
 
 
@@ -92,6 +96,12 @@ a {text-decoration:none;}
 #dialog_user_info #user_info ul {list-style:none; padding:0px; margin:0px;}
 #dialog_user_info #user_info ul li {padding:5px;}
 
+
+
+/** map pop window */
+.popup ul {list-style:none; padding:0px; margin:0px}
+.popup ul li {padding:2px;border-bottom:1px solid #eeeeee;}
+.popup ul li:hover {background-color:#eeeeee;}
 
 
 /** jquery ui */
