@@ -407,6 +407,7 @@
 						
 						
 						//onclick and onmouseover event
+						//!!!!!!!!! still have some problems!!!!!!!!!!!!!!!!!!!
 						$(".popup ul li").bind(app.eventHandler.click, function(){
 							var lead=leads[$(this).attr("leadType")][$(this).attr("id")];
 							showUserInfoDialog(lead)
