@@ -246,7 +246,10 @@
 		
 		
 	}
-	
+
+    function changeBox(){
+        $("#div_vis_1").height("40%");
+    }
 	
 	
 	/**
@@ -268,7 +271,8 @@
 	    //load widget
 	    $.each(app.widgets, function(i,widget){
 			addWidget(widget);
-		});
+		});
+
 		
 		
 		//cursor change while mouseovering on the widget title
