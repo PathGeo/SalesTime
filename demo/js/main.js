@@ -250,7 +250,14 @@
     function changeBox(){
         $("#div_vis_1").height("40%");
     }
-	
+
+    function shrinkBox(){
+        $("#div_vis_1").height("20%");
+    }
+
+    function showText(){
+        $("#span-solution-1").show();
+    }
 	
 	/**
 	 * init user interface 
