@@ -335,7 +335,7 @@
 
        html+="<div class='content'>\n\
               <img src='" + "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg" + "' style='float:left; padding-right:15px'/>\n\
-              <div style='font-size:15px; padding-left:15%' >nathanW <br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
+              <div style='font-size:15px; padding-left:15%' ><b>nathanW</b><br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
               </div>";
        $("#"+id).html(html);
     }
