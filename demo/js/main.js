@@ -140,7 +140,7 @@
 				
 				html+="<li id=" + i + " leadType='" + k + "'>" + 
 				  "<div class='score'>" + lead.score +"</div>"+
-				  "<div class='content'><img title='see more about the tweet' src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
+				  "<div class='content'><img title='see more about the lead' src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
 				  "</li>";
 			});
 			$("#"+divName).html(html);	
@@ -427,7 +427,7 @@
 					clusterclick: function(e){
 						if(!e.layer._popup){
 							var properties=pathgeo.util.readClusterFeatureProperies(e.layer, []);
-							var html="<div class='popup'><b>" + e.layer._childCount + "</b> posts in this area:<p></p><ul>";
+							var html="<div class='popup'><b>" + e.layer._childCount + "</b> leads in this area:<p></p><ul>";
 							$.each(properties, function(i, property){
 								html+="<li id=" + property["leadID"] + " leadType='" + property["leadType"] + "' ><label class='score'>" + property["score"] + "</label><b>" + property["user"] + ":</b>&nbsp; " + property["text"] + "</li>";
 							});
