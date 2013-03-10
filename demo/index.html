@@ -52,17 +52,12 @@
 	<script src="js/Control.BingGeocoder.js"></script>		
     <script src="js/main.js"></script>
 
-    <!--accordion-->
-    <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />-->
-   <!--main <script src="http://code.jquery.com/jquery-1.9.0.js"></script>-->
-    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css" />
 
     <script>
         $(function() {
-        $( "#accordion" ).accordion({
-        collapsible: true
-        });
+        	$( "#accordion" ).accordion({
+        		collapsible: true
+        	});
         });
     </script>
 
@@ -115,25 +110,25 @@
 
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
-	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
+	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
             <span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
-		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital">
+		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital; cursor:pointer" onclick='init_reputation_graph()'>
 			<span style="font-size:64px; padding-right:20px">88</span>
 			<span style="font-size:32px"><img src = "images/green_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />3.8%</span>
 		</div>
 	</div>
 	
 	<!-- visibility (JOE)-->
-	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
+	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
 		<span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
-		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital">
+		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital; cursor:pointer;" onclick='init_visibilty_graph()'>
 			<span style="font-size:64px; padding-right:20px">81</span>
 			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
 		</div>
 	</div>
 	
 	<!-- competitor (JOE)-->
-	<div id='widget_competitor' class='widget' widget-title='Competitor' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_competitor', 'Competitor', {modal:true})" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=3>
+	<div id='widget_competitor' class='widget' widget-title='Competitor' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=3>
 		<div style="float:left; width:100px; color:#555555; font-weight:bold; padding-left: 10px">
 			<div style="height:32px"></div>
 			<div style="font-size:14px; height:32px">Reputation</div>

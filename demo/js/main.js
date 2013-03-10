@@ -138,21 +138,22 @@
 				lead.leadType=k;
 				lead.divName=divName;
 				
-				html+="<li title='see more about the tweet' id=" + i + " leadType='" + k + "'>" + 
+				html+="<li id=" + i + " leadType='" + k + "'>" + 
 				  "<div class='score'>" + lead.score +"</div>"+
-				  "<div class='content'><img src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
+				  "<div class='content'><img title='see more about the tweet' src='" + userData[lead.user].image_url + "' /><div><label class='title'>" + lead.user +"</label> says:<br>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true) + "</div></div>"+
 				  "</li>";
 			});
 			$("#"+divName).html(html);	
 		});
 		
 		//click event and mouseover event
-		$(".leads ul li").bind(app.eventHandler.click, function(){
-			var idx=$(this).attr("id"),
-				leadType=$(this).attr("leadType");
+		$(".leads ul li .content img").bind(app.eventHandler.click, function(){
+			var idx=$(this).parent().parent().attr("id"), //id in <li>
+				leadType=$(this).parent().parent().attr("leadType"); //leadType in <li>
 				
 			showUserInfoDialog(leads[leadType][idx]);
-		}).bind(app.eventHandler.mouseover, function(){
+		});
+		$(".leads ul li").bind(app.eventHandler.mouseover, function(){
 			//reset background color to avoid the color setted while mouseovering the marker
 			$(".leads ul li").css({"background-color": ""});
 			

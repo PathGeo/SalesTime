@@ -83,11 +83,11 @@ a {text-decoration:none;}
 
 /** sales_leads */
 #leads > div ul {padding:0px; margin:0px; list-style:none;}
-#leads > div ul li {border-bottom:1px solid #eeeeee; padding:5px;display: inline-block; width:96%; cursor:pointer;}
+#leads > div ul li {border-bottom:1px solid #eeeeee; padding:5px;display: inline-block; width:96%;}
 #leads > div ul li:hover {background-color:#eeeeee;}
 #leads > div ul li div {float:left;}
 #leads > div ul li .score {font-size:170%;}
-#leads > div ul li div img {width:65px; height:65px; float:left}
+#leads > div ul li div img {width:65px; height:65px; float:left; cursor:pointer;}
 #leads > div ul li div div {float:left; width:70%;padding-left:10px;}
 
 
