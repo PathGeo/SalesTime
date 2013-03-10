@@ -297,7 +297,7 @@
         $("#"+id).parent().css({"height": height});
 
         //turn on a specific description
-        $("#"+id2).css({"display": "inline"});
+        $("#"+id2).css({"display": ""});
     }
 
     function changeHeight(id , height){
@@ -332,12 +332,14 @@
 //       userinfo.location
 //       userinfo.friends
 //       userinfo.follows
-		   html+="<div class='content'>\n\
-                  <img src='" + "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg" + "'/>\n\
-                  <div style='font-size:15px; float:right' >Nathan Wang <br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
-                  </div>";
-		   $("#"+id).html(html);
+
+       html+="<div class='content'>\n\
+              <img src='" + "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg" + "' style='float:left; padding-right:15px'/>\n\
+              <div style='font-size:15px; padding-left:15%' >nathanW <br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
+              </div>";
+       $("#"+id).html(html);
     }
+
 	
 	/**
 	 * init user interface 
