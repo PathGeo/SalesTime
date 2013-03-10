@@ -276,10 +276,34 @@
 		}
 	}
 
+    function linkClick(div,txt,id,height,id2){
+        $("."+ div).each(function(){
+            $(this).css({"height": "20%"});
+        });
 
+        $("."+ txt).each(function(){
+            $(this).css({"display": "none"});
+        });
 
-    function changeHeight(id, height){
-        $("#"+id).css({"height": height});
+        $("#"+id).parent().css({"height": height});
+
+        $("#"+id2).css({"display": "inline"});
+    }
+
+    function changeHeight(id , height){
+        $("#"+id).parent().css({"height": height});
+    }
+
+    function closeDiv(div){
+        $("."+ div).each(function(){
+            $(this).css({"height": "20%"});
+        })
+    }
+
+    function closeTxt(txt){
+        $("."+ txt).each(function(){
+            $(this).css({"display": "none"});
+        })
     }
 
     function changeColor(id, color){
@@ -290,9 +314,9 @@
         $("#"+id).css({"display": "inline"});
     }
 	
-    function shutText(id){
-        $("#"+id).css({"display": "none"});
-    }
+//    function shutText(id){
+//        $("#"+id).css({"display": "none"});
+//    }
 	
 	
 	/**
