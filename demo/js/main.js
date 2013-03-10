@@ -324,13 +324,19 @@
         $("#"+id).css({"display": "inline"});
     }
 
-    function userContent(){
+    function userContent(id, username){
        var html="";
+//       userinfo[] = twitterInfoRetrieve(username);
+//       userinfo.img
+//       userinfo.name
+//       userinfo.location
+//       userinfo.friends
+//       userinfo.follows
 		   html+="<div class='content'>\n\
-                  <img src='" + "http://a0.twimg.com/profile_images/3244797412/5ac9d1afd781c7e8fa661cfe3a729209_bigger.jpeg" + "'/>\n\
+                  <img src='" + "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg" + "'/>\n\
                   <div style='font-size:15px; float:right' >Nathan Wang <br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
                   </div>";
-		   $("#rep-solution-12").html(html);
+		   $("#"+id).html(html);
     }
 	
 	/**
