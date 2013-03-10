@@ -127,7 +127,7 @@
 			if(k=='sales'){divName='sales_leads'}
 			
 			//adjust divName width and height. It is because using tabs will make the width of 2nd+ tabs to 0. So we need to set up manually.
-			$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-70});
+			$("#"+divName).css({width: $("#"+divName).parent().width()-40, height: $("#"+divName).parent().height()-65});
 			
 			//sort array 
 			sortArray(v, "score");
