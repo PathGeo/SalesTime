@@ -10,8 +10,13 @@
 		map:null,		// leaflet map object
 		layer:{
 			heatmap:null, //heatmap layer
-			markerLead:L.marker([0,0]) //marker for top leads
+			markerLead:L.marker([0,0]), //marker for top leads
+			markerDealer:{
+				drew: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_ford.png', iconSize:[60, 35]})}),
+				penske: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_penske.png', iconSize:[60, 35]})})
+			}
 		},
+		dealer:"drew", //currrentDealer
 		controls:null, //leafmap controls
 		hitMapData:{   //heatmap data
 			max:  1,        // Always 1 in tweet data
@@ -393,7 +398,8 @@
 		app.map = L.map('map', {
 			center: [32.834917, -117.005639],
 			zoom: 9,
-			layers: [basemaps["Gray Map"]]
+			layers: [basemaps["Gray Map"]],
+			attributionControl:false
 		});			
 				
 		//clusterlayer
@@ -455,6 +461,10 @@
 		//bing geocoder
 		var bingGeocoder = new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7');
 		app.map.addControl(bingGeocoder);
+		
+		
+		//show default dealer logo marker
+		app.layer.markerDealer[app.dealer].addTo(app.map);
 	}
 
 	
@@ -862,6 +872,13 @@
 			$("#logo").html("<img src = 'images/logo_ford.png' alt='logo' border='0' style = 'float:left;padding-right:15px' />");
 			$('div#submenu').hide();
 		}
+		
+		//add dealer logo on the map
+		//first, remove all dealer logo existing on the map
+		$.each(app.layer.markerDealer, function(k,v){app.map.removeLayer(v);});
+		app.layer.markerDealer[company].addTo(app.map);
+		
+		app.dealer=company;
 	}
 	
 	
