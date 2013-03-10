@@ -227,99 +227,163 @@
 	</div>
 
 	<!-- Solution (NATHAN)-->
-	<div id='dialog_reputation_strategies' style='display:none'>
-        <div id="accordion">
-            <h3>Section 1</h3>
-            <div>
-                <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+	<div id='dialog_reputation_strategies' style='background-color:#A9D0F5;display:none'>
+        <div style="width:49%;height:100%; float:left">
+            <div id="div_rep_1" class="dia_rep" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_1','#BDBDBD'); showText('span-solution-link-12'); showText('span-solution-link-12')" onMouseOut="changeColor('div_rep_1','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;">
+                    Reputation 5 points because a complaint by @nathanW about dealer service.
+                </span>
+                <br><br>
+                <span id="rep-solution-link-11" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-11','40%','rep-solution-11')">Solution</span>
+                <span style="font-size:16px;">   </span>
+                <span id="rep-detail-link-12" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-detail-link-12','40%','rep-solution-12')">Detail</span>
+                <span style="font-size:16px;">   </span>
+                <span id="rep-reply-link-13" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-reply-link-13','40%','rep-solution-13')">Reply</span>
+                <span style="font-size:16px;">   </span>
+                <span style="font-size:16px;text-decoration:underline;color:blue;" >Favorite</span>
+                <span style="font-size:16px;">   </span>
+                <span style="font-size:16px;text-decoration:underline;color:blue;" >More</span>
+                <br><br>
+                <span id="rep-solution-11" class="dia_rep_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
+                <br>
+                <span id="rep-solution-12" class="dia_rep_sp" style="font-size:16px; display: none">
+                    user profile
+                </span>
+                <br>
+                <span id="rep-solution-13" class="dia_rep_sp" style="font-size:16px; display: none">
+                    retweet
+                </span>
             </div>
-            <h3>Section 2</h3>
-            <div>
-                <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+            <div id="div_rep_2" class="dia_rep" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_2','#BDBDBD')" onMouseOut="changeColor('div_rep_2','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;">
+                    Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+                </span>
+                <br><br>
+                <span id="rep-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-21','40%','rep-solution-21')">Solution</span>
+                <br><br>
+                <span id="rep-solution-21" class="dia_rep_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
             </div>
-            <h3>Section 3</h3>
-            <div>
-                <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-                Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper.
-                Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
-                <ul>
-                <li>List item one</li>
-                <li>List item two</li>
-                <li>List item three</li>
-                </ul>
+            <div id="div_rep_3" class="dia_rep" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_3','#BDBDBD')" onMouseOut="changeColor('div_rep_3','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;" title='Click to see solutions'>
+                    Reputation increases 15 points because a comment by @joeS on Youtube.
+                </span>
+                <br><br>
+                <span id="rep-solution-link-31" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-31','40%','rep-solution-31')">Solution</span>
+                <br><br>
+                <span id="rep-solution-31" class="dia_rep_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
             </div>
-            <h3>Section 4</h3>
-            <div>
-                <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p>
-                <p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+            <div id="div_rep_4" class="dia_rep" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_4','#BDBDBD')" onMouseOut="changeColor('div_rep_4','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;" title='Click to see solutions'>
+                    Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+                </span>
+                <br><br>
+                <span id="rep-solution-link-41" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-41','40%','rep-solution-41')">Solution</span>
+                <br><br>
+                <span id="rep-solution-41" class="dia_rep_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
             </div>
         </div>
+        <div id="div_rep_5" style="width:49%;height:99%; border:1.5px solid #BDBDBD; background-color: #FFFFFF; float:right" onMouseOver="changeColor('div_rep_5','#BDBDBD')" onMouseOut="changeColor('div_rep_5','#FFFFFF')">
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+			</span>
+			<br><br>
+			<span id="span-solution-link-51" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','span-solution-link-51','100%','span-solution-51')">Solution</span>
+            <br><br>
+            <span id="span-solution-51" class="dia_rep_sp" style="font-size:16px; display: none">
+				*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+			</span>
+		</div>
 	</div>
 	
 	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
-		<div id="div_vis_1" class="dia_vis" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_1','#BDBDBD')" onMouseOut="changeColor('div_vis_1','#FFFFFF')">
-			<br>
-			<span style="font-size:16px;">
-				Reputation 5 points because a complaint by @nathanW about dealer service.
-			</span>
-			<br><br>
-			<span id="span-solution-link-11" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-11','40%','span-solution-11')">Solution</span>
-			<span style="font-size:16px;">   </span>
-			<span id="span-solution-link-12" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-12','40%','span-solution-12')">Detail</span>
-			<span style="font-size:16px;">   </span>
-			<span id="span-solution-link-13" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-13','40%','span-solution-13')">Reply</span>
-			<span style="font-size:16px;">   </span>
-			<span style="font-size:16px;text-decoration:underline;color:blue;" >Favorite</span>
-			<span style="font-size:16px;">   </span>
-			<span style="font-size:16px;text-decoration:underline;color:blue;" >More</span>
-            <br><br>
-            <span id="span-solution-11" class="dia_vis_sp" style="font-size:16px; display: none">
-				*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-			</span>
-            <br>
-            <span id="span-solution-12" class="dia_vis_sp" style="font-size:16px; display: none">
-				user profile
-			</span>
-            <br>
-            <span id="span-solution-13" class="dia_vis_sp" style="font-size:16px; display: none">
-				retweet
-			</span>
-		</div>
-		<div id="div_vis_2" class="dia_vis" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_2','#BDBDBD')" onMouseOut="changeColor('div_vis_2','#FFFFFF')">
-			<br>
-			<span style="font-size:16px;">
-				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
-			</span>
-			<br><br>
-			<!--<span id="span-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="closeDiv('dia_vis');closeTxt('dia_vis_sp');changeHeight('span-solution-link-21','40%')">Solution</span>-->
-            <span id="span-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-21','40%','span-solution-21')">Solution</span>
-            <br><br>
-            <span id="span-solution-21" class="dia_vis_sp" style="font-size:16px; display: none">
-				*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-			</span>
+		<div style="width:49%;height:99%; float:left">
+            <div id="div_vis_1" class="dia_vis" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_1','#BDBDBD')" onMouseOut="changeColor('div_vis_1','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;">
+                    Reputation 5 points because a complaint by @nathanW about dealer service.
+                </span>
+                <br><br>
+                <span id="vis-solution-link-11" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-11','40%','vis-solution-11')">Solution</span>
+                <span style="font-size:16px;">   </span>
+                <span id="vis-detail-link-12" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-detail-link-12','40%','vis-solution-12')">Detail</span>
+                <span style="font-size:16px;">   </span>
+                <span id="vis-reply-link-13" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-reply-link-13','40%','vis-solution-13')">Reply</span>
+                <span style="font-size:16px;">   </span>
+                <span style="font-size:16px;text-decoration:underline;color:blue;" >Favorite</span>
+                <span style="font-size:16px;">   </span>
+                <span style="font-size:16px;text-decoration:underline;color:blue;" >More</span>
+                <br><br>
+                <span id="vis-solution-11" class="dia_vis_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
+                <br>
+                <span id="vis-solution-12" class="dia_vis_sp" style="font-size:16px; display: none">
+                    user profile
+                </span>
+                <br>
+                <span id="vis-solution-13" class="dia_vis_sp" style="font-size:16px; display: none">
+                    retweet
+                </span>
+            </div>
+            <div id="div_vis_2" class="dia_vis" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_2','#BDBDBD')" onMouseOut="changeColor('div_vis_2','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;">
+                    Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+                </span>
+                <br><br>
+                <span id="vis-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-21','40%','vis-solution-21')">Solution</span>
+                <br><br>
+                <span id="vis-solution-21" class="dia_vis_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
+            </div>
+            <div id="div_vis_3" class="dia_vis" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_3','#BDBDBD')" onMouseOut="changeColor('div_vis_3','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;" title='Click to see solutions'>
+                    Reputation increases 15 points because a comment by @joeS on Youtube.
+                </span>
+                <br><br>
+                <span id="vis-solution-link-31" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-31','40%','vis-solution-31')">Solution</span>
+                <br><br>
+                <span id="vis-solution-31" class="dia_vis_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
+            </div>
+            <div id="div_vis_4" class="dia_vis" style="width:100%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_4','#BDBDBD')" onMouseOut="changeColor('div_vis_4','#FFFFFF')">
+                <br>
+                <span style="font-size:16px;" title='Click to see solutions'>
+                    Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+                </span>
+                <br><br>
+                <span id="vis-solution-link-41" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-41','40%','vis-solution-41')">Solution</span>
+                <br><br>
+                <span id="vis-solution-41" class="dia_vis_sp" style="font-size:16px; display: none">
+                    *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
+                </span>
+            </div>
         </div>
-		<div id="div_vis_3" class="dia_vis" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_3','#BDBDBD')" onMouseOut="changeColor('div_vis_3','#FFFFFF')">
-			<br>
-			<span style="font-size:16px;" title='Click to see solutions'>
-				Reputation increases 15 points because a comment by @joeS on Youtube.
-			</span>
-			<br><br>
-			<span id="span-solution-link-31" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-31','40%','span-solution-31')">Solution</span>
-            <br><br>
-            <span id="span-solution-31" class="dia_vis_sp" style="font-size:16px; display: none">
-				*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-			</span>
-		</div>
-		<div id="div_vis_4" class="dia_vis" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_4','#BDBDBD')" onMouseOut="changeColor('div_vis_4','#FFFFFF')">
+        <div id="div_vis_5" style="width:49%;height:99%; border:1.5px solid #BDBDBD; background-color: #FFFFFF; float:right" onMouseOver="changeColor('div_vis_5','#BDBDBD')" onMouseOut="changeColor('div_vis_5','#FFFFFF')">
 			<br>
 			<span style="font-size:16px;" title='Click to see solutions'>
 				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
 			</span>
 			<br><br>
-			<span id="span-solution-link-41" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','span-solution-link-41','40%','span-solution-41')">Solution</span>
+			<span id="vis-solution-link-51" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-51','100%','vis-solution-51')">Solution</span>
             <br><br>
-            <span id="span-solution-41" class="dia_vis_sp" style="font-size:16px; display: none">
+            <span id="vis-solution-51" class="dia_vis_sp" style="font-size:16px; display: none">
 				*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
 			</span>
 		</div>
