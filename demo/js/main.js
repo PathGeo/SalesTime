@@ -278,23 +278,21 @@
 
 
 
-    function changeBox(){
-        $("#div_vis_1").height("40%");
+    function changeHeight(id, height){
+        $("#"+id).css({"height": height});
     }
 
-
-
-    function shrinkBox(){
-        $("#div_vis_1").height("20%");
+    function changeColor(id, color){
+        $("#"+id).css({"background-color": color});
     }
 
-
-
-    function showText(){
-        $("#span-solution-1").show();
+    function showText(id){
+        $("#"+id).css({"display": "inline"});
     }
 	
-	
+    function shutText(id){
+        $("#"+id).css({"display": "none"});
+    }
 	
 	
 	/**

@@ -258,14 +258,14 @@
 	</div>
 	
 	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
-		<div id="div_vis_1" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+		<div id="div_vis_1" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_1','#BDBDBD')" onMouseOut=this.style.backgroundColor="#FFFFFF";>
 			<br>
 			<span style="font-size:16px;" title='Click to see solutions'>
 				Reputation 5 points because a complaint by @nathanW about dealer service.
 			</span>
 			<br>
 		 	<br>
-			<span style="font-size:16px;text-decoration:underline;color:blue;" onclick="changeBox();showText()">Solution</span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" onclick="changeHeight('div_vis_1','40%');showText('span-solution-1')">Solution</span>
 			<span style="font-size:16px;">   </span>
 			<span style="font-size:16px;text-decoration:underline;color:blue;" onclick="changeBox()">Detail</span>
 			<span style="font-size:16px;">   </span>
@@ -287,7 +287,7 @@
 			</span>
 			<br>
 		 	<br>
-			<span style="font-size:16px;text-decoration:underline;color:blue;" onclick="shrinkBox()">Solution</span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" onclick="changeHeight('div_vis_1','20%');shutText('span-solution-1')">Solution</span>
 		</div>
 		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
 			<br>
