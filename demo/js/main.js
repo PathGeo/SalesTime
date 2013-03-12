@@ -394,6 +394,25 @@
 			submenu_active = false;
 			setTimeout(function() { if (submenu_active === false) $('div#submenu').fadeOut(); }, 400);
 		});
+		
+		
+		//Adjust score text size based on window size
+		var sectionWidth = $('#widget_reputation').height();
+		
+		var newFontSizeScore = ($('#widget_reputation').height() - 66);
+		$('#rep_score').css({"font-size" : newFontSizeScore});
+		$('#vis_score').css({"font-size" : newFontSizeScore});
+		
+		var newFontSizePercent = newFontSizeScore/2;
+		$('#rep_percent').css({"font-size" : newFontSizePercent});
+		$('#vis_percent').css({"font-size" : newFontSizePercent});
+		
+		var arrowSize = (newFontSizePercent*20)/32;
+		$('#rep_arrow').width(arrowSize);
+		$('#rep_arrow').height(arrowSize);
+		$('#vis_arrow').width(arrowSize);
+		$('#vis_arrow').height(arrowSize);
+		
 	
 	}
 	
