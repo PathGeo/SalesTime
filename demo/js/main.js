@@ -400,18 +400,14 @@
 		var sectionWidth = $('#widget_reputation').height();
 		
 		var newFontSizeScore = ($('#widget_reputation').height() - 66);
-		$('#rep_score').css({"font-size" : newFontSizeScore});
-		$('#vis_score').css({"font-size" : newFontSizeScore});
+		$('.digital_score').css({"font-size" : newFontSizeScore});
 		
 		var newFontSizePercent = newFontSizeScore/2;
-		$('#rep_percent').css({"font-size" : newFontSizePercent});
-		$('#vis_percent').css({"font-size" : newFontSizePercent});
+		$('.digital_percent').css({"font-size" : newFontSizePercent});
 		
 		var arrowSize = (newFontSizePercent*20)/32;
-		$('#rep_arrow').width(arrowSize);
-		$('#rep_arrow').height(arrowSize);
-		$('#vis_arrow').width(arrowSize);
-		$('#vis_arrow').height(arrowSize);
+		$('.digital_arrow').width(arrowSize);
+		$('.digital_arrow').height(arrowSize);
 		
 	
 	}

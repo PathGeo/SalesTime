@@ -113,8 +113,8 @@
 	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
             <span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
 		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital; cursor:pointer" onclick='init_reputation_graph()'>
-			<span id="rep_score" style="font-size:64px; padding-right:20px">88</span>
-			<span id="rep_percent" style="font-size:32px"><img id="rep_arrow" src = "images/green_arrow.png" alt="arrow" border="0" style = "width:20px; height:20px" />3.8%</span>
+			<span class="digital_score">88</span>
+			<span class="digital_percent"><img class="digital_arrow" src="images/green_arrow.png" alt="arrow" border="0"/>3.8%</span>
 		</div>
 	</div>
 	
@@ -122,8 +122,8 @@
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
 		<span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
 		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital; cursor:pointer;" onclick='init_visibilty_graph()'>
-			<span id="vis_score" style="font-size:64px; padding-right:20px">81</span>
-			<span id="vis_percent" style="font-size:32px"><img id="vis_arrow" src = "images/red_arrow.png" alt="arrow" border="0" style = "width:20px; height:20px" />-2.1%</span>
+			<span class="digital_score">81</span>
+			<span class="digital_percent"><img class="digital_arrow" src="images/red_arrow.png" alt="arrow" border="0"/>-2.1%</span>
 		</div>
 	</div>
 	
@@ -135,14 +135,14 @@
 			<div style="font-size:14px; height:32px">Visibility</div>
 		</div>
 		<div style="float:left; width:80px;">
-			<div style="color:#555555; font-weight:bold; font-size:14px; height:22px; text-decoration:underline">Dealer A</div>
-			<div style="font-family:digital;font-size:32px; color:green">67</div>
-			<div style="font-family:digital;font-size:32px; color:green">42</div>
+			<div class="dealer_competitor">Dealer A</div>
+			<div class="score_competitor">67</div>
+			<div class="score_competitor">42</div>
 		</div>
 		<div style="float:left; width:80px;">
-			<div style="color:#555555; font-weight:bold; font-size:14px; height:22px; text-decoration:underline">Dealer B</div>
-			<div style="font-family:digital;font-size:32px; color:red">99</div>
-			<div style="font-family:digital;font-size:32px; color:red">92</div>
+			<div class="dealer_competitor">Dealer B</div>
+			<div class="score_competitor">99</div>
+			<div class="score_competitor">92</div>
 		</div>
 	</div>
 	
