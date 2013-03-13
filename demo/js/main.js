@@ -1,4 +1,3 @@
-	KEYWORDS = 
 	
 	//Load Google Charts and set callback
 	google.load("visualization", "1", {packages:["corechart"]});
