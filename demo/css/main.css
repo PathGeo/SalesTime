@@ -96,10 +96,15 @@ a {text-decoration:none;}
 .digital_percent {font-size:32px}
 .digital_arrow {width:20px; height:20px}
 
-/** competitors */
-.score_competitor {font-family:digital; font-size:32px}
-.dealer_competitor {color:#555555; font-weight:bold; font-size:14px; height:22px; text-decoration:underline}
-.category_competitor {font-family:digital; font-size:32px}
+
+/** competitors table*/
+table{padding-left:10px}
+tr {height:24px}
+td{width: 100px}
+.digital_table {font-family:digital; font-size:32px}
+.dealer_competitor {color:#555555; font-weight:bold; font-size:16px; text-decoration:underline}
+.category_competitor {color:#555555; font-weight:bold; font-size:16px}
+
 
 
 

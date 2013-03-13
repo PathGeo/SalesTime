@@ -408,6 +408,9 @@
 		$('.digital_arrow').width(arrowSize);
 		$('.digital_arrow').height(arrowSize);
 		
+		$('.digital_table').css({"font-size" : newFontSizePercent});
+		$('.digital_table').css({"font-size" : newFontSizePercent});
+
 	
 	}
 	
