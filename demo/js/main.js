@@ -234,6 +234,7 @@
 //		$("#user_followers_count").text(userInfo.followers_count);
 		
 		showDialog('dialog_user_info', lead.user, {modal:true}); 
+		$("#dialog_user_info textarea").blur(); //disable focusing to avoid the vitual keyboard popup in mobile devices.
 	}
 	
 	
@@ -357,7 +358,7 @@
 			draggable: {
 	            handle: '.widget-title' //change draggable area to the '.widget-title'
 	        }
-	    }).data("gridster");
+	    }).data("gridster").disable(); //disable dragging while init();
 	    
 		
 	    //load widget
