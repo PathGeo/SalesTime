@@ -282,6 +282,12 @@
 		}
 	}
 
+    function initReputation(){
+        var userInfo=userData[lead.user]
+        var repInfo=repuationData[lead.user]
+    }
+
+
     function linkClick(div,txt,id,height,id2){
         //collapse all boxes to normal size
         $("."+ div).each(function(){
