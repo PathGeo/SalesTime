@@ -52,15 +52,6 @@
 	<!--main-->
     <script src="js/main.js"></script>
 
-
-    <script>
-        // $(function() {
-        	// $( "#accordion" ).accordion({
-        		// collapsible: true
-        	// });
-        // });
-    </script>
-
 </head>
 
 
@@ -214,77 +205,64 @@
 	<!-- Solution (NATHAN)-->
 	<div id='dialog_reputation_strategies' style='background-color:#A9D0F5;display:none'>
         <div style="width:48%;height:100%; float:left">
-            <div id="div_rep_1" class="dia_rep" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_1','#BDBDBD'); showText('span-solution-link-12'); showText('span-solution-link-12')" onMouseOut="changeColor('div_rep_1','#FFFFFF')">
-                <span style="font-size:10px;float:right">50 mins </span><br>
-                <span style="font-size:16px;">
-                    Reputation <font color="red">DROPS 10</font> points because <font color="blue">@nathanW</font> complains about dealer service.
-                </span>
+            <div id="div_rep_1" class="dia_rep" onMouseOver="changeColor('div_rep_1','#BDBDBD')" onMouseOut="changeColor('div_rep_1','#FFFFFF')">
+                <span style="font-size:60%;float:right">50 mins </span>
+                <p> Reputation <font color="red">DROPS 10</font> points because <font color="blue">@nathanW</font> complains about dealer service.</p>
+                <span id="rep-solution-link-11" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-11','40%','rep-solution-11')">Solution</span>
+                <span style="font-size:90%;">   </span>
+                <span id="rep-detail-link-12"  onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-11','40%','rep-solution-12'); userContent('rep-solution-12','@nathanW')">Detail</span>
+                <span style="font-size:90%;">   </span>
+                <span id="rep-reply-link-13" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-11','40%','rep-solution-13')">Reply</span>
+                <span style="font-size:90%;">   </span>
+                <span id="rep-save-link-14" onclick="linkClick('dia_rep','dia_rep_sp','rep-reply-link-14','40%','rep-solution-14')" >Save</span>
                 <br><br>
-                <span id="rep-solution-link-11" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-11','40%','rep-solution-11')">Solution</span>
-                <span style="font-size:16px;">   </span>
-                <span id="rep-detail-link-12" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-detail-link-12','40%','rep-solution-12');userContent('rep-solution-12','@nathanW')">Detail</span>
-                <span style="font-size:16px;">   </span>
-                <span id="rep-reply-link-13" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-reply-link-13','40%','rep-solution-13')">Reply</span>
-                <span style="font-size:16px;">   </span>
-                <span id="rep-save-link-14" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-reply-link-14','40%','rep-solution-14')" >Save</span>
-                <br><br>
-                <span id="rep-solution-11" class="dia_rep_sp" style="font-size:16px; display: none">
-                   *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                <p id="rep-solution-11" class="dia_rep_sp" style="font-size:16px; display: none">*Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.</p>
                 <div id="rep-solution-12" class="dia_rep_sp" style="width:100%;height:40%; display: none"></div>
-              <!-- <div id="rep-solution-13" class="dia_rep sp" style="width:100%;height:40%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;">retweet</div>-->
                 <div id="rep-solution-13" class="dia_rep_sp" style="width:96%;height:40%;border:1.5px solid #BDBDBD; background-color: #FFFFFF; display: none">@nathanW</div>
             </div>
-            <div id="div_rep_2" class="dia_rep" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_2','#BDBDBD')" onMouseOut="changeColor('div_rep_2','#FFFFFF')">
-                <span style="font-size:10px;float:right">2 hours </span><br>
-                <span style="font-size:16px;">
-                    Reputation <font color="red">DROPS 10</font> points because <font color="blue">@chrisA</font> has an issue on Fusion engine light.
-                </span>
+            <div id="div_rep_2" class="dia_rep" onMouseOver="changeColor('div_rep_2','#BDBDBD'); show('dia_rep.sp')" onMouseOut="changeColor('div_rep_2','#FFFFFF'); hide('dia_rep.sp')">
+                <span style="font-size:10px;float:right">2 hours </span>
+                <p>Reputation <font color="red">DROPS 10</font> points because <font color="blue">@chrisA</font> has an issue on Fusion engine light.</p>
+                <span id="rep-solution-link-21" class="dia_rep sp" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-21','40%','rep-solution-21')">Solution</span>
+                <span id="rep-detail-link-22" class="dia_rep sp" >Detail</span>
+
+                <span id="rep-reply-link-23" class="dia_rep sp" >Reply</span>
+                <span style="font-size:90%;">   </span>
+                <span id="rep-save-link-24" class="dia_rep sp" >Save</span>
                 <br><br>
-                <span id="rep-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-21','40%','rep-solution-21')">Solution</span>
-                <br><br>
-                <span id="rep-solution-21" class="dia_rep_sp" style="font-size:16px; display: none">
+                <p id="rep-solution-21" class="dia_rep_sp" style="font-size:16px; display: none">
                     *Solution: Provide free recall service to @chrisA, cost $150.
-                </span>
+                </p>
             </div>
-            <div id="div_rep_3" class="dia_rep" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_3','#BDBDBD')" onMouseOut="changeColor('div_rep_3','#FFFFFF')">
-                <span style="font-size:10px;float:right">5 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Reputation <font color="green">GOES UP 15</font> points because a comment by <font color="blue">@joeS</font> on Youtube.
-                </span>
+            <div id="div_rep_3" class="dia_rep" onMouseOver="changeColor('div_rep_3','#BDBDBD')" onMouseOut="changeColor('div_rep_3','#FFFFFF')">
+                <span style="font-size:10px;float:right">5 hours </span>
+                <p>Reputation <font color="green">GOES UP 15</font> points because a comment by <font color="blue">@joeS</font> on Youtube.</p>
+                <span id="rep-solution-link-31" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-31','40%','rep-solution-31')">Solution</span>
                 <br><br>
-                <span id="rep-solution-link-31" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-31','40%','rep-solution-31')">Solution</span>
-                <br><br>
-                <span id="rep-solution-31" class="dia_rep_sp" style="font-size:16px; display: none">
+                <p id="rep-solution-31" class="dia_rep_sp" style="font-size:16px; display: none">
                     *Solution: Increase chat volume on social media,  in particular online video commercials, cost $200 daily.
-                </span>
+                </p>
             </div>
-            <div id="div_rep_4" class="dia_rep" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_4','#BDBDBD')" onMouseOut="changeColor('div_rep_4','#FFFFFF')">
-                <span style="font-size:10px;float:right">10 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Reputation <font color="red">DROPS 10</font> points because <font color="blue">@chrisA</font> has an issue on Fusion engine light.
-                </span>
+            <div id="div_rep_4" class="dia_rep" onMouseOver="changeColor('div_rep_4','#BDBDBD')" onMouseOut="changeColor('div_rep_4','#FFFFFF')">
+                <span style="font-size:10px;float:right">10 hours </span>
+                <p>Reputation <font color="red">DROPS 10</font> points because <font color="blue">@chrisA</font> has an issue on Fusion engine light.</p>
+                <span id="rep-solution-link-41" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-41','40%','rep-solution-41')">Solution</span>
                 <br><br>
-                <span id="rep-solution-link-41" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-41','40%','rep-solution-41')">Solution</span>
-                <br><br>
-                <span id="rep-solution-41" class="dia_rep_sp" style="font-size:16px; display: none">
+                <p id="rep-solution-41" class="dia_rep_sp" style="font-size:16px; display: none">
                     *Solution: host a local car photography competition, cost $1000 for model hire.
-                </span>
+                </p>
             </div>
-            <div id="div_rep_5" class="dia_rep" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_rep_5','#BDBDBD')" onMouseOut="changeColor('div_rep_5','#FFFFFF')">
-                <span style="font-size:10px;float:right">16 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Reputation <font color="red">DROPS 9</font> points because <font color="blue">@jayY</font> got bad battery.
-                </span>
+            <div id="div_rep_5" class="dia_rep" onMouseOver="changeColor('div_rep_5','#BDBDBD')" onMouseOut="changeColor('div_rep_5','#FFFFFF')">
+                <span style="font-size:10px;float:right">16 hours </span>
+                <p>Reputation <font color="red">DROPS 9</font> points because <font color="blue">@jayY</font> got bad battery.</p>
+                <span id="rep-solution-link-51" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-51','40%','rep-solution-51')">Solution</span>
                 <br><br>
-                <span id="rep-solution-link-51" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_rep','dia_rep_sp','rep-solution-link-51','40%','rep-solution-51')">Solution</span>
-                <br><br>
-                <span id="rep-solution-51" class="dia_rep_sp" style="font-size:16px; display: none">
+                <p id="rep-solution-51" class="dia_rep_sp" style="font-size:16px; display: none">
                     *Solution: host a local car photography competition, cost $1000 for model hire.
-                </span>
+                </p>
             </div>
         </div>
-        <div id="div_rep_6" class="dia_rep_2" style="width:48%;height:102%; border:1.5px solid #BDBDBD; background-color: #FFFFFF; float:right" onMouseOver="changeColor('div_rep_6','#BDBDBD')" onMouseOut="changeColor('div_rep_6','#FFFFFF')">
+        <div id="div_rep_6" class="dia_rep_2" onMouseOver="changeColor('div_rep_6','#BDBDBD')" onMouseOut="changeColor('div_rep_6','#FFFFFF')">
 			<span style="font-size:150%;">MARKETING STRATEGIES</span>
             <ul style="font-size:120%;">
                 <li style="padding-left: 0%">Spending <Strong>$3000.00</Strong> on coupons to bring in 100 customers will increase repuration <Strong>10</Strong> points.</li><br>
@@ -298,76 +276,61 @@
 	
 	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
 		<div style="width:48%;height:99%; float:left">
-            <div id="div_vis_1" class="dia_vis" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_1','#BDBDBD')" onMouseOut="changeColor('div_vis_1','#FFFFFF')">
-                <span style="font-size:10px;float:right">12 mins </span><br>
-                <span style="font-size:16px;">
-                    Visibility <font color="red">DROPS 5</font> points because homepage is down for 10 minutes.
-                </span>
+            <div id="div_vis_1" class="dia_vis" onMouseOver="changeColor('div_vis_1','#BDBDBD')" onMouseOut="changeColor('div_vis_1','#FFFFFF')">
+                <span style="font-size:10px;float:right">12 mins </span>
+                <p>Visibility <font color="red">DROPS 5</font> points because homepage is down for 10 minutes.</p>
+                <span id="vis-solution-link-11" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-11','40%','vis-solution-11')">Solution</span>
+                <span style="font-size:16px;">   </span>
+                <span id="vis-detail-link-12" onclick="linkClick('dia_vis','dia_vis_sp','vis-detail-link-12','40%','vis-detail-12'); userContent('vis-detail-12','@nathanW')">Detail</span>
+                <span style="font-size:16px;">   </span>
+                <span id="vis-reply-link-13" onclick="linkClick('dia_vis','dia_vis_sp','vis-reply-link-13','40%','vis-reply-13')">Reply</span>
+                <span style="font-size:16px;">   </span>
+                <span id="vis-save-link-14" onclick="linkClick('dia_vis','dia_vis_sp','vis-reply-link-14','40%','vis-solution-14')" >Save</span>
                 <br><br>
-                <span id="vis-solution-link-11" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-11','40%','vis-solution-11')">Solution</span>
-                <span style="font-size:16px;">   </span>
-                <span id="vis-detail-link-12" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-detail-link-12','40%','vis-detail-12'); userContent('vis-detail-12','@nathanW')">Detail</span>
-                <span style="font-size:16px;">   </span>
-                <span id="vis-reply-link-13" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-reply-link-13','40%','vis-reply-13')">Reply</span>
-                <span style="font-size:16px;">   </span>
-                <span id="vis-save-link-14" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-reply-link-14','40%','vis-solution-14')" >Save</span>
-                <br><br>
-                <span id="vis-solution-11" class="dia_vis_sp" style="font-size:16px; display: none">
+                <p id="vis-solution-11" class="dia_vis_sp" style="font-size:16px; display: none">
                     *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                </p>
                 <div id="vis-detail-12" class="dia_vis_sp" style="width:100%;height:40%; display: none"></div>
                 <div id="vis-reply-13" class="dia_vis_sp" style="width:96%;height:40%;border:1.5px solid #BDBDBD; background-color: #FFFFFF; display: none">@nathanW</div>
             </div>
-            <div id="div_vis_2" class="dia_vis" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_2','#BDBDBD')" onMouseOut="changeColor('div_vis_2','#FFFFFF')">
-                <span style="font-size:10px;float:right">1 hour </span><br>
-                <span style="font-size:16px;">
-                    Visibility <font color="red">DROPS 10</font> points because Fox News broadcasts Toyota Yaris commercial.
-                </span>
+            <div id="div_vis_2" class="dia_vis" onMouseOver="changeColor('div_vis_2','#BDBDBD')" onMouseOut="changeColor('div_vis_2','#FFFFFF')">
+                <span style="font-size:10px;float:right">1 hour </span>
+                <p>Visibility <font color="red">DROPS 10</font> points because Fox News broadcasts Toyota Yaris commercial.</p>
+                <span id="vis-solution-link-21" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-21','40%','vis-solution-21')">Solution</span>
                 <br><br>
-                <span id="vis-solution-link-21" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-21','40%','vis-solution-21')">Solution</span>
-                <br><br>
-                <span id="vis-solution-21" class="dia_vis_sp" style="font-size:16px; display: none">
+                <p id="vis-solution-21" class="dia_vis_sp" style="font-size:16px; display: none">
                     *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                </p>
             </div>
-            <div id="div_vis_3" class="dia_vis" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_3','#BDBDBD')" onMouseOut="changeColor('div_vis_3','#FFFFFF')">
-                <span style="font-size:10px;float:right">5 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Visibility <font color="green">GOES UP 15</font> points because Youtube new test drive video.
-                </span>
+            <div id="div_vis_3" class="dia_vis" onMouseOver="changeColor('div_vis_3','#BDBDBD')" onMouseOut="changeColor('div_vis_3','#FFFFFF')">
+                <span style="font-size:10px;float:right">5 hours </span>
+                <p style="font-size:16px;">Visibility <font color="green">GOES UP 15</font> points because Youtube new test drive video.</p>
+                <span id="vis-solution-link-31" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-31','40%','vis-solution-31')">Solution</span>
                 <br><br>
-                <span id="vis-solution-link-31" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-31','40%','vis-solution-31')">Solution</span>
-                <br><br>
-                <span id="vis-solution-31" class="dia_vis_sp" style="font-size:16px; display: none">
+                <p id="vis-solution-31" class="dia_vis_sp" style="font-size:16px; display: none">
                     *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                </p>
             </div>
-            <div id="div_vis_4" class="dia_vis" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_4','#BDBDBD')" onMouseOut="changeColor('div_vis_4','#FFFFFF')">
-                <span style="font-size:10px;float:right">7 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Visibility <font color="red">DROPS 7</font> points because Google Maps site has no maintanence.
-                </span>
+            <div id="div_vis_4" class="dia_vis" onMouseOver="changeColor('div_vis_4','#BDBDBD')" onMouseOut="changeColor('div_vis_4','#FFFFFF')">
+                <span style="font-size:10px;float:right">7 hours </span>
+                <p style="font-size:16px;">Visibility <font color="red">DROPS 7</font> points because Google Maps site has no maintanence.</p>
+                <span id="vis-solution-link-41" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-41','40%','vis-solution-41')">Solution</span>
                 <br><br>
-                <span id="vis-solution-link-41" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-41','40%','vis-solution-41')">Solution</span>
-                <br><br>
-                <span id="vis-solution-41" class="dia_vis_sp" style="font-size:16px; display: none">
+                <p id="vis-solution-41" class="dia_vis_sp" style="font-size:16px; display: none">
                     *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                </p>
             </div>
-            <div id="div_vis_5" class="dia_vis" style="width:100%;height:19%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver="changeColor('div_vis_5','#BDBDBD')" onMouseOut="changeColor('div_vis_5','#FFFFFF')">
-                <span style="font-size:10px;float:right">7 hours </span><br>
-                <span style="font-size:16px;" title='Click to see solutions'>
-                    Reputation <font color="red">DROPS 10</font> points because no Ads on San Diego Tribune.
-                </span>
+            <div id="div_vis_5" class="dia_vis" onMouseOver="changeColor('div_vis_5','#BDBDBD')" onMouseOut="changeColor('div_vis_5','#FFFFFF')">
+                <span style="font-size:10px;float:right">7 hours </span>
+                <p>Reputation <font color="red">DROPS 10</font> points because no Ads on San Diego Tribune.</p>
+                <span id="vis-solution-link-51" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-51','40%','vis-solution-51')">Solution</span>
                 <br><br>
-                <span id="vis-solution-link-51" style="font-size:16px;text-decoration:underline;color:blue;" onclick="linkClick('dia_vis','dia_vis_sp','vis-solution-link-51','40%','vis-solution-51')">Solution</span>
-                <br><br>
-                <span id="vis-solution-51" class="dia_vis_sp" style="font-size:16px; display: none">
+                <p id="vis-solution-51" class="dia_vis_sp" style="font-size:16px; display: none">
                     *Solution: contact @nathanW for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.
-                </span>
+                </p>
             </div>
         </div>
-        <div id="div_vis_6" class="dia_vis_2" style="width:48%;height:100%; border:1.5px solid #BDBDBD; background-color: #FFFFFF; float:right" onMouseOver="changeColor('div_vis_6','#BDBDBD')" onMouseOut="changeColor('div_vis_6','#FFFFFF')">
+        <div id="div_vis_6" class="dia_vis_2" onMouseOver="changeColor('div_vis_6','#BDBDBD')" onMouseOut="changeColor('div_vis_6','#FFFFFF')">
             <span style="font-size:150%;">MARKETING STRATEGIES</span>
             <ul style="font-size:120%;">
                 <li style="padding-left: 0%">Spending <Strong>$2300.00</Strong> on Youtube will increase visibility <Strong>10</Strong> points.</li><br>

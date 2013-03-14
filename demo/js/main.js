@@ -300,7 +300,7 @@
     }
 
     function changeHeight(id , height){
-        $("#"+id).parent().css({"height": height});
+        $("#"+id).css({"height": height});
     }
 
     function closeDiv(div){
@@ -319,8 +319,12 @@
         $("#"+id).css({"background-color": color});
     }
 
-    function showText(id){
-        $("#"+id).css({"display": "inline"});
+    function show(Class){
+        $("."+ Class).css({"display": ""});
+    }
+
+    function hide(Class){
+        $("."+ Class).css({"display": "none"});
     }
 
     function userContent(id, username){
