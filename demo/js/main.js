@@ -720,9 +720,9 @@
 		new TWTR.Widget({
 			version: 2,
 			id: 'tweet',
-			subject: 'Now Streaming: "Nascar"',
+			subject: 'Now Streaming: "TOYOTA"',
 			type: 'search',
-			search: 'nascar',
+			search: 'toyota',
 			interval: 30,
 			width: 'auto',
 			height: $("li[id=widget_tweetStream]").height() - $(".widget_title").height() - 105,
