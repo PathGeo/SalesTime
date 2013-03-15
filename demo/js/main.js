@@ -659,12 +659,15 @@
 	function showDialog(id, title, dialogOptions){
 		if(!dialogOptions){dialogOptions={}}
 		
+		//options
 		dialogOptions.title=dialogOptions.title || title;
 		dialogOptions.width=dialogOptions.width || 700;
 		dialogOptions.height=dialogOptions.height || 500;
-		dialogOptions.resizable=false || dialogOptions.resizable;
+		dialogOptions.resizable=dialogOptions.resizable || false;
+		dialogOptions.draggable=dialogOptions.draggable || false;
 		//dialogOptions.draggable=false || dialogOptions.draggable;
-		dialogOptions.dialogClass="dialog";
+		dialogOptions.dialogClass="";
+		dialogOptions.position=dialogOptions.position || "center";
 		dialogOptions.closeFn=dialogOptions.close || null;
 		dialogOptions.close=function(){
 			//if close function
@@ -672,8 +675,7 @@
 			//enable <body> scroll
 			$("body").css("overflow", "auto");
 		};
-		dialogOptions.position=dialogOptions.position || "center";
-
+		
 		//disable <body> scroll
 		$("body").css("overflow", "hidden");
 		

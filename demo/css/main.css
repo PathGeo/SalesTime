@@ -122,6 +122,9 @@ td{width: 100px}
 
 /** jquery ui */
 .ui-widget-overlay {position:fixed}
+.ui-icon-closethick {background:url(../images/1363366802_fileclose.png) no-repeat !important; background-size:100% 100% !important; width:32px; height:32px}
+.ui-dialog-titlebar-close {right:.5em !important; top:30% !important; width:32px !important; height:32px !important}
+.ui-dialog-titlebar-close:hover {background-color:#cccccc; -moz-border-radius:10px; -webkit-border-radius:10px;border-radius:10px;}
 
 /** logout dropdown */
 a#link {
