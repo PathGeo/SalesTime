@@ -941,6 +941,45 @@
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
 
 	}
+	
+	
+	
+	/**
+	*Initialize competitor score and graphs
+	*/
+	function init_competitor_graph(){
+	
+		showDialog('dialog_competitor', 'Competitor', {modal:true})
+		$('.changeCompGraph').css('cursor', 'pointer');
+		
+		var competitor_data = getCompetitorScores("dealerA");
+		var competitor_data_table = google.visualization.arrayToDataTable(competitor_data);
+
+        var options_graph_comp = {
+			legend: {position: 'bottom'},
+			vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+			hAxis: {showTextEvery:4},
+			pointSize:4
+        };
+
+        var competitor_graph = new google.visualization.LineChart(document.getElementById('competitor_graph'));
+        competitor_graph.draw(competitor_data_table, options_graph_comp);
+		
+		$('.changeCompGraph').click(function() {
+		
+			competitor_data = getCompetitorScores($(this).attr('id'));
+			competitor_data_table = google.visualization.arrayToDataTable(competitor_data);
+
+			competitor_graph = new google.visualization.LineChart(document.getElementById('competitor_graph'));
+			competitor_graph.draw(competitor_data_table, options_graph_comp);
+
+			$('.changeCompGraph').css("font-weight","normal");
+			var bolder = '#' + ($(this).attr('id'));
+			$(bolder).css("font-weight","bold");
+		});
+	
+
+	}
 
 	
 	

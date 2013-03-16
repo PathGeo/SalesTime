@@ -51,7 +51,8 @@
 	<script src="js/leads.js"></script>	
 	<script src="js/rss.js"></script>
 	<script src="js/reviews.js"></script>
-	<script src="js/ford_data.js"></script>	
+	<script src="js/ford_data.js"></script>
+	<script src="js/competitor_scores.js"></script>
 
 	<!--main-->
     <script src="js/main.js"></script>
@@ -124,7 +125,7 @@
 	
 	<!-- competitor (JOE)-->
 	<div id='widget_competitor' class='widget' widget-title='Competitor' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=3>
-		<table class="competitorTable">
+		<table class="competitorTable" style="cursor:pointer; padding-left:10px" onclick='init_competitor_graph()'>
 			<tr><td></td><td class="dealer_competitor">Dealer A</td><td class="dealer_competitor">Dealer B</td></tr>
 			<tr><td class="category_competitor">Reputation</td><td class="digital_table">67</td><td class="digital_table">42</td></tr>
 			<tr><td class="category_competitor">Visibility</td><td class="digital_table">99</td><td class="digital_table">92</td></tr>
@@ -193,8 +194,8 @@
 		<span class="changeRepGraph" id="dailyRep" style="padding-right:30px">Last 2 Weeks</span>
 		<span class="changeRepGraph" id="weeklyRep" style="padding-right:30px; font-weight:bold">Last Month</span>
 		<span class="changeRepGraph" id="monthlyRep">Last 2 Months</span><br/><br/>
-		<div id="graph_rep" style="height:200px; width:600px"></div>
-		<div id='review_rep' style='height: 175px; width: 600px; overflow: auto; padding-top:15px'> </div>
+		<div id="graph_rep" style="height:200px; width:650px"></div>
+		<div id='review_rep' style='height: 175px; width: 650px; overflow: auto; padding-top:15px'> </div>
 	</div>
 	
 	<!-- Visibility (JOE)-->
@@ -202,8 +203,8 @@
 		<span class="changeVisGraph" id="dailyVis" style="padding-right:30px">Last 2 Weeks</span>
 		<span class="changeVisGraph" id="weeklyVis" style="padding-right:30px; font-weight:bold">Last Month</span>
 		<span class="changeVisGraph" id="monthlyVis">Last 2 Months</span><br/><br/>
-		<div id="graph_vis" style="height:200px; width:600px"></div>
-		<div id='review_vis' style='height: 175px; width: 600px; overflow: auto; padding-top:15px'> </div>
+		<div id="graph_vis" style="height:200px; width:650px"></div>
+		<div id='review_vis' style='height: 175px; width: 650px; overflow: auto; padding-top:15px'> </div>
 	</div>
 
 	<!-- Solution (NATHAN)-->
@@ -346,7 +347,11 @@
 	</div>
 
 	<!-- competitor (JOE)-->
-	<div id='dialog_competitor' style='display:none'></div>
+	<div id='dialog_competitor' style='display:none'>
+		<span class="changeCompGraph" id="dealerA" style="padding-right:30px; font-weight:bold">Dealer A</span>
+		<span class="changeCompGraph" id="dealerB">Dealer B</span><br/><br/>
+		<div id="competitor_graph" style="height:300px; width:650px"></div>
+	</div>
 	
 	<!-- news feed (CHRIS)-->
 	<div id='dialog_news' style='display:none'>

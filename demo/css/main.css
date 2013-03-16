@@ -99,7 +99,7 @@ a {text-decoration:none;}
 
 /** competitors table*/
 .competitorTable table{padding-left:10px}
-.competitorTable tr {height:24px}
+.competitorTable tr {height:22px}
 .competitorTable td{width: 100px}
 .digital_table {font-family:digital; font-size:32px}
 .dealer_competitor {color:#555555; font-weight:bold; font-size:14px; text-decoration:underline}
