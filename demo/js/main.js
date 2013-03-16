@@ -413,6 +413,14 @@
 			setTimeout(function() { if (submenu_active === false) $('div#submenu').fadeOut(); }, 400);
 		});
 		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+
+		var yyyy = today.getFullYear();
+		if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+		$("#date").html(today);
+		
 		
 		//Adjust score text size based on window size
 		//var sectionWidth = $('#widget_reputation').height();
@@ -912,6 +920,7 @@
 		
 		var reviewTable = new google.visualization.Table(document.getElementById('review_vis'));
 		reviewTable.draw(reviewData, { showRowNumber: false, allowHtml: true, sortColumn: 1, sortAscending: false} );
+
 	}
 
 	
