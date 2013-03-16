@@ -415,20 +415,20 @@
 		
 		
 		//Adjust score text size based on window size
-		var sectionWidth = $('#widget_reputation').height();
+		//var sectionWidth = $('#widget_reputation').height();
 		
-		var newFontSizeScore = ($('#widget_reputation').height() - 66);
-		$('.digital_score').css({"font-size" : newFontSizeScore});
+		//var newFontSizeScore = ($('#widget_reputation').height() - 66);
+		//$('.digital_score').css({"font-size" : newFontSizeScore});
 		
-		var newFontSizePercent = newFontSizeScore/2;
-		$('.digital_percent').css({"font-size" : newFontSizePercent});
+		//var newFontSizePercent = newFontSizeScore/2;
+		//$('.digital_percent').css({"font-size" : newFontSizePercent});
 		
-		var arrowSize = (newFontSizePercent*20)/32;
-		$('.digital_arrow').width(arrowSize);
-		$('.digital_arrow').height(arrowSize);
+		//var arrowSize = (newFontSizePercent*20)/32;
+		//$('.digital_arrow').width(arrowSize);
+		//$('.digital_arrow').height(arrowSize);
 		
-		$('.digital_table').css({"font-size" : newFontSizePercent});
-		$('.digital_table').css({"font-size" : newFontSizePercent});
+		//$('.digital_table').css({"font-size" : newFontSizePercent});
+		//$('.digital_table').css({"font-size" : newFontSizePercent});
 
 	
 	}
