@@ -102,8 +102,8 @@ a {text-decoration:none;}
 .competitorTable tr {height:24px}
 .competitorTable td{width: 100px}
 .digital_table {font-family:digital; font-size:32px}
-.dealer_competitor {color:#555555; font-weight:bold; font-size:16px; text-decoration:underline}
-.category_competitor {color:#555555; font-weight:bold; font-size:16px}
+.dealer_competitor {color:#555555; font-weight:bold; font-size:14px; text-decoration:underline}
+.category_competitor {color:#555555; font-weight:bold; font-size:14px}
 
 
 

@@ -419,6 +419,25 @@
 
 		var yyyy = today.getFullYear();
 		if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+		
+		var currentTime = new Date()
+		var hours = currentTime.getHours()
+		var minutes = currentTime.getMinutes()
+
+		if (minutes < 10){
+			minutes = "0" + minutes
+		}
+		var suffix = "AM";
+		if (hours >= 12) {
+			suffix = "PM";
+			hours = hours - 12;
+		}
+		if (hours == 0) {
+			hours = 12;
+		}
+	
+		today+= "<span style='padding-left:30px'>" + hours + ":" + minutes + " " + suffix + "</span>";
+
 		$("#date").html(today);
 		
 		
@@ -783,7 +802,6 @@
 		$('.changeRepGraph').css('cursor', 'pointer');
 	
 		var reputation_data = getScore("weeklyRep");
-		
 		var reputation_data_table = google.visualization.arrayToDataTable(reputation_data);
 
         var options_graph_rep = {
@@ -858,14 +876,14 @@
 		$('.changeVisGraph').css('cursor', 'pointer');
 	
 		var visibility_data = getScore("weeklyVis");
-		
 		var visibilty_data_table = google.visualization.arrayToDataTable(visibility_data);
 
         var options_graph_vis = {
-          legend: {position: 'none'},
-		  vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
-		  hAxis: {showTextEvery:4},
-		  pointSize:4
+			series: [{color: 'F00000'}],
+			legend: {position: 'none'},
+			vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
+			hAxis: {showTextEvery:4},
+			pointSize:4
         };
 
         var visibility_graph = new google.visualization.LineChart(document.getElementById('graph_vis'));
@@ -885,6 +903,7 @@
 				var hLabel = 8;
 			}
 			options_graph_vis = {
+				series: [{color: 'F00000'}],
 				legend: {position: 'none'},
 				vAxis: {minValue:-100,maxValue:100,gridlines:{count:5}},
 				hAxis: {showTextEvery:hLabel},
