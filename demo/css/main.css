@@ -87,7 +87,7 @@ a {text-decoration:none;}
 #leads > div ul li:hover {background-color:#eeeeee;}
 #leads > div ul li div {float:left;}
 #leads > div ul li .score {font-size:170%;}
-#leads > div ul li div img {width:65px; height:65px; float:left; cursor:pointer;}
+#leads > div ul li div img {width:55px; height:55px; float:left; cursor:pointer;}
 #leads > div ul li div div {float:left; width:70%;padding-left:10px;}
 
 

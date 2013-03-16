@@ -7,6 +7,7 @@
     <title>SAM-Dashboard</title>
     <meta charset="utf-8" />
 	<link rel="stylesheet" href="css/Aristo/Aristo.css" />
+	<!--<link rel="stylesheet" href="js/jquery/jquery.mobile-1.3.0.min.css" />-->
 	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
 	<link rel="stylesheet" href="js/leaflet/leaflet.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/leaflet.ie.css" /><![endif]-->
@@ -19,23 +20,12 @@
 	<!--chart-->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>  
 	
-	<!-- DATA -->
-	<script src="js/scores.js"></script>	
-	<script src="js/user_info.js"></script>	
-	<script src="js/leads.js"></script>	
-	<script src="js/rss.js"></script>
-	<script src="js/reviews.js"></script>
-	<script src="js/ford_data.js"></script>	
-
-	<!-- PathGeo JS -->
-	<script src="js/api/pathgeo.layer.min.js"></script>		
-	<script src="js/api/pathgeo.service.min.js"></script>	
-	<script src="js/api/pathgeo.util.min.js"></script>	
-
 	<!--jQuery-->
 	<script src="js/jquery/jquery-1.7.2.min.js"></script>
+	<!--<script src="js/jquery/jquery.mobile-1.3.0.min.js"></script>-->
 	<script src="js/jquery/jquery-ui-1.8.16.custom.min.js"></script>
 	<script scr='js/jquery/jquery.ui.touch-punch.min.js'></script>
+	
 	
 	<!--leaflet-->
 	<script src="js/leaflet/leaflet.js"></script>
@@ -50,6 +40,19 @@
 	<!-- Tweet Stream-->
 	<script src="js/twitter/widget.js"></script>
 	
+	<!-- PathGeo JS -->
+	<script src="js/api/pathgeo.layer.min.js"></script>		
+	<script src="js/api/pathgeo.service.min.js"></script>	
+	<script src="js/api/pathgeo.util.min.js"></script>	
+	
+	<!-- DATA -->
+	<script src="js/scores.js"></script>	
+	<script src="js/user_info.js"></script>	
+	<script src="js/leads.js"></script>	
+	<script src="js/rss.js"></script>
+	<script src="js/reviews.js"></script>
+	<script src="js/ford_data.js"></script>	
+
 	<!--main-->
     <script src="js/main.js"></script>
 
@@ -137,11 +140,11 @@
 			<!-- how about using tabs to show top sales and top service leads ? -->
 			<div id='leads' style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
 				<ul>
-					<li><a href='#sales_leads'>Top 10 Sales Leads</a></li>
+					<li><a href='#sales_leads' class="ui-btn-active">Top 10 Sales Leads</a></li>
 					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
 				</ul>
 				
-				<div id='sales_leads' class='leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
+				<div id='sales_leads'  class='leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
 				<div id='service_leads' class='leads' style='height: 350px; overflow:auto; background-color: ;'> Service Leads </div>
 			</div>
 		</div>
@@ -384,7 +387,7 @@
 				</div>
 			</div>
 			<p></p>
-			<textarea style='width:100%; height:100px' autofocus=false ></textarea><p></p>
+			<textarea style='width:100%; height:100px;resize:none' autofocus=false ></textarea><p></p>
 			<button style='float:right' onclick='$("*").dialog("close");'>Reply</button>
 		</div>
 		

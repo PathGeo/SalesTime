@@ -233,8 +233,16 @@
 //		$("#user_friends_count").text(userInfo.friends_count);
 //		$("#user_followers_count").text(userInfo.followers_count);
 		
-		showDialog('dialog_user_info', lead.user, {modal:true}); 
-		$("#dialog_user_info textarea").blur(); //disable focusing to avoid the vitual keyboard popup in mobile devices.
+		showDialog('dialog_user_info', "About "+ lead.user, {
+			modal:true,
+			create:function(e,ui){
+				$("#dialog_user_info textarea").blur(); //disable focusing to avoid the vitual keyboard popup i
+			},
+			open:function(e, ui){
+				$("#dialog_user_info textarea").blur(); //disable focusing to avoid the vitual keyboard popup in mobile devices.
+			}
+		}); 
+		
 	}
 	
 	
@@ -364,7 +372,7 @@
 			draggable: {
 	            handle: '.widget-title' //change draggable area to the '.widget-title'
 	        }
-	    }).data("gridster").disable(); //disable dragging while init();
+	    }).data("gridster");//.disable(); //disable dragging while init();
 	    
 		
 	    //load widget
@@ -373,7 +381,7 @@
 		});
 
 
-		//cursor change while mouseovering on the widget title
+		//cursor change while mouseovering on the widget title 
 		$(".widget-title").hover(function(){
 			$(this).css('cursor','move');
 		}, function(){
@@ -680,6 +688,10 @@
 		$("body").css("overflow", "hidden");
 		
 		$("#"+id).dialog(dialogOptions);
+		
+		//jquery mobile
+		//$("#"+id).show();
+		//$.mobile.changePage('#'+id, {transition: 'pop', role: 'dialog'});
 	}
 	
 
