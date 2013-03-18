@@ -24,7 +24,7 @@
 		gridster:null,  //gridster
 		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", 'widget_tweetStream'],// "widget_addWidget"],
 		constants: {
-			KEYWORDS: ['car', 'buy', 'shopping', 'Ford']
+			KEYWORDS: ['car', 'buy', 'shopping', 'Ford', 'friendly', 'upset', 'nice', 'bad', 'good', 'helpful', 'mistake']
 		},
 		eventHandler:{
 			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
@@ -39,7 +39,7 @@
 	//dom ready
 	$(function() { 	    
 		init_UI();
-		init_news_widget();		
+		//init_news_widget();		
 	});
 	
 	
@@ -854,7 +854,8 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
-			review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
+			//review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
+			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + (pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.Review, true));
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
 								review
@@ -930,7 +931,8 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
-			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
+			//var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
+			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + (pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.Review, true));
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
 								review
