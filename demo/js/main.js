@@ -32,19 +32,12 @@
 		}
 	}
 
-
-
-    
-
 	//dom ready
 	$(function() { 	    
 		init_UI();
 		//init_news_widget();		
 	});
-	
-	
-	
-	
+		
 	/**
 	* Creates a google table in news_widget.  Table is populated with data from rss.js.  
 	*/
@@ -53,10 +46,7 @@
 		sortArray(rssFeeds, "score");
 		showNews();
 	}
-	
-	
-	
-	
+		
 	/**
 	 * show news Feed
 	 */

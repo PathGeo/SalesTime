@@ -364,8 +364,17 @@
 		<iframe width=99% height=85% style='width:99%; height:85%; border:0px; border-top:1px solid #cccccc; padding-top:20px' class='ui-corner-all'></iframe>
 	</div>
 	
-	<!-- chart (CHRIS)-->
-	<div id='dialog_chart' style='display:none'></div>
+	<!-- Map Gallery Dialog -->
+	<div id='dialog_map_gallery' style='display:none'>
+		<!-- gallery-->
+			<div id='div_gallery'>
+				<ul>
+					<li title="show Cluster Map" onclick='switchVisualization(["MARKERCLUSTER"]);'><img src='images/gallery-cluster.png'><br>Cluster Map</li>
+					<li title="show Heat Map" onclick='switchVisualization(["HEATMAP", "GEOJSON"]);'><img src='images/gallery-heatmap.png'><br>Heat Map</li>
+					<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Compare to Census</li>
+				</ul>
+			</div>
+	</div>
 	
 	<!-- Detailed user information (CHRIS) -->
 	<div id='dialog_user_info' style='display:none; padding:20px;'>
