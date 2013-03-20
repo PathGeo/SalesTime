@@ -159,14 +159,13 @@
 	</div>
             
     <!-- chart (CHRIS)-->
-    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="changeChart('line')" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
-		<div style='width:100%; text-align:right'>
-			<select style='width:150px; ' onchange='changeChart(this.value)'>
-				<option value='line'>Line Chart</option>
-				<option value='pie'>Pie Chart</option>
-			</select>
+    <div id='widget_chart' class='widget' widget-title='Social Media Trending' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
+		<div style='width:100%; padding:10px; cursor:pointer' onclick="showDialog('dialog_chart', 'Charts', {modal:true}); changeChart('line')">
+			<div style="font-weight:bold; padding-top:10px; padding-bottom: 10px; font-size:12px; color:#555555;">Mentions / Week</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fusion</div><div class="score" style="padding-bottom:20px; font-size:24px">22</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Escape</div><div class="score" style="padding-bottom:20px; font-size:24px">12</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fiesta</div><div class="score" style="padding-bottom:20px; font-size:24px">4</div>
 		</div>
-		<div id="chart" style="width:100%"></div>
 	</div>
 	
 	<!-- tweet streaming (Jay)-->
@@ -351,6 +350,16 @@
 		<span class="changeCompGraph" id="dealerA" style="padding-right:30px; font-weight:bold">Dealer A</span>
 		<span class="changeCompGraph" id="dealerB">Dealer B</span><br/><br/>
 		<div id="competitor_graph" style="height:300px; width:650px"></div>
+	</div>
+	
+	<div id='dialog_chart' style='display:none'>
+		<div style='width:100%; text-align:right'>
+			<select style='width:150px; ' onchange='changeChart(this.value)'>
+				<option value='line'>Line Chart</option>
+				<option value='pie'>Pie Chart</option>
+			</select>
+		</div>
+		<div id="chart" style="width:650px; height:300px"></div>
 	</div>
 	
 	<!-- news feed (CHRIS)-->

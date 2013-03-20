@@ -1032,7 +1032,7 @@
 		if(chartType == "line"){
 			var options = {
 				title: 'Total Mentions per Day',
-				legend: {position:'none'},
+				legend: {position:'bottom'},
 				hAxis: {showTextEvery:2},
 				pointSize:4,
 				titleTextStyle: {color: '#555555', fontName: 'Arial', fontSize: 12}
@@ -1045,6 +1045,7 @@
 		if(chartType == "pie"){
 			var options = {
 				title: 'Total Mentions, Feb 22-28',
+				legend: {position:'bottom'},
 				titleTextStyle: {color: '#555555', fontName: 'Arial', fontSize: 12}
 			};
 			var data = google.visualization.arrayToDataTable(chart_data);
