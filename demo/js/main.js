@@ -24,7 +24,7 @@
 		gridster:null,  //gridster
 		widgets:["widget_reputation", "widget_visibility", "widget_competitor", "widget_map", "widget_news", "widget_chart", 'widget_tweetStream'],// "widget_addWidget"],
 		constants: {
-			KEYWORDS: ['car', 'buy', 'shopping', 'Ford', 'friendly', 'upset', 'nice', 'bad', 'good', 'helpful', 'mistake']
+			KEYWORDS: ['car', 'buy', 'shopping', 'Ford']
 		},
 		eventHandler:{
 			click: ('ontouchend' in document.documentElement)? "touchend" : "click", //this is because that the click eventHandler will NOT work in the iOS devices (some conflict with the gridster mouse event)
@@ -32,12 +32,19 @@
 		}
 	}
 
+
+
+    
+
 	//dom ready
 	$(function() { 	    
 		init_UI();
-		//init_news_widget();		
+		init_news_widget();		
 	});
-		
+	
+	
+	
+	
 	/**
 	* Creates a google table in news_widget.  Table is populated with data from rss.js.  
 	*/
@@ -46,7 +53,10 @@
 		sortArray(rssFeeds, "score");
 		showNews();
 	}
-		
+	
+	
+	
+	
 	/**
 	 * show news Feed
 	 */
@@ -70,9 +80,30 @@
 				showDialog("dialog_news", "news", {modal:true, resizable:false, draggable:false, width:900, height:650, close:function(e,ui){$("#dialog_news iframe").html("").attr("src", "");}});
 			}
 		})
+		
+		//use google chart table to show the rssFeeds
+//		var rssData = new google.visualization.DataTable();
+//		rssData.addColumn("number", "Score");
+//		rssData.addColumn("string", "Date");
+//		rssData.addColumn("string", "Source");
+//		rssData.addColumn("string", "Title");
+//		
+//		for (var indx in rssFeeds) {
+//			var feed = rssFeeds[indx];
+//			rssData.addRow( [ 	feed.score, 
+//								feed.date, feed.name, 
+//								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" 
+//										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title, true) + "</a>" 
+//							] );
+//		}
+//		
+//		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
+//		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
 	}
 	
-
+	
+	
+	
 	function init_leads(){
 		//tabs
 		//we have to wait until the tabs have been created. Otherwise, the google chart table cannot get the correct width
@@ -83,7 +114,9 @@
 		}});
 	}
 
-	
+
+
+
 	function init_leads_table(leads) {
 		var divName='';
 		
@@ -127,7 +160,42 @@
 				leadType=$(this).attr("leadType");
 			showLocation(leads[leadType][idx]);
 		});
+		
+		
+		
+		//use google chart table
+//		var data = new google.visualization.DataTable();
+//		data.addColumn('number', 'Score');
+//		data.addColumn('string', 'User');
+//		data.addColumn('string', 'Tweet');
+//		//data.addColumn('string', 'Location');
+//		
+//		for (var indx in leadsGroup) {
+//			var lead = leadsGroup[indx];
+//			data.addRow( [ 
+//								lead.score,
+//								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
+//								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true)
+//								//lead.loc
+//							] );
+//		}
+//		
+//		var table = new google.visualization.Table(document.getElementById(divName));
+//		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
+//				
+//		google.visualization.events.addListener(table, 'select', function() { 
+//			var row = table.getSelection()[0].row;
+//			
+//			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
+//			//YES, you can. the "data" varaible has become a global variable for this function. Therefore, even this function is a select-event listener, the "data" variable can be called correctly. (Calvin)
+//			var user = data.getFormattedValue(row, 1);
+//
+//			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
+//			showUserInfoDialog($(user).text());
+//		});
+
 	}
+	
 	
 	
 	function showUserInfoDialog(lead) {
@@ -152,7 +220,19 @@
 			}
 		});
 		
-
+		
+//		var userInfo;
+//		for (var indx in userData) {
+//			if (userData[indx].user_info.screen_name == userName) 
+//				userInfo = userData[indx].user_info;
+//		}
+		//alert(userInfo.image_url);
+//		$("#user_image").attr({"src": userInfo.image_url});
+//		$("#user_description").text(userInfo.description);
+//		$("#user_location").text(userInfo.location);
+//		$("#user_friends_count").text(userInfo.friends_count);
+//		$("#user_followers_count").text(userInfo.followers_count);
+		
 		showDialog('dialog_user_info', "About "+ lead.user, {
 			modal:true,
 			create:function(e,ui){
@@ -164,6 +244,8 @@
 		}); 
 		
 	}
+	
+	
 	
 	
 	/**
@@ -460,6 +542,8 @@
 		var bingGeocoder = new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7');
 		app.map.addControl(bingGeocoder);
 		
+		//scale bar
+		app.map.addControl(new L.Control.Scale());
 		
 		//show default dealer logo marker
 		app.layer.markerDealer[app.dealer].addTo(app.map);
@@ -573,6 +657,8 @@
 			}
 		})
 		
+		
+		
 		//close all dialog
 		$("*").dialog("close");
 		
@@ -638,6 +724,7 @@
 	}
 	
 
+	
 	/**
 	 * sort array based on objname
 	 */
@@ -769,8 +856,7 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
-			//review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
-			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + (pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.Review, true));
+			review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
 								review
@@ -846,8 +932,7 @@
 			else{
 				feed.Rating = "<span style='color:red; font-weight:bold'>" + feed.Rating + "</span>"
 			}
-			//var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
-			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + (pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.Review, true));
+			var review = "<div style='float:left'><img src='images/small/" + feed.Source + ".png' alt='logo' ></div>" + feed.Review;
 			reviewData.addRow( [feed.Rating, 
 								feed.Date,
 								review
