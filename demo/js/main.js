@@ -11,7 +11,7 @@
 			heatmap:null, //heatmap layer
 			markerLead:L.marker([0,0]), //marker for top leads
 			markerDealer:{
-				drew: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_ford.png', iconSize:[60, 35]})}),
+				drew: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_ford.png', iconSize:[60, 35]})}),			
 				penske: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_penske.png', iconSize:[60, 35]})})
 			}
 		},
@@ -283,7 +283,7 @@
 					app.layer.markerLead.openPopup();
 					$("#" + lead.divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": "#eeeeee"});
 			}).on("mouseout", function(e){
-					//app.layer.markerLead.closePopup();
+					app.layer.markerLead.closePopup();
 					//$("#" + divName + " ul li:nth-child(" + (idx + 1) + ")").css({"background-color": ""});
 				}
 			);
@@ -476,8 +476,8 @@
 		
 		//init map
 		app.map = L.map('map', {
-			center: [32.834917, -117.005639],
-			zoom: 9,
+			center: [32.774917, -117.005639],
+			zoom: 11,
 			layers: [basemaps["Gray Map"]],
 			attributionControl:false
 		});			
@@ -547,6 +547,31 @@
 		
 		//show default dealer logo marker
 		app.layer.markerDealer[app.dealer].addTo(app.map);
+		
+		//add buffer around car dealer 32.774917,-117.005639 (1mile = 1609.34 meters)
+		var biffer5m = L.circle([32.774917, -117.005639], 1609.34 * 5, {
+			color: 'red',
+			fillColor: '#f03',
+			weight:2,
+			fillOpacity: 0
+		}).addTo(app.map);
+		
+		var biffer10m = L.circle([32.774917, -117.005639], 1609.34 * 10, {
+			color: 'green',
+			fillColor: '#f03',
+			weight:2,
+			fillOpacity: 0
+		}).addTo(app.map);	
+
+		var biffer15m = L.circle([32.774917, -117.005639], 1609.34 * 15, {
+			color: 'blue',
+			fillColor: '#f03',
+			weight:2,
+			fillOpacity: 0
+		}).addTo(app.map);			
+			
+
+
 	}
 
 	
