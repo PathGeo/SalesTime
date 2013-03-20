@@ -81,24 +81,6 @@
 			}
 		})
 		
-		//use google chart table to show the rssFeeds
-//		var rssData = new google.visualization.DataTable();
-//		rssData.addColumn("number", "Score");
-//		rssData.addColumn("string", "Date");
-//		rssData.addColumn("string", "Source");
-//		rssData.addColumn("string", "Title");
-//		
-//		for (var indx in rssFeeds) {
-//			var feed = rssFeeds[indx];
-//			rssData.addRow( [ 	feed.score, 
-//								feed.date, feed.name, 
-//								"<a style='color: #22A' title= 'Click to see article.' target='_blank' href='" 
-//										+ feed.url + "'>" + pathgeo.util.highlightKeyword(app.constants.KEYWORDS, feed.title, true) + "</a>" 
-//							] );
-//		}
-//		
-//		var rssTable = new google.visualization.Table(document.getElementById('rss_news'));
-//		rssTable.draw(rssData, { showRowNumber: false, allowHtml: true, sortColumn: 0, sortAscending: false} );
 	}
 	
 	
@@ -160,40 +142,6 @@
 				leadType=$(this).attr("leadType");
 			showLocation(leads[leadType][idx]);
 		});
-		
-		
-		
-		//use google chart table
-//		var data = new google.visualization.DataTable();
-//		data.addColumn('number', 'Score');
-//		data.addColumn('string', 'User');
-//		data.addColumn('string', 'Tweet');
-//		//data.addColumn('string', 'Location');
-//		
-//		for (var indx in leadsGroup) {
-//			var lead = leadsGroup[indx];
-//			data.addRow( [ 
-//								lead.score,
-//								"<a style='color: #22A' title= 'Click to see twitter page.' target='_blank' href='http://www.twitter.com/" + lead.user + "'>" + lead.user + "</a>",
-//								pathgeo.util.highlightKeyword(app.constants.KEYWORDS, lead.text, true)
-//								//lead.loc
-//							] );
-//		}
-//		
-//		var table = new google.visualization.Table(document.getElementById(divName));
-//		table.draw(data, { showRowNumber: false, sortColumn: 0, sortAscending: false,  allowHtml: true});
-//				
-//		google.visualization.events.addListener(table, 'select', function() { 
-//			var row = table.getSelection()[0].row;
-//			
-//			//Can I still use the "data" variable due to closure??  Is this safe? (Chris)
-//			//YES, you can. the "data" varaible has become a global variable for this function. Therefore, even this function is a select-event listener, the "data" variable can be called correctly. (Calvin)
-//			var user = data.getFormattedValue(row, 1);
-//
-//			//Note: $(user).text() strips HTML tags, but not sure it is the best methods (Chris)
-//			showUserInfoDialog($(user).text());
-//		});
-
 	}
 	
 	
