@@ -107,20 +107,20 @@
 	<!-- widgets-->
 	<!-- reputation (JOE)-->
 	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
-            <span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
 		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital; cursor:pointer" onclick='init_reputation_graph()'>
 			<span class="digital_score">88</span>
 			<span class="digital_percent"><img class="digital_arrow" src="images/green_arrow.png" alt="arrow" border="0"/>3.8%</span>
 		</div>
+        <img id="improve_reputation" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});" src="images/improve arrow.png"/>
 	</div>
 	
 	<!-- visibility (JOE)-->
 	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
-		<span style="font-size:18px;position:absolute;right:5px;bottom:5px;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
 		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital; cursor:pointer;" onclick='init_visibilty_graph()'>
 			<span class="digital_score">81</span>
 			<span class="digital_percent"><img class="digital_arrow" src="images/red_arrow.png" alt="arrow" border="0"/>-2.1%</span>
 		</div>
+        <img id="improve_visibility" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});" src="images/improve arrow.png"/>
 	</div>
 	
 	<!-- competitor (JOE)-->

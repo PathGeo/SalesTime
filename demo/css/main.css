@@ -215,6 +215,28 @@ div.dia_vis_2 {
         float:left;
 }
 
+#improve_reputation{
+        width:50%;
+        height:40%;
+
+        position:absolute;
+        right:0%;
+        bottom:0%;
+        z-index:-1;
+  
+}
+
+#improve_visibility{
+        width:50%;
+        height:40%;
+
+        position:absolute;
+        right:0%;
+        bottom:0%;
+        z-index:-1;
+        
+}
+
 @font-face {
 font-family: digital;
 src: url('digital.ttf');
