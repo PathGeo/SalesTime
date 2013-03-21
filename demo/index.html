@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
@@ -169,9 +169,12 @@
 	</div>
 	
 	<!-- tweet streaming (Jay)-->
-    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream()" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=3>
-		<div id ='tweet' class='widget-content'>
-			
+    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream('Toyota')" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=3>
+		<div style='width:100%; text-align:right; background-color:#eeeeee;'>
+            New Keyword: <input id="user_kw" type="text" size="10" value="Toyota" onkeydown="if (event.keyCode == 13) document.getElementById('kw_button').click()">
+            <button id="kw_button" onclick="change_Keyword(document.getElementById('user_kw').value)")">Go</button></div>
+        <div id ='tweet' class='widget-content'>
+
 		</div>
 	</div>
             

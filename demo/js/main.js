@@ -32,8 +32,6 @@
 		}
 	}
 
-
-
     
 
 	//dom ready
@@ -731,37 +729,58 @@
 	/**
 	*   Initialize tweet stream box
 	*/	
-	function init_tweetStream(){
+	function init_tweetStream(TweetStream_kw){
+        
+	    if (!window.BAM) {
+	        window.BAM = new TWTR.Widget({
+	            version: 2,
+	            id: 'tweet',
+	            subject: 'Now Streaming: "' + TweetStream_kw + '"',
+	            type: 'search',
+	            search: TweetStream_kw,
+	            interval: 30,
+	            width: 'auto',
+	            height: $("li[id=widget_tweetStream]").height() - $(".widget_title").height() - 133,
+	            theme: {
+	                shell: {
+	                    background: '#8ec1da',
+	                    color: '#ffffff'
+	                },
+	                tweets: {
+	                    background: '#ffffff',
+	                    color: '#444444',
+	                    links: '#1985b5'
+	                }
+	            },
+	            features: {
+	                scrollbar: true,
+	                loop: true,
+	                live: true,
+	                behavior: 'all'
+	            }
+	        });
 
-		new TWTR.Widget({
-			version: 2,
-			id: 'tweet',
-			subject: 'Now Streaming: "TOYOTA"',
-			type: 'search',
-			search: 'toyota',
-			interval: 30,
-			width: 'auto',
-			height: $("li[id=widget_tweetStream]").height() - $(".widget_title").height() - 105,
-			// height: 306,
-			// height: 325,    if without the subject
-			theme: {
-				shell: {
-					background: '#8ec1da',
-					color: '#ffffff'
-				},
-				tweets: {
-					background: '#ffffff',
-					color: '#444444',
-					links: '#1985b5'
-				}
-			},
-			features: {
-				scrollbar: true,
-				loop: true,
-				live: true,
-				behavior: 'all'
-			}
-		}).render().start();
+	        window.BAM
+                .render()
+                .start();
+	    }
+	    else {
+	        if (TweetStream_kw != window.old_search) {
+	            window.BAM
+                    .stop()
+                    .setSearch(TweetStream_kw)
+                    .setCaption('Now Streaming: "' + TweetStream_kw + '"')
+                    .render()
+                    .start()
+	        }
+	    }
+
+	    window.old_search = TweetStream_kw;
+	    return window.BAM;
+	}
+
+	function change_Keyword(user_kw) {
+	    init_tweetStream(user_kw)
 	}
 
 
