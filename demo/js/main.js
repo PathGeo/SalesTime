@@ -245,6 +245,9 @@
 		}
 	}
 
+//Calvin, I could not have javascript read a seperate file so I have to paste everything here.
+//Please help me on connecting to seperate files, e.g. reputation_Info and visibility_Info, and delete this
+//messy part of code. Thanks! -nathan
     var reputSolution = [
 	{
         "screen_name": "Da_Juan_andOnly",
