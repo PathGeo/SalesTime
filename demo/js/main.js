@@ -245,74 +245,191 @@
 		}
 	}
 
-    function initReputation(){
-        var userInfo=userData[lead.user]
-        var repInfo=repuationData[lead.user]
+    var reputSolution = [
+	{
+        "screen_name": "Da_Juan_andOnly",
+        "time": "50 mins",
+		"description": "Reputation DROPS 10 points because @2manyjuans complains about dealer service.",
+		"solution": "*Solution: contact @2manyjuans for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.",
+		"friends_count": 301,
+		"followers_count": 108,
+		"image_url": "http://a0.twimg.com/profile_images/2012788536/jd_bigger.jpg",
+		"location": "San Diego"
+	},
+	{
+        "screen_name":"marileeaze",
+        "time": "1 hour",
+        "description": "Reputation DROPS 10 points because @marileeaze has an issue on Fusion engine light.",
+		"solution": "*Solution: Provide free recall service to @marileeaze, cost $150.",
+        "friends_count": 130,
+		"followers_count": 126,
+		"image_url": "http://a0.twimg.com/profile_images/2493275101/marileeaze_bigger.jpg",
+		"location": "SanDiego"
+	},
+	{
+        "screen_name":"Kenzie_Kmackin",
+        "time": "4 hours",
+		"description": "Reputation GOES UP 15 points because a comment by @Kenzie_Kmackin on Youtube.",
+		"solution": "*Solution: Increase chat volume on social media,  in particular online video commercials, cost $200 daily.",
+        "friends_count": 318,
+		"followers_count": 321,
+		"image_url": "http://a0.twimg.com/profile_images/2794984312/478353a35575e90d68cffd5bc1a0a5e9_bigger.jpeg",
+		"location": "San Diego"
+	},
+	{
+        "screen_name":"Mantis619",
+        "time": "7 hours",
+		"description": "Reputation DROPS 10 points because @Mantis619 has an issue on Fusion engine light.",
+		"solution": "*Solution: host a local car photography competition, cost $1000 for model hire.",
+        "friends_count": 655,
+		"followers_count": 348,
+		"image_url": "http://a0.twimg.com/profile_images/3074327838/f54455330f2f385497c187a819820e70_bigger.jpeg",
+		"location": "Sunny San Diego, California"
+	},
+	{
+        "screen_name":"Cfendiz",
+        "time": "10 hours",
+		"description": "Reputation DROPS 9 points because @Cfendiz got a bad battery.",
+		"solution": "*Solution: host a local car photography competition, cost $1000 for model hire.",
+        "friends_count": 138,
+		"followers_count": 112,
+		"image_url": "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg",
+		"location": "San Diego, CA "
+
+	},
+	{
+        "screen_name":"sarahmikhael_",
+        "time": "15 hours",
+		"description": "Reputation GOES UP 15 points because a comment by @sarahmikhael_ on Yelp.",
+		"solution": "*Solution: host a local car photography competition, cost $1000 for model hire.",
+        "friends_count": 107,
+		"followers_count": 225,
+		"image_url": "https://twimg0-a.akamaihd.net/profile_images/3344089932/f48e4c299cfcecb5f693aaeb4e9e2f9e_bigger.jpeg",
+		"location": "sunny san diego"
+	}
+]
+
+var visibSolution = [
+	{
+        "screen_name":"Kenzie_Kmackin",
+        "time": "17 mins",
+		"description": "Visibility GOES UP 15 points because Youtube new test drive video.",
+		"solution": "*Solution: Increase chat volume on social media,  in particular online video commercials, cost $200 daily.",
+        "friends_count": 318,
+		"followers_count": 321,
+		"image_url": "http://a0.twimg.com/profile_images/2794984312/478353a35575e90d68cffd5bc1a0a5e9_bigger.jpeg",
+		"location": "San Diego"
+	},
+    {
+        "screen_name": "Da_Juan_andOnly",
+        "time": "1 hour",
+		"description": "Visibility DROPS 15 points because our webpage has been down for 10 minutes.",
+		"solution": "*Solution: contact @Da_Juan_andOnly for details about service in Drew Ford. Provide a coupon of 15% off next time, cost $30.",
+		"friends_count": 301,
+		"followers_count": 108,
+		"image_url": "http://a0.twimg.com/profile_images/2012788536/jd_bigger.jpg",
+		"location": "San Diego"
+	},
+	{
+        "screen_name":"marileeaze",
+        "time": "3 hours",
+        "description": "Visibility DROPS 10 points because Fox News broadcasts Toyota Yaris commercial.",
+		"solution": "*Solution: Provide free recall service to @marileeaze, cost $150.",
+        "friends_count": 130,
+		"followers_count": 126,
+		"image_url": "http://a0.twimg.com/profile_images/2493275101/marileeaze_bigger.jpg",
+		"location": "SanDiego"
+	},
+	{
+        "screen_name":"Cfendiz",
+        "time": "7 hours",
+		"description": "Visibility DROPS 10 points because no Ads on San Diego Tribune.",
+		"solution": "*Solution: host a local car photography competition, cost $1000 for model hire.",
+        "friends_count": 138,
+		"followers_count": 112,
+		"image_url": "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg",
+		"location": "San Diego, CA "
+
+	},
+    {
+        "screen_name":"Mantis619",
+        "time": "10 hours",
+		"description": "Visibility DROPS 7 points because Google Maps site has no maintanence.",
+		"solution": "*Solution: host a local car photography competition, cost $1000 for model hire.",
+        "friends_count": 655,
+		"followers_count": 348,
+		"image_url": "http://a0.twimg.com/profile_images/3074327838/f54455330f2f385497c187a819820e70_bigger.jpeg",
+		"location": "Sunny San Diego, California"
+	}
+]
+
+
+
+    function init_Reputation(){
+
+        var keywords = ['GOES UP', 'DROPS'];
+       
+        var html="";
+        $.each(reputSolution, function(i,reputSol){
+			html+="<div class='dia_rep' repIndex=" + i +">\n\
+                    <span class='time'>" + reputSol.time+"</span>\n\
+                    <div class='solution'><img class='image' src= " + reputSol.image_url+ " /><p class='message'>"+ pathgeo.util.highlightKeyword(keywords, reputSol.description, true)  + "</p>\n\
+                    <span class='span'>Solution</span> <span class='span'>Detail</span> <span class='span'>Reply</span> <span class='span'>Save</span>\n\
+                    <br>"+ reputSol.solution + "</div>\n\
+                   </div>";
+		});
+		html+="";
+		$("#reputation").html(html);
+
+        $(".dia_rep").hover(function(){
+			$(this).css('background-color','#BDBDBD');
+            $(this).children().children('.span').css('display','inline')
+		}, function(){
+			$(this).css('background-color','#FFFFFF');
+            $(this).children().children('.span').css('display','none')
+		})
+
+        $(".dia_rep_2").hover(function(){
+			$(this).css('background-color','#BDBDBD')
+		}, function(){
+			$(this).css('background-color','#FFFFFF')
+		})
     }
 
+    function init_Visibility(){
 
-    function linkClick(div,txt,id,height,id2){
-        //collapse all boxes to normal size
-        $("."+ div).each(function(){
-            $(this).css({"height": "20%"});
-        });
+        var keywords = ['GOES UP', 'DROPS'];
 
-        //collapse all descriptions
-        $("."+ txt).each(function(){
-            $(this).css({"display": "none"});
-        });
+        var html="";
+        $.each(visibSolution, function(i,visibSol){
+			html+="<div class='dia_vis' repIndex=" + i +">\n\
+                    <span class='time'>" + visibSol.time+"</span>\n\
+                    <div class='solution'><img class='image' src= " + visibSol.image_url+ " /><p class='message'>"+ pathgeo.util.highlightKeyword(keywords, visibSol.description, true)  + "</p>\n\
+                    <span class='span' id='btnSolution'>Solution</span> <span class='span' id='btnDetail'>Detail</span> <span class='span' id='btnReply'>Reply</span> <span class='span' id='btnSave'>Save</span>\n\
+                    <br><div class='info' id='txtSolution'>"+ visibSol.solution + "</div></div>\n\
+                   </div>";
+		});
+		html+="";
+		$("#visibility").html(html);
 
-        //set size for a specific box
-        $("#"+id).parent().css({"height": height});
+        $(".dia_vis").hover(function(){
+			$(this).css('background-color','#BDBDBD');
+            $(this).children().children('.span').css('display','inline')
+		}, function(){
+			$(this).css('background-color','#FFFFFF');
+            $(this).children().children('.span').css('display','none')
+		})
 
-        //turn on a specific description
-        $("#"+id2).css({"display": ""});
-    }
+        $(".dia_vis_2").hover(function(){
+			$(this).css('background-color','#BDBDBD')
+		}, function(){
+			$(this).css('background-color','#FFFFFF')
+		})
 
-    function changeHeight(id , height){
-        $("#"+id).css({"height": height});
-    }
-
-    function closeDiv(div){
-        $("."+ div).each(function(){
-            $(this).css({"height": "20%"});
+        $("#btnSolution").click(function(){
+            $(this).siblings('#txtSolution').css('display','inline')
         })
     }
-
-    function closeTxt(txt){
-        $("."+ txt).each(function(){
-            $(this).css({"display": "none"});
-        })
-    }
-
-    function changeColor(id, color){
-        $("#"+id).css({"background-color": color});
-    }
-
-    function show(Class){
-        $("."+ Class).css({"display": ""});
-    }
-
-    function hide(Class){
-        $("."+ Class).css({"display": "none"});
-    }
-
-    function userContent(id, username){
-       var html="";
-//       userinfo[] = twitterInfoRetrieve(username);
-//       userinfo.img
-//       userinfo.name
-//       userinfo.location
-//       userinfo.friends
-//       userinfo.follows
-
-       html+="<div class='content'>\n\
-              <img src='" + "http://a0.twimg.com/profile_images/3268835550/1abe40bdc857158d00e165a7a0c21c8b_bigger.jpeg" + "' style='float:left; padding-right:15px'/>\n\
-              <div style='font-size:15px; padding-left:15%' ><b>nathanW</b><br> San Diego, CA <br> 128 Friends <br> 972 Follows </div>\n\
-              </div>";
-       $("#"+id).html(html);
-    }
-
 	
 	/**
 	 * init user interface 
