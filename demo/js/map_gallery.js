@@ -19,7 +19,7 @@ function initMapGallery() {
 		var style = $("#div_select_map_style").val();	
 		switchVisualization([style], true);
 	});
-});
+}
 
 function addPointsToGroup(group, tweets) {
 	//More than 1,000 points seems to make the map very slow!

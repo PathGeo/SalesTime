@@ -37,7 +37,16 @@
 	//dom ready
 	$(function() { 	    
 		init_UI();
-		//init_news_widget();		
+		//init_news_widget();
+		
+		
+		//TEMPORARY way to open map gallery (when map is double clicked)
+		$("#map").dblclick(function(event) {
+			showDialog('dialog_map_gallery', 'Map Gallery', {modal:true});
+			initMapGallery();
+			event.preventDefault();
+			return false;
+		});		
 	});
 	
 	
