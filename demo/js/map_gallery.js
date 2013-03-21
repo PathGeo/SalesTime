@@ -4,13 +4,15 @@ var curTweets = [];
 
 function initMapGallery() {
 	var baseLayer = L.tileLayer("http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png", {styleId: 22677});
-
-	map = new L.map("div_map", {
-			center: [35,-100],
-			zoom: 4,
-			layers:[baseLayer],
-			attributionControl:false
-		}); 
+	
+	if (!map) {
+		map = new L.map("div_map", {
+				center: [35,-100],
+				zoom: 4,
+				layers:[baseLayer],
+				attributionControl:false
+			}); 
+	}
 		
 	//initialize map...
 	switchVisualization([$("#div_select_map_style").val()], true);

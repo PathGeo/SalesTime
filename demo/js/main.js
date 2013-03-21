@@ -44,7 +44,7 @@
 		$("#map").dblclick(function(event) {
 			showDialog('dialog_map_gallery', 'Map Gallery', {modal:true});
 			initMapGallery();
-			event.preventDefault();
+			//event.preventDefault();
 			return false;
 		});		
 	});
