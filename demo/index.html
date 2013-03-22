@@ -164,9 +164,9 @@
     <div id='widget_chart' class='widget' widget-title='Social Media Trending' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
 		<div style='width:100%; padding:10px; cursor:pointer' onclick="showDialog('dialog_chart', 'Charts', {modal:true}); changeChart('line')">
 			<div style="font-weight:bold; padding-top:10px; padding-bottom: 10px; font-size:12px; color:#555555;">Mentions / Week</div>
-			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fusion</div><div class="score" style="padding-bottom:20px; font-size:24px">22</div>
-			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Escape</div><div class="score" style="padding-bottom:20px; font-size:24px">12</div>
-			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fiesta</div><div class="score" style="padding-bottom:20px; font-size:24px">4</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fusion</div><div class="score" style="padding-bottom:10px; font-size:24px">22</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Escape</div><div class="score" style="padding-bottom:10px; font-size:24px">12</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fiesta</div><div class="score" style="padding-bottom:10px; font-size:24px">4</div>
 		</div>
 	</div>
 	
@@ -395,6 +395,19 @@
 	<!-- closeWidget-->
 	<div id='div_closeWidget' style="display:none">
 		<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>Are you sure to close the widget?
+	</div>
+	
+	
+	<!-- map gallery control -->
+	<div id='div_mapGallery' style='display:none' class='mapGallery'>
+		<ul>
+			<li title="show Default Map" onclick='switchVisualization(["GEOJSON"]);'><img src='images/gallery-defaultmap.png'><br>Default Map</li>
+			<li title="show Cluster Map" onclick='switchVisualization(["MARKERCLUSTER"]);'><img src='images/gallery-cluster.png'><br>Cluster Map</li>
+			<li title="show Heat Map" onclick='switchVisualization(["HEATMAP", "GEOJSON"]);'><img src='images/gallery-heatmap.png'><br>Heat Map</li>
+			<li onclick='if(app.map.hasLayer(app.basemaps["Nokia Satellite"])){app.map.removeLayer(app.basemaps["Nokia Satellite"])}else{app.basemaps["Nokia Satellite"].addTo(app.map);}'><img src='images/gallery-satellite.png'><br>Satellite Map</li>
+			<li onclick='if(app.map.hasLayer(app.basemaps["Google Streetmap"])){app.map.removeLayer(app.basemaps["Google Streetmap"])}else{app.basemaps["Google Streetmap"].addTo(app.map);}'><img src='images/gallery-streetmap.png'><br>Goolge Streetmap</li>
+			<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Compare to Census</li>
+		</ul>
 	</div>
 	
 	

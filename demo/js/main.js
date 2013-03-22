@@ -8,7 +8,6 @@
 	var app={
 		map:null,		// leaflet map object
 		layer:{
-			heatmap:null, //heatmap layer
 			markerLead:L.marker([0,0]), //marker for top leads
 			markerDealer:{
 				drew: L.marker([32.774917,-117.005639], {icon: L.icon({iconUrl: 'images/logo_ford.png', iconSize:[60, 35]})}),			
@@ -16,7 +15,10 @@
 			}
 		},
 		dealer:"drew", //currrentDealer
-		controls:null, //leafmap controls
+		controls:{     //leafmap controls
+			toc:null,
+			geocoding: new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7')
+		}, 
 		hitMapData:{   //heatmap data
 			max:  1,        // Always 1 in tweet data
 			data: []
@@ -41,12 +43,12 @@
 		
 		
 		//TEMPORARY way to open map gallery (when map is double clicked)
-		$("#map").dblclick(function(event) {
-			showDialog('dialog_map_gallery', 'Map Gallery', {modal:true});
-			initMapGallery();
-			//event.preventDefault();
-			return false;
-		});		
+//		$("#map").dblclick(function(event) {
+//			showDialog('dialog_map_gallery', 'Map Gallery', {modal:true});
+//			initMapGallery();
+//			//event.preventDefault();
+//			return false;
+//		});		
 	});
 	
 	
@@ -464,6 +466,7 @@ var visibSolution = [
 		})
 		
 		
+		
 		/**
 		*logout dropdown event handler
 		*/
@@ -556,9 +559,11 @@ var visibSolution = [
 			layers: [basemaps["Gray Map"]],
 			attributionControl:false
 		});			
-				
+		
+		//add layers
+		var geojson=leadsToGeojson(leads.service.concat(leads.sales), "latlon");
 		//clusterlayer
-		app.layer.cluster=pathgeo.layer.markerCluster(leadsToGeojson(leads.service.concat(leads.sales), "latlon"),
+		var clusterMap=pathgeo.layer.markerCluster(geojson,
 				{
 					onEachFeature: function(feature,layer){
 						var html="<div class='popup'><ul><li><label class='score'>" + feature.properties["score"] + "</label><b>" + feature.properties["user"] + ":</b>&nbsp; " + feature.properties["text"] + "</li></ul></div>";
@@ -603,22 +608,32 @@ var visibSolution = [
 		).addTo(app.map);
 
 
-		app.controls = L.layerGroup().addTo(app.map);
-				
+		//map controls
 		var overlays = {
-			"tweets": app.controls,
-			"cluster": app.layer.cluster,
-			"lead": app.layer.markerLead
+			"Marker Map": L.geoJson(geojson, {
+				onEachFeature: function(feature,layer){
+						var html="<div class='popup'><ul><li><label class='score'>" + feature.properties["score"] + "</label><b>" + feature.properties["user"] + ":</b>&nbsp; " + feature.properties["text"] + "</li></ul></div>";
+						html=html.replace(/undefined/g, "Tweet");
+													
+						//highlight keyword
+						html=pathgeo.util.highlightKeyword(app.constants.KEYWORDS, html, true);
+						//info window
+						layer.bindPopup(html,{maxWidth:400, maxHeight:225});
+				}
+			}),
+			"Cluster Map": clusterMap,
+			"Heat Map": pathgeo.layer.heatMap(geojson),
+			"Census Data": L.tileLayer.wms("http://sgis.kisr.edu.kw/geoserver/topp/wms", {layers:"topp:states", attribution:"", format:"image/png", transparent:true})
 		};
+		app.controls.toc=L.control.layers(basemaps, overlays).addTo(app.map);		
 		
-		L.control.layers(basemaps, overlays);//.addTo(app.map);		
 		
 		//bing geocoder
-		var bingGeocoder = new L.Control.BingGeocoder('AvZ8vsxrtgnSqfEJF1hU40bASGwxahJJ3_X3dtkd8BSNljatfzfJUvhjo9IGP_P7');
-		app.map.addControl(bingGeocoder);
+		app.map.addControl(app.controls.geocoding)
 		
 		//scale bar
 		app.map.addControl(new L.Control.Scale());
+		
 		
 		//show default dealer logo marker
 		app.layer.markerDealer[app.dealer].addTo(app.map);
@@ -645,8 +660,6 @@ var visibSolution = [
 			fillOpacity: 0
 		}).addTo(app.map);			
 			
-
-
 	}
 
 	
@@ -776,8 +789,8 @@ var visibSolution = [
 		}
 		
 		if($this.attr("id")!="widget_addWidget"){
-			html+="<span class='ui-icon ui-icon-close widget-close' title='close the widget'></span>"+
-			  	  "<span class='ui-icon ui-icon-search widget-detail' title='See more detail'></span>"+
+			html+="<span class='widget-close' title='close the widget'></span>"+
+			  	  "<span class='widget-detail' title='See more detail'></span>"+
 			      "</div>";
 		}
 		return html;
