@@ -70,4 +70,39 @@ function getCompetitorScores(dealer){
 		]
 		return lineData;
 	}
+	
+	if(dealer == "yourself"){
+		var lineData = [
+			['Date', 'Reputation', "Visibility"],
+			['Feb 1',  -62, -55],
+			['Feb 2',  -48, -48],
+			['Feb 3',  -48, -33],
+			['Feb 4',  -33, -22],
+			['Feb 5',  -22, -28],
+			['Feb 6',  -33, -10],
+			['Feb 7',  -8, -16],
+			['Feb 8',  -10, -18],
+			['Feb 9',  -18, 2],
+			['Feb 10',  3, 6],
+			['Feb 11',  6, -12],
+			['Feb 12',  12, -20],
+			['Feb 13',  20, 10],
+			['Feb 14',  36, 30],
+			['Feb 15',  10, 45],
+			['Feb 16',  -8, 12],
+			['Feb 17',  0, 34], 
+			['Feb 18',  16, 50],
+			['Feb 19',  20, 38],
+			['Feb 20',  26, 49],
+			['Feb 21',  22, 42],
+			['Feb 22',  20, 34],
+			['Feb 23',  30, 45],
+			['Feb 24',  45, 63],
+			['Feb 25',  63, 77],
+			['Feb 26',  70, 70],
+			['Feb 27',  65, 79],
+			['Feb 28',  77, 88]
+		]
+		return lineData;
+	}
 }
