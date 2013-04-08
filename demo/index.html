@@ -1,0 +1,391 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+    <title>SAM-Dashboard</title>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="css/Aristo/Aristo.css" />
+	<!--<link rel="stylesheet" href="js/jquery/jquery.mobile-1.3.0.min.css" />-->
+	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
+	<link rel="stylesheet" href="js/leaflet/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/leaflet.ie.css" /><![endif]-->
+	<link rel="stylesheet" href="js/gridster/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="css/Control.BingGeocoder.css" />
+	<link rel="stylesheet" href="js/leaflet/MarkerCluster.css" />
+	<link rel="stylesheet" href="js/leaflet/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="css/main.css" />
+	
+	<!--chart-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+	<!--jQuery-->
+	<script src="js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+	<script scr='js/jquery/jquery.ui.touch-punch.min.js'></script>
+	<!--leaflet-->
+	<script src="js/leaflet/leaflet.js"></script>
+	<script type="text/javascript" src="js/leaflet/leaflet.heatmap.js"></script>
+	<script type="text/javascript" src="js/leaflet/leaflet.heatmap-leaflet.js"></script>
+	<script src="js/leaflet/leaflet.markercluster.js" type="text/javascript"></script>
+	<script src="js/leaflet/Control.BingGeocoder.min.js"></script>	
+	<!-- gridster-->
+	<script type="text/javascript" src="js/gridster/jquery.gridster.min.js"></script>
+	<!-- Tweet Stream-->
+	<script src="js/twitter/widget.js"></script>
+    <script src="js/all.min.js"></script>
+</head>
+
+
+<body>
+	<!--header section (JOE)-->
+	<div class="outer-north">
+		<div id="header" style="background-color:#ffffff; padding:5px; height:50px">
+			<a href="http://www.pathgeo.com/" ><img src = "images/logo_pathgeo.png" alt="logo" border="0" style = "margin:0px 0px 0px 0px;float:left;" /></a>
+			
+			<!--<div id="log" style="background-color:#ffffff;height:auto;width:80px;float:right;">
+				Log out
+			</div>-->
+
+			<!--<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding-top:10px;padding-right:20px">
+				Welcome! Mike Baker 
+				Your role is General Manager
+			</div>-->
+			<div id="date" style="padding-left:50px; padding-top: 15px; font-size:20px; float:left; color:#555555"></div>
+			<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding:0px 50px 0px 0px">
+				<span id="logo">
+					<img src = "images/logo_ford.png" alt="logo" border="0" style="float:left; padding-right:15px" />
+				</span>
+				<div style="float:right; padding-top:15px">
+					<a id="link"  style="font-size:16px">General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span></a>
+					<div id="submenu" style="z-index:9999">
+						<a href="#" onclick="switch_user('drew')">Drew Ford</a><br/>
+						<a href="#" onclick="switch_user('penske')">Penske</a><br/>
+						<a href="#" onclick="logout()">Logout</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!--<div id="subhead" style="background-color:#ffffff ;height:auto;">
+			Social Awareness Marketing (SAM) Dashboard Powered by PathGeo
+		</div>-->
+	</div>
+
+	<P></P>
+
+
+	<!-- Dashboard section -->
+	<div class="gridster"></div>
+
+
+
+	<!-- widgets-->
+	<!-- reputation (JOE)-->
+	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
+		<div id="score_reputation" style="color: green; padding-left:20px; font-family: digital; cursor:pointer" onclick='init_reputation_graph()'>
+			<span class="digital_score">88</span>
+			<span class="digital_percent"><img class="digital_arrow" src="images/green_arrow.png" alt="arrow" border="0"/>3.8%</span>
+		</div>
+        <img id="improve_reputation" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true}); init_Reputation()" src="images/improve arrow.png"/>
+	</div>
+	
+	<!-- visibility (JOE)-->
+	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
+		<div id="score_visibilty" style="color: red; padding-left:20px; font-family: digital; cursor:pointer;" onclick='init_visibilty_graph()'>
+			<span class="digital_score">81</span>
+			<span class="digital_percent"><img class="digital_arrow" src="images/red_arrow.png" alt="arrow" border="0"/>-2.1%</span>
+		</div>
+        <img id="improve_visibility" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true}); init_Visibility()" src="images/improve arrow.png"/>
+	</div>
+	
+	<!-- competitor (JOE)-->
+	<div id='widget_competitor' class='widget' widget-title='Competitor' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=3>
+		<table class="competitorTable" style="cursor:pointer; padding-left:10px" onclick='init_competitor_graph()'>
+			<tr><td></td><td class="dealer_competitor">Dealer A</td><td class="dealer_competitor">Dealer B</td></tr>
+			<tr><td class="category_competitor">Reputation</td><td class="digital_table">67</td><td class="digital_table">42</td></tr>
+			<tr><td class="category_competitor">Visibility</td><td class="digital_table">99</td><td class="digital_table">92</td></tr>
+		</table>
+	</div>
+	
+	<!--map & Top Sales Lead and Top Service Leads (SU & Chris)-->
+	<div id='widget_map' class='widget' widget-title='Map & Top Sales Leads and Top Service Leads' widget-onInit="init_map();init_leads()" widget-onClose="" widget-onClick="" widget-sizeX=6 widget-sizeY=3 widget-row=2 widget-col=1>
+		<!--- Note: Still trying to fix layout for map and lead tables. (Chris) -->
+		<div style='height: 98%; width: 100%;'>
+			<div id='map' style=' width:60%; height:95%; float:left'></div>
+			
+			<!-- how about using tabs to show top sales and top service leads ? -->
+			<div id='leads' style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
+				<ul>
+					<li><a href='#sales_leads' class="ui-btn-active">Top 10 Sales Leads</a></li>
+					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
+				</ul>
+				
+				<div id='sales_leads'  class='leads' style='height: 350px; overflow:auto;  background-color: ;'> Sales Leads </div>
+				<div id='service_leads' class='leads' style='height: 350px; overflow:auto; background-color: ;'> Service Leads </div>
+			</div>
+		</div>
+	
+	</div>
+	
+	<!-- news feed (CHRIS)-->
+	<div id='widget_news' class='widget' widget-title='News Feed' widget-onInit="init_news_widget()" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=1>
+		<div style='width:100%; text-align:right; background-color:#eeeeee;'>Sort by: <select style='width:150px; ' onchange='sortArray(rssFeeds, this.value); showNews();'><option value='score'>Score</option><option value='name'>Source</option><option value='date'>Date</option></select></div>
+		<div id='rss_news' style='height: 87%; width: 100%; overflow: auto;'> </div>
+	</div>
+            
+    <!-- chart (CHRIS)-->
+    <div id='widget_chart' class='widget' widget-title='Social Media Trending' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
+		<div style='width:100%; padding:10px; cursor:pointer' onclick="showDialog('dialog_chart', 'Charts', {modal:true}); changeChart('line')">
+			<div style="font-weight:bold; padding-top:10px; padding-bottom: 10px; font-size:12px; color:#555555;">Mentions / Week</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fusion</div><div class="score" style="padding-bottom:10px; font-size:24px">22</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Escape</div><div class="score" style="padding-bottom:10px; font-size:24px">12</div>
+			<div style="font-weight:bold; padding-top:10px; font-size:20px; color:#555555;">Ford Fiesta</div><div class="score" style="padding-bottom:10px; font-size:24px">4</div>
+		</div>
+	</div>
+	
+	<!-- tweet streaming (Jay)-->
+    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream('Toyota')" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=3>
+		<div style='width:100%; text-align:right; background-color:#eeeeee;'>
+            New Keyword: <input id="user_kw" type="text" size="10" value="Toyota" onkeydown="if (event.keyCode == 13) document.getElementById('kw_button').click()">
+            <button id="kw_button" onclick="change_Keyword(document.getElementById('user_kw').value)")">Go</button></div>
+        <div id ='tweet' class='widget-content'>
+
+		</div>
+	</div>
+            
+  	<!-- add Widget-->
+    <!--<div id='widget_addWidget' class='widget' widget-title='Add Widget' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_addWidget', 'Add Widget', {modal:true})" widget-sizeX=1 widget-sizeY=1 widget-row=4 widget-col=1>-->
+	<div id='widget_addWidget' class='ui-corner-all' title='Add Widget' onclick="showDialog('dialog_addWidget', 'Add Widget', {modal:true})" >
+		<!--<div style='text-align:center; color:#777777; width:100%; height:100%;cursor:pointer; margin:30px 0px 30px 0px;'><img src='images/1362405888_plus.png' width=40px /></div>-->
+		Add Widget
+	</div>
+	
+	
+
+
+
+
+	<!-- dialog for detail information -->
+	<!-- Reputation (JOE)-->
+	<div id='dialog_reputation' style='display:none'>
+		<span class="changeRepGraph" id="dailyRep" style="padding-right:30px">Last 2 Weeks</span>
+		<span class="changeRepGraph" id="weeklyRep" style="padding-right:30px; font-weight:bold">Last Month</span>
+		<span class="changeRepGraph" id="monthlyRep">Last 2 Months</span><br/><br/>
+		<div id="graph_rep" style="height:200px; width:650px"></div>
+		<div id='review_rep' style='height: 175px; width: 650px; overflow: auto; padding-top:15px'> </div>
+	</div>
+	
+	<!-- Visibility (JOE)-->
+	<div id='dialog_visibility' style='display:none'>
+		<span class="changeVisGraph" id="dailyVis" style="padding-right:30px">Last 2 Weeks</span>
+		<span class="changeVisGraph" id="weeklyVis" style="padding-right:30px; font-weight:bold">Last Month</span>
+		<span class="changeVisGraph" id="monthlyVis">Last 2 Months</span><br/><br/>
+		<div id="graph_vis" style="height:200px; width:650px"></div>
+		<div id='review_vis' style='height: 175px; width: 650px; overflow: auto; padding-top:15px'> </div>
+	</div>
+
+	<!-- Solution (NATHAN)-->
+	<div id='dialog_reputation_strategies' style='background-color:#A9D0F5;display:none'>
+        <div id="reputation" style="width:48%;height:100%; float:left" ></div>
+        <div class="dia_rep_2">
+			<span style="font-size:150%;">MARKETING STRATEGIES</span>
+            <ul style="font-size:120%;">
+                <li style="padding-left: 0%">Spending <Strong>$3000.00</Strong> on coupons to bring in 100 customers will increase repuration <Strong>10</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$500.00</Strong> on United Way donation will increase repuration <Strong>3</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$5000.00</Strong> on Veteran's Day sale will increase repuration <Strong>15</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$4350.00</Strong> on homepage upgrade will increase repuration <Strong>10</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$700.00</Strong> on Yelp Ads will increase repuration <Strong>5</Strong> points.</li><br>
+            </ul>
+		</div>
+	</div>
+	
+	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
+		<div id="visibility" style="width:48%;height:99%; float:left"></div>
+        <div class="dia_vis_2">
+            <span style="font-size:150%;">MARKETING STRATEGIES</span>
+            <ul style="font-size:120%;">
+                <li style="padding-left: 0%">Spending <Strong>$2300.00</Strong> on Youtube will increase visibility <Strong>10</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$1500.00</Strong> on Google Map and Google Business will increase visibility <Strong>3</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$500.00</Strong> on FM 97.4 commercial will increase visibility <Strong>5</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$1000.00</Strong> on San Diego Tribune will increase visibility <Strong>7</Strong> points.</li><br>
+                <li style="padding-left: 0%">Spending <Strong>$7000.00</Strong> on Fox News will increase visibility <Strong>10</Strong> points.</li><br>
+            </ul>
+		</div>
+	</div>
+
+	<!-- competitor (JOE)-->
+	<div id='dialog_competitor' style='display:none'>
+		<span class="changeCompGraph" id="dealerA" style="padding-right:30px; font-weight:bold">Dealer A</span>
+		<span class="changeCompGraph" id="dealerB" style="padding-right:30px">Dealer B</span>
+		<span class="changeCompGraph" id="yourself">Your Dealer</span><br/><br/>
+		<div id="competitor_graph" style="height:300px; width:650px"></div>
+	</div>
+	
+	<div id='dialog_chart' style='display:none'>
+		<div style='width:100%; text-align:right'>
+			<select style='width:150px; ' onchange='changeChart(this.value)'>
+				<option value='line'>Line Chart</option>
+				<option value='pie'>Pie Chart</option>
+			</select>
+		</div>
+		<div id="chart" style="width:650px; height:300px"></div>
+	</div>
+	
+	<!-- news feed (CHRIS)-->
+	<div id='dialog_news' style='display:none'>
+		<div style='width:95%;padding:20px;'>
+			<div id='dialog_news_score' style='float:left;font-size:200%;' class='score'></div>
+			<div id='dialog_news_content' style='float:left;width:78%;' class='content'></div>
+			<div id='dialog_news_goto' style='float:right; padding:10px; background-color:#EC692D; color:#ffffff; font-weight:bold; cursor:pointer;' class='ui-corner-all'>Go to Website</div>
+		</div>
+		
+		<iframe width=99% height=85% style='width:99%; height:85%; border:0px; border-top:1px solid #cccccc; padding-top:20px' class='ui-corner-all'></iframe>
+	</div>
+	
+	<!-- Map Gallery Dialog -->
+	<div id='dialog_map_gallery' style='display: none;'>
+		<div id="div_map" style='position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;'> </div>
+			
+		<div id="div_map_controls" style="position: absolute; width: 240px; top: 0px; right: 0px; background-color: #555; color: white; font-weight: bold; text-align: right; -webkit-border-bottom-left-radius: 7px; -moz-border-radius-bottomleft: 7px; border-bottom-left-radius: 7px;">
+			<table id="div_table_controls" style="margin: 0 auto; padding: 5px;">
+				<!--- LOCATION SELECTOR --->
+				<tr>
+					<td> <label for="div_select_location"> Location: </label> </td>
+					<td>
+						<select id="div_select_location" style="width: 125px;">
+							<option value="Los+Angeles"> Los Angeles </option>
+							<option value="New+York+City"> New York City </option>			
+							<option value="Houston"> Houston </option>			
+							<option value="Chicago">  Chicago </option>			
+							<option value="Atlanta">  Atlanta </option>			
+						</select>
+					</td>
+				</tr>
+				<!--- RADIUS SELECTOR --->
+				<tr>
+					<td> <label for="div_select_radius"> Radius: </label> </td>
+					<td>
+						<select id="div_select_radius" style="width: 125px">
+							<option value="20"> 20 miles </option>
+							<option value="100"> 100 miles </option>			
+							<option value="250"> 250 miles </option>			
+							<option value="500"> 500 miles </option>			
+							<option value="1000"> 1000 miles </option>			
+							<option value="2000"> 2000 miles </option>			
+						</select>
+					</td>
+				</tr>			
+				<!--- MAP STYLE SELECTOR --->
+				<tr>
+					<td> <label for="div_select_map_style"> Map style: </label> </td>
+					<td>
+						<select id="div_select_map_style" style="width: 125px">
+							<option value="GEOJSON"> Points </option>
+							<option value="HEATMAP"> Heatmap </option>			
+							<option value="MARKERCLUSTER"> Cluster Map </option>			
+						</select>
+					</td>
+				</tr>
+				<!--- KEYWORD SELECTOR --->
+				<tr>
+					<td> <label for="div_select_keyword"> Keyword: </label> </td>
+					<td>
+						<select id="div_select_keyword" style="width: 125px;">
+							<option value="Honda"> Honda </option>
+							<option value="Toyota"> Toyota </option>			
+							<option value="Prius"> Prius </option>			
+							<option value="Nissan">  Nissan </option>			
+						</select>
+					</td>
+				</tr>
+				<tr>	
+					<td></td>
+					<td><button id="div_button_controls"> Set Options </button> </td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<!-- Detailed user information (CHRIS) -->
+	<div id='dialog_user_info' style='display:none; padding:20px;'>
+		<!--user info-->
+		<div style='height:170px; width:99%;'>
+			<img id='user_image' style='float:left; padding:20px 20px 20px 0px; width:125px; height:125px;' src='' class='ui-corner-all' />
+			<div id='user_info' style='float:left; padding:5px; width:70%;'>
+				<ul>
+					<li id='screen_name' class='userInfo' style='font-size:150%;'></li>
+					<li id='description' class='userInfo'></li>
+					<li id='location' class='userInfo' textFormat="at {value}"></li>
+					<li id='friends_count' class='userInfo' textFormat="{value} Friends"></li>
+					<li id='followers_count' class='userInfo' textFormat="{value} Followers"></li>
+				</ul>
+			</div>
+		</div>
+		<!--user content -->
+		<div style='height:230px; width:99%;'>
+			<div style='width:100%; height:50px;'>
+				<div id='score' title='relevant score powered by PathGeo' class='userInfo score' style='width:50px;line-height:50px;height:100%;float:left;padding:10px;background-color:#EC692D; color:#ffffff;' class='ui-corner-all'></div><p></p>
+				<div style='width:83%;height:100%;float:left;padding:10px;' class='content'>
+					<label id='date' class='userInfo' style='font-weight:bold; font-size:110%;'></label>, <label id='screen_name' class='userInfo'></label> said : <br>
+					<label id='text' class='userInfo'></label> 
+				</div>
+			</div>
+			<p></p>
+			<textarea style='width:100%; height:100px;resize:none' autofocus=false ></textarea><p></p>
+			<button style='float:right' onclick='$("*").dialog("close");'>Reply</button>
+		</div>
+		
+		<!-- This is just some test data to get the layout right... 
+		<div style="position: relative; width: 95%; height: 70px;">
+			<div style="position: absolute; height: 70px; width: 70px; "> 
+				<img id="user_image" style="width: 100%; height: 100%;" src=""/>
+			</div>
+			<div id="user_description" style="position: absolute; padding: 5px; left: 70px; right: 0px; top: 0px; bottom: 0px;">
+			</div>
+		</div>
+		<div style="padding-top: 15px;">
+			<b>Location:</b> <span id="user_location"> </span> <br>
+			<b>Friends count:</b> <span id="user_friends_count">  </span> <br>
+			<b>Followers count:</b> <span id="user_followers_count">  </span> <br>
+		</div>
+		-->
+	
+	</div>
+	
+	<!-- addWidget (Calvin)-->
+	<div id='dialog_addWidget' style='display:none'>
+		<ul>
+			<li onclick='addWidget("widget_reputation")'><img src='images/1362418884_pagespeed.png'   /><span><b>Reputation</b><br>See your reputation score!</span></li>
+			<li onclick='addWidget("widget_visibility")'><img src='images/1362418910_screen_callers-g.png'  onclick='addWidget("widget_visibility")' /><span><b>Visibility</b><br>See your visibility score!</span></li>
+			<li onclick='addWidget("widget_competitor")'><img src='images/1362418858_people_stacked-b.png'   /><span><b>Competitor</b><br>See your competitors score!</span></li>
+			<li onclick='addWidget("widget_map")'><img src='images/1362418842_latitude.png' /><span><b>Map & Top Sales Leads</b><br>See top 10 Sales and Service Leads in the map!</span></li>
+			<li onclick='addWidget("widget_news")'><img src='images/1362418717_reader.png' /><span><b>News Feed</b><br>See relevant dealer news realtime!</span></li>
+			<li onclick='addWidget("widget_chart")'><img src='images/1362418773_analytics.png' /><span><b>Chart</b><br>Infographic your information!</span></li>
+			<li onclick='addWidget("widget_tweetStream")' ><img src='images/1362673036_social_twitter_box_blue.png' /><span><b>Twitter</b><br>See realtime HOT topics in Twitter!</span></li>
+		</ul>
+	</div>
+	
+	
+	<!-- closeWidget-->
+	<div id='div_closeWidget' style="display:none">
+		<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>Are you sure to close the widget?
+	</div>
+	
+	
+	<!-- map gallery control -->
+	<div id='div_mapGallery' style='display:none' class='mapGallery'>
+		<ul>
+			<li title="show Default Map" onclick='switchVisualization(["GEOJSON"]);'><img src='images/gallery-defaultmap.png'><br>Default Map</li>
+			<li title="show Cluster Map" onclick='switchVisualization(["MARKERCLUSTER"]);'><img src='images/gallery-cluster.png'><br>Cluster Map</li>
+			<li title="show Heat Map" onclick='switchVisualization(["HEATMAP", "GEOJSON"]);'><img src='images/gallery-heatmap.png'><br>Heat Map</li>
+			<li onclick='if(app.map.hasLayer(app.basemaps["Nokia Satellite"])){app.map.removeLayer(app.basemaps["Nokia Satellite"])}else{app.basemaps["Nokia Satellite"].addTo(app.map);}'><img src='images/gallery-satellite.png'><br>Satellite Map</li>
+			<li onclick='if(app.map.hasLayer(app.basemaps["Google Streetmap"])){app.map.removeLayer(app.basemaps["Google Streetmap"])}else{app.basemaps["Google Streetmap"].addTo(app.map);}'><img src='images/gallery-streetmap.png'><br>Goolge Streetmap</li>
+			<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Compare to Census</li>
+		</ul>
+	</div>
+	
+	
+</body>
+</html>

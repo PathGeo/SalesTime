@@ -1,125 +1,289 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>PathGeo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-	<link type="text/css" href='css/Aristo/Aristo.css' rel="stylesheet" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+    <title>SAM-Dashboard</title>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="css/Aristo/Aristo.css" />
+	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
 	<link rel="stylesheet" href="js/leaflet/leaflet.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/leaflet.ie.css" /><![endif]-->
-	<link rel="stylesheet" href="js/leaflet/MarkerCluster.css" />
-	<link rel="stylesheet" href="js/leaflet/MarkerCluster.Default.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/MarkerCluster.Default.ie.css" /><![endif]-->
-	<!--[if IE]><link type="text/css" href='css/main_ie.css' rel="stylesheet" /><![endif]-->
-	<!--[if !IE]><!--><link type="text/css" href='css/main.css' rel="stylesheet" /><!--<![endif]-->
+	<link rel="stylesheet" href="js/gridster/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="css/Control.BingGeocoder.css" />
+    <link rel="stylesheet" href="css/main.css" />
 	
-    <!--core-->
-	<script src="js/leaflet/leaflet.js" type="text/javascript"></script>
-	<script src="js/leaflet/leaflet.markercluster.js" type="text/javascript"></script>
-	<script src="js/leaflet/leaflet.heatmap.js" type="text/javascript"></script>
-	<script src="js/leaflet/leaflet.heatmap-leaflet.js" type="text/javascript"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-	<!-- api -->
-	<script src="js/api/pathgeo.layer.js" type="text/javascript"></script>
-	<script src="js/api/pathgeo.util.js" type="text/javascript"></script>
-	<script src="js/api/pathgeo.service.js" type="text/javascript"></script>
-    <!-- main -->
-    <script src="js/leaflet_main.js" type="text/javascript"></script>
-  </head>
-  
-  
-  <body>
-  	<!-- search -->
-	<div id='div_search' class='ui-corner-all'>
-		<table id="searchLayout" border=0 style="margin-left:auto; margin-right:auto;">
-				<tr>
-					<td style="text-align: center; font-size: 14pt; font-weight: bold;" colspan=2> Search Options </td>
-				</tr>
-				<tr>
-					<td style="text-align: right;"> Location: </td>
-					<td> <input type="text" id="keyword" style="width: 120px;" value="Los Angeles"> </td>
-				</tr>
-				<tr> 
-					<td style="text-align: right;"> Radius: </td>
-					<td>
-						<select id="radius" style="width: 120px;">
-							<option value="10">10 miles</option>
-							<option value="25">25 miles</option>
-							<option value="50" >50 miles</option>
-							<option value="100">100 miles</option>
-							<option value="250"selected>250 miles</option>		
-							<option value="500" >500 miles</option>		
-						</select> 	
-					</td>
-				</tr>
-				<tr>
-					<td style="text-align: right;"> Car: </td>
-					<td>
-						<select id="car" style="width: 120px;">
-							<option value="nissan">Nissan</option>				
-							<option value="honda">Honda</option>
-							<option value="Honda+Accord">Honda Accord</option>
-							<option value="Honda+Civic">Honda Civic</option>
-							<option value="Civic">Civic</option>
-							<option value="Accord">Accord</option>
-							<option value="Ford+Focus">Ford Focus</option>
-							<option value="Ford+Escape">Ford Escape</option>
-							<option value="Toyota">Toyota</option>		
-							<option value="Toyota+Camry">Toyota Camry</option>
-							<option value="Toyota+Corolla">Toyota Corolla</option>
-							<option value="Toyota+Pirus">Toyota Pirus</option>
-							<option value="Camry">Camry</option>
-							<option value="Corolla">Corolla</option>				
-							<option value="Prius">Prius</option>				
-							<option value="Chevy+Volt">Chevy Volt</option>
-							<option value="Volt">Volt</option>
-							<option value="Lexus">Lexus</option>
-							<option value="BMW">BMW</option>
-						</select> 
-					</td>
-				</tr>			
-				<!---
-				<tr style="color: #22D;">
-					<td style="text-align: right; font-size: 8pt; padding: 0px; margin: 0px;">  </td>
-					<td style="padding: 0px; margin: 0px;"> <input type="checkbox" id="chkFlickr"/> Twitter </td>
-				</tr>
-				<tr style="color: #2D2;">
-					<td style="text-align: right; font-size: 8pt;"> </td>
-					<td> <input type="checkbox" id="chkFlickr"/> Flickr </td>
-				</tr>
-				<tr style="color: #D22;">
-					<td style="text-align: right; font-size: 8pt; width: 7px;"> </td>
-					<td> <input type="checkbox" id="chkYoutube"/> Youtube </td>
-				</tr>
-				--->
-				<tr>
-					<td></td>
-					<td> <br><button type="button" onclick="getTweets()">Search</button>&nbsp; &nbsp; <img id='img_loading' src="images/loading.gif" width=15px style='display:none;' /></td>
-				</tr>
+	<!--chart-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+	
+	<!-- DATA -->
+	<script src="js/scores.js"></script>	
+	<script src="js/user_info.js"></script>	
+	<script src="js/leads.js"></script>	
+	<script src="js/rss.js"></script>
+	<script src="js/reviews.js"></script>	
+
+	<!-- PathGeo JS -->
+	<script src="js/api/pathgeo.layer.js"></script>		
+	<script src="js/api/pathgeo.service.js"></script>	
+	<script src="js/api/pathgeo.util.js"></script>	
+
+	<!--jQuery-->
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-ui-1.8.16.custom.min.js"></script>
+	
+	<!--leaflet-->
+	<script src="js/leaflet/leaflet.js"></script>
+	<script type="text/javascript" src="js/leaflet/leaflet.heatmap.js"></script>
+	<script type="text/javascript" src="js/leaflet/leaflet.heatmap-leaflet.js"></script>
+	
+	<!-- gridster-->
+	<script type="text/javascript" src="js/gridster/jquery.gridster.min.js"></script>
+	
+	<!-- Tweet Stream-->
+	<script src="js/twitter/widget.js"></script>
+	
+	<!--main-->
+	<script src="js/Control.BingGeocoder.js"></script>		
+    <script src="js/main.js"></script>	
+</head>
+
+
+<body>
+	<!--header section (JOE)-->
+	<div class="outer-north">
+		<div id="header" style="background-color:#ffffff ">
+			<a href="http://www.pathgeo.com/" ><img src = "./images/logo_product.png" alt="logo" border="0" style = "margin:0px 0px 0px 0px;width:300px;height:90px;float:center;" /></a>
+			
+			<!--<div id="log" style="background-color:#ffffff;height:auto;width:80px;float:right;">
+				Log out
+			</div>-->
+
+			<!--<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding-top:10px;padding-right:20px">
+				Welcome! Mike Baker 
+				Your role is General Manager
+			</div>-->
+			
+			<div id="welcome" style="background-color:#ffffff;height:auto;float:right;padding:10px 50px 0px 0px">
+				<div style="float:right; padding-bottom:10px">
+					<a id="link">Drew Ford General Manager<span class='ui-icon ui-icon-carat-1-s widget-dropdown' title='Expand'></span></a>
+					<div id="submenu">
+						<a href="#" onclick="switch_user('drew')">Drew Ford</a><br/>
+						<a href="#" onclick="switch_user('penske')">Penske</a><br/>
+						<a href="#" onclick="logout()">Logout</a>
+					</div>
+				</div>
+				<div id="logo">
+					<img src = "images/logo_drew.png" alt="logo" border="0" style = "width:200px;height:40px;float:right" />
+				</div>
+			</div>
+		</div>
+
+		<!--<div id="subhead" style="background-color:#ffffff ;height:auto;">
+			Social Awareness Marketing (SAM) Dashboard Powered by PathGeo
+		</div>-->
+	</div>
+
+	<P></P>
+
+
+	<!-- Dashboard section -->
+	<div class="gridster"></div>
+
+
+
+	<!-- widgets-->
+	<!-- reputation (JOE)-->
+	<div id='widget_reputation' class='widget' widget-title='Reputation' widget-onInit="" widget-onClose="console.log('close')" widget-onClick="init_reputation_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=1>
+                <span style="font-size:150%;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_reputation_strategies', 'How to Improve Reputation', {modal:true});">Improve it!</span>
+		<div id="score_reputation" style="color: green; padding-left:20px">
+			<span style="font-size:92px; padding-right:20px">288</span>
+			<span style="font-size:32px"><img src = "images/green_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />3.8%</span>
+		</div>
+	</div>
+	
+	<!-- visibility (JOE)-->
+	<div id='widget_visibility' class='widget' widget-title='Visibility' widget-onInit="" widget-onClose="" widget-onClick="init_visibilty_graph()" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=2>
+		<span style="font-size:150%;position:absolute;right:0;bottom:0;text-align:right;text-decoration:underline;color:blue;" title='Click to see solutions' onclick="showDialog('dialog_visibility_strategies', 'How to Improve Visibility', {modal:true});">Improve it!</span>
+		<div id="score_visibilty" style="font-size:92px; color: red; padding-left:20px">
+			<span style="font-size:92px; padding-right:20px">252</span>
+			<span style="font-size:32px"><img src = "images/red_arrow.png" alt="arrow" border="0" style = "width:40px; height:40px" />-2.1%</span>
+		</div>
+	</div>
+	
+	<!-- competitor (JOE)-->
+	<div id='widget_competitor' class='widget' widget-title='Competitor' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_competitor', 'Competitor', {modal:true})" widget-sizeX=2 widget-sizeY=1 widget-row=1 widget-col=3>
+		
+	</div>
+	
+	<!--map & Top Sales Lead and Top Service Leads (SU & Chris)-->
+	<div id='widget_map' class='widget' widget-title='Map & Top Sales Leads and Top Service Leads' widget-onInit="init_map();init_leads()" widget-onClose="" widget-onClick="" widget-sizeX=6 widget-sizeY=3 widget-row=2 widget-col=1>
+		<!--- Note: Still trying to fix layout for map and lead tables. (Chris) -->
+		<div style='height: 97%; width: 100%;'>
+			<div id='map' style=' width:60%; height:95%; float:left'></div>
+			
+			<!-- how about using tabs to show top sales and top service leads ? -->
+			<div style='width:38.5%; height:95%; padding:5px; float:left' class='tabs'> 
+				<ul>
+					<li><a href='#sales_leads'>Top 10 Sales Leads</a></li>
+					<li><a href='#service_leads'>Top 10 Service Leads</a></li>
+				</ul>
 				
-			</table>
+				<div id='sales_leads' style='height: 350px; background-color: ;'> Sales Leads </div>
+				<div id='service_leads' style='height: 350px; background-color: ;'> Service Leads </div>
+			</div>
+		</div>
+	
+	</div>
+	
+	<!-- news feed (CHRIS)-->
+	<div id='widget_news' class='widget' widget-title='News Feed' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=1>
+		<div id='rss_news' style='height: 90%; width: 100%; overflow: auto;'> </div>
+	</div>
+            
+    <!-- chart (CHRIS)-->
+    <div id='widget_chart' class='widget' widget-title='Chart' widget-onInit="" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=2 widget-row=3 widget-col=2>
+		
+	</div>
+	
+	<!-- tweet streaming (Jay)-->
+    <div id='widget_tweetStream' class='widget' widget-title='Tweet Stream' widget-onInit="init_tweetStream()" widget-onClose="" widget-onClick="" widget-sizeX=2 widget-sizeY=3 widget-row=3 widget-col=3>
+		<div id ='tweet' class='widget-content'>
+			
+		</div>
+	</div>
+            
+  	<!-- add Widget-->
+    <div id='widget_addWidget' class='widget' widget-title='Add Widget' widget-onInit="" widget-onClose="" widget-onClick="showDialog('dialog_addWidget', 'Add Widget', {modal:true})" widget-sizeX=1 widget-sizeY=1 widget-row=4 widget-col=1>
+		<div style='text-align:center; color:#777777; width:100%; height:100%;cursor:pointer; margin:30px 0px 30px 0px;'><img src='images/1362405888_plus.png' width=40px /></div>
 	</div>
 	
 	
-	<!-- gallery-->
-	<div id='div_gallery'>
+
+
+
+
+	<!-- dialog for detail information -->
+	<!-- Reputation (JOE)-->
+	<div id='dialog_reputation' style='display:none'>
+		<span class="changeRepGraph" id="dailyRep" style="padding-right:30px; font-weight:bold">Last Week</span>
+		<span class="changeRepGraph" id="weeklyRep" style="padding-right:30px">Last Month</span>
+		<span class="changeRepGraph" id="monthlyRep">Last 6 Months</span><br/><br/>
+		<div id="graph_reputation" style="height:200px; width:600px"></div>
+		<div id='reviews_rep' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
+	</div>
+	
+	<!-- Visibility (JOE)-->
+	<div id='dialog_visibility' style='display:none'>
+		<span class="changeVisGraph" id="dailyVis" style="padding-right:30px; font-weight:bold">Last Week</span>
+		<span class="changeVisGraph" id="weeklyVis" style="padding-right:30px">Last Month</span>
+		<span class="changeVisGraph" id="monthlyVis">Last 6 Months</span><br/><br/>
+		<div id="graph_visibilty" style="height:200px; width:600px"></div>
+		<div id='reviews_vis' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
+	</div>
+
+	<!-- Solution (NATHAN)-->
+	<div id='dialog_reputation_strategies' style='display:none'>
+		<div id="graph_visibilty" style="height:200px; width:200px"><img src='images/solution-content_page1.png'/></div>
+		<div id='reviews_vis' style='height: 90%; width: 100%; overflow: auto; padding-top:10px'> </div>
+	</div>
+	
+	<div id='dialog_visibility_strategies' style='background-color:#A9D0F5;display:none'>
+		<div id="div_vis_sub1" style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onclick=this.sytle.width="100%" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation 5 points because a complaint by @nathanW about dealer service.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solut</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Detail</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Reply</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Favorite</span>
+			<span style="font-size:16px;" title='Click to see solutions'>   </span>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>More</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation increases 15 points because a comment by @joeS on Youtube.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
+		<div style="width:50%;height:20%; border:1.5px solid #BDBDBD; background-color: #FFFFFF;" onMouseOver=this.style.backgroundColor="#BDBDBD"; onMouseOut=this.style.backgroundColor="#FFFFFF";>
+			<br>
+			<span style="font-size:16px;" title='Click to see solutions'>
+				Reputation drops 10 points because @chrisA has an issue on Fusion engine light.
+			</span>
+			<br>
+		 	<br>
+			<span style="font-size:16px;text-decoration:underline;color:blue;" title='Click to see solutions'>Solution</span>
+		</div>
+	</div>
+	
+	<!-- competitor (JOE)-->
+	<div id='dialog_competitor' style='display:none'></div>
+	
+	<!-- news feed (CHRIS)-->
+	<div id='dialog_news' style='display:none'></div>
+	
+	<!-- chart (CHRIS)-->
+	<div id='dialog_chart' style='display:none'></div>
+	
+	<!-- Detailed user information (CHRIS) -->
+	<div id='dialog_user_info' style='display:none'>
+		
+		<!-- This is just some test data to get the layout right... -->
+	
+		<div style="position: relative; width: 95%; height: 70px;">
+			<div style="position: absolute; height: 70px; width: 70px; "> 
+				<img id="user_image" style="width: 100%; height: 100%;" src=""/>
+			</div>
+			<div id="user_description" style="position: absolute; padding: 5px; left: 70px; right: 0px; top: 0px; bottom: 0px;">
+			</div>
+		</div>
+		<div style="padding-top: 15px;">
+			<b>Location:</b> <span id="user_location"> </span> <br>
+			<b>Friends count:</b> <span id="user_friends_count">  </span> <br>
+			<b>Followers count:</b> <span id="user_followers_count">  </span> <br>
+		</div>
+	
+	
+	</div>
+	
+	<!-- addWidget (Calvin)-->
+	<div id='dialog_addWidget' style='display:none'>
 		<ul>
-			<li title="show Default Map" onclick='switchVisualization(["GEOJSON"]);'><img src='images/gallery-defaultmap.png'><br>Default Map</li>
-			<li title="show Cluster Map" onclick='switchVisualization(["MARKERCLUSTER"]);'><img src='images/gallery-cluster.png'><br>Cluster Map</li>
-			<li title="show Heat Map" onclick='switchVisualization(["HEATMAP", "GEOJSON"]);'><img src='images/gallery-heatmap.png'><br>Heat Map</li>
-			<li onclick='if(app.map.hasLayer(app.basemaps["Nokia Satellite"])){app.map.removeLayer(app.basemaps["Nokia Satellite"])}else{app.basemaps["Nokia Satellite"].addTo(app.map);}'><img src='images/gallery-satellite.png'><br>Satellite Map</li>
-			<li onclick='if(app.map.hasLayer(app.basemaps["Google Streetmap"])){app.map.removeLayer(app.basemaps["Google Streetmap"])}else{app.basemaps["Google Streetmap"].addTo(app.map);}'><img src='images/gallery-streetmap.png'><br>Goolge Streetmap</li>
-			<li onclick='if(app.map.hasLayer(app.layers[0].layer)){app.map.removeLayer(app.layers[0].layer)}else{app.layers[0].layer.addTo(app.map);}'><img src='images/gallery-states.png' ><br>Census Data</li>
-			<li onclick='if(app.map.hasLayer(app.layers[1].layer)){app.map.removeLayer(app.layers[1].layer)}else{app.layers[1].layer.addTo(app.map);}'><img src='images/gallery-weather.png' ><br>Realtime Weather</li>
+			<li onclick='addWidget("widget_reputation")'><img src='images/1362418884_pagespeed.png'   /><span><b>Reputation</b><br>See your reputation score!</span></li>
+			<li onclick='addWidget("widget_visibility")'><img src='images/1362418910_screen_callers-g.png'  onclick='addWidget("widget_visibility")' /><span><b>Visibility</b><br>See your visibility score!</span></li>
+			<li onclick='addWidget("widget_competitor")'><img src='images/1362418858_people_stacked-b.png'   /><span><b>Competitor</b><br>See your competitors score!</span></li>
+			<li onclick='addWidget("widget_map")'><img src='images/1362418842_latitude.png' /><span><b>Map & Top Sales Leads</b><br>See top 10 Sales and Service Leads in the map!</span></li>
+			<li onclick='addWidget("widget_news")'><img src='images/1362418717_reader.png' /><span><b>News Feed</b><br>See relevant dealer news realtime!</span></li>
+			<li onclick='addWidget("widget_chart")'><img src='images/1362418773_analytics.png' /><span><b>Chart</b><br>Infographic your information!</span></li>
+			<li onclick='addWidget("widget_tweetStream")' ><img src='images/1362673036_social_twitter_box_blue.png' /><span><b>Twitter</b><br>See realtime HOT topics in Twitter!</span></li>
 		</ul>
 	</div>
 	
-	<!-- map-->
-	<div id="div_map" style=''></div>
-
-	<!-- dialog -->
-	<div id='div_dialog' style='display:none;text-align:center'></div>
-  </body>
+	
+	<!-- closeWidget-->
+	<div id='div_closeWidget' style="display:none">
+		<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>Are you sure to close the widget?
+	</div>
+	
+	
+</body>
 </html>
